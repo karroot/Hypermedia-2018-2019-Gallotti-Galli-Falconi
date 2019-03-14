@@ -1,0 +1,184 @@
+#utilizzato per definire specifiche di una tua API
+#esempio
+
+swagger: "2.0" # definisce la versione di swagger
+
+info: #info generiche
+  version: 1.0.0
+  title: API MARKET
+  description: A simple API to define an online book market
+
+schemes: #formato schema API https://simple.api/openapi101/
+  - https
+host: simple.api
+basePath: /openapi101
+
+paths: # https://simple.api/openapi101/persons
+  /users:
+    get:
+      summary: Gets some users
+      description: Returns a list containing all users. The list supports paging.
+      parameters: # usati nel get per fare le query  https://simple.api/openapi101/persons?pageSize=20&pageNumber=12
+       - name: pageSize
+         in: query
+         description: Number of users returned
+         type: integer
+       - name: pageNumber
+         in: query
+         description: Page number
+         type: integer
+       
+      responses: #risposta che deve dare la pagina se invocata
+        200:
+          description: A list of user
+          schema:
+            type: array
+            items:
+              required:
+                - username
+              properties:
+                firstName:
+                  type: string
+                lastName:
+                  type: string
+                username:
+                  type: string
+                  
+                  
+    post:
+      summary: Creates a user
+      description: Adds a new user to the users list.
+      parameters:
+        - name: user
+          in: body
+          description: The user to create.
+          schema:
+            required:
+              - username
+            properties:
+              firstName:
+                type: string
+              lastName:
+                type: string
+              username:
+                type: string
+      responses:
+        204:
+          description: User succesfully created.
+        400:
+          description: User couldn't have been created.
+          
+          
+  /users/{username}: # curl -X GET "https://simple.api/openapi101/persons/Carlo"
+    get:
+      summary: Gets a user
+      description: Returns a single user for its username
+      parameters: #  {username} is a path parameter quindi va specificato e bisogna dire che il parametro username ? required
+        - name: username
+          in: path
+          required: true
+          description: The person's username
+          type: string
+      responses:
+        200:
+          description: A User
+          schema:
+            required:
+              - username
+            properties:
+              firstName:
+                type: string
+              lastName:
+                type: string
+              username:
+                type: string
+        404:
+          description: The User does not exists.
+  /items:
+    get:
+      summary: Gets some items
+      description: Returns a list containing all items. The list supports paging.
+      parameters: # usati nel get per fare le query  https://simple.api/openapi101/persons?pageSize=20&pageNumber=12
+       - name: pageSize
+         in: query
+         description: Number of users returned
+         type: integer
+       - name: pageNumber
+         in: query
+         description: Page number
+         type: integer
+       
+      responses:
+        200:
+          description: A User
+          schema:
+            required:
+              - Title
+              - Author
+            properties:
+              Price:
+                type: integer
+              Theme1:
+                type: string
+              Theme2:
+                type: string
+                  
+                  
+    post:
+      summary: Creates a book
+      description: Adds a new book to the users list.
+      parameters:
+        - name: book
+          in: body
+          description: The user to create.
+          schema:
+            required:
+              - Title
+              - Author
+            properties:
+              Price:
+                type: number
+                format: float
+              Date:
+                type: string 
+                format: time 
+              Theme1:
+                type: string
+              Theme2:
+                type: string
+      responses:
+        204:
+          description: Book succesfully created.
+        400:
+          description: Book couldn't have been created.
+          
+  /items/{bookname,author}: # curl -X GET "https://simple.api/openapi101/persons/Carlo"
+    get:
+      summary: Gets a book
+      description: Returns a single book for its title
+      parameters: #  {username} is a path parameter quindi va specificato e bisogna dire che il parametro username ? required
+        - name: bookname,author
+          in: path
+          required: true
+          description: The book title by author
+          type: string
+      responses:
+        200:
+          description: A book
+          schema:
+            required:
+              - title
+              - author
+            properties:
+              Price:
+                type: number
+                format: float
+              Date:
+                type: string 
+                format: time 
+              Theme1:
+                type: string
+              Theme2:
+                type: string
+        404:
+          description: The book does not exists in this server.
