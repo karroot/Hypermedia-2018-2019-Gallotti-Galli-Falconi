@@ -1,4 +1,3 @@
----
 swagger: "2.0"
 info:
   description: "This is a simple bookstore server with a book inventory, users and\
@@ -6,22 +5,72 @@ info:
   version: "1.0.0"
   title: "Simple Bookstore"
   contact:
-    email: "vittorio.zaccaria@polimi.it"
+    email: "gabriele.gallotti@mail.polimi.it"
   license:
     name: "Apache-2.0"
     url: "http://www.apache.org/licenses/LICENSE-2.0.html"
-host: "polimi-hyp-vz-demo.herokuapp.com"
+host: "localhost:8080"
 basePath: "/v2"
 tags:
 - name: "book"
-  description: "Available book"
+  description: "Available books"
+- name: "ebook"
+  description: "Available ebooks"
 - name: "cart"
   description: "Access to the cart"
 - name: "user"
   description: "Operations about user"
+- name: "author"
+  description: "Available authors"
+- name: "event"
+  description: "Scheduled events"
+- name: "FAQ"
+  description: "FAQ"
+- name: "about"
+  description: "Info about us"
+- name: "Work with Us"
+  description: "Our open positions"
+- name: "Contact us"
+  description: "Contact us"  
 schemes:
-- "https"
+- "http"
 paths:
+  /FAQ:
+    get:
+      description: "Frequently asked questions"
+      responses:
+        200:
+          description: "Our answer"
+ 
+        404:
+          description: "Unexpected error"
+  /about:
+    get:
+      description: "Information about us"
+      responses:
+        200:
+          description: "Our story"
+     
+        404:
+          description: "Unexpected error"
+  /WorkWithUs:
+    get:
+      description: "List of opened positions"
+      responses:
+        200:
+          description: "Work with us"
+      
+        404:
+          description: "Unexpected error"
+  /ContactUs:
+    get:
+      description: "Ways to contacts us"
+      responses:
+        200:
+          description: "contact Us"
+
+        404:
+          description: "Unexpected error"  
   /books:
     get:
       tags:
@@ -39,7 +88,7 @@ paths:
         type: "integer"
       - name: "limit"
         in: "query"
-        description: "Maximum number of items per page. Default is 20 and cannot exceed\
+        description: "Maximum number of items per page. Default is 5 and cannot exceed\
           \ 500."
         required: false
         type: "integer"
@@ -79,7 +128,183 @@ paths:
         404:
           description: "Book not found"
       x-swagger-router-controller: "Book"
+  /ebooks:
+    get:
+      tags:
+      - "ebook"
+      summary: "Books available in the inventory"
+      description: "List of ebooks available in the inventory"
+      operationId: "ebooksGET"
+      produces:
+      - "application/json"
+      parameters:
+      - name: "offset"
+        in: "query"
+        description: "Pagination offset. Default is 0."
+        required: false
+        type: "integer"
+      - name: "limit"
+        in: "query"
+        description: "Maximum number of items per page. Default is 5 and cannot exceed\
+          \ 500."
+        required: false
+        type: "integer"
+      responses:
+        200:
+          description: "A collection of eBooks"
+          schema:
+            type: "array"
+            items:
+              $ref: "#/definitions/Book"
+        404:
+          description: "Unexpected error"
+      x-swagger-router-controller: "eBook"
+  /ebooks/{ebookId}:
+    get:
+      tags:
+      - "ebook"
+      summary: "Find ebook by ID"
+      description: "Returns a ebook"
+      operationId: "geteBookById"
+      produces:
+      - "application/json"
+      parameters:
+      - name: "ebookId"
+        in: "path"
+        description: "ID of ebook to return"
+        required: true
+        type: "integer"
+        format: "int64"
+      responses:
+        200:
+          description: "successful operation"
+          schema:
+            $ref: "#/definitions/Book"
+        400:
+          description: "Invalid ID supplied"
+        404:
+          description: "Book not found"
+      x-swagger-router-controller: "eBook"    
+      
+
+  /user/login:
+    post:
+      tags:
+      - "user"
+      summary: "Login"
+      description: "Login with a form"
+      operationId: "userLoginPOST"
+      consumes:
+      - "application/x-www-form-urlencoded"
+      produces:
+      - "application/json"
+      parameters:
+      - name: "username"
+        in: "formData"
+        required: true
+        type: "string"
+      - name: "password"
+        in: "formData"
+        required: true
+        type: "string"
+      responses:
+        200:
+          description: "succesfull login"
+        404:
+          description: "unauthorized"
+      x-swagger-router-controller: "User"
+  /user/register:
+    post:
+      tags:
+      - "user"
+      summary: "Register"
+      description: "Register into the store"
+      operationId: "userRegisterPOST"
+      consumes:
+      - "application/x-www-form-urlencoded"
+      produces:
+      - "application/json"
+      parameters:
+      - in: "body"
+        name: "body"
+        required: true
+        schema:
+          $ref: "#/definitions/User"
+      responses:
+        200:
+          description: "succesfull registration"
+        404:
+          description: "unauthorized"
+      x-swagger-router-controller: "User"
+  /cart/{cartId}:
+    get:
+      tags:
+      - "cart"
+      summary: "View the content of the cart"
+      operationId: "cartCartIdGET"
+      produces:
+      - "application/json"
+      parameters:
+      - name: "cartId"
+        in: "path"
+        required: true
+        type: "integer"
+        format: "int64"
+      responses:
+        200:
+          description: "succesful operartion"
+          schema:
+            $ref: "#/definitions/Cart"
+        404:
+          description: "unauthorized"
+      x-swagger-router-controller: "Cart"
 definitions:
+  User:
+    type: "object"
+    properties:
+      id:
+        type: "integer"
+      name:
+        type: "string"
+      address:
+        type: "string"
+      creditcard:
+        type: "string"
+    title: "User"
+    description: "A user"
+    example:
+      id: 1
+      name: "Davide"
+      address: "Via Roma, Roma"
+      creditcard: "xdfehc"
+  Cart:
+    type: "object"
+    properties:
+      total:
+        $ref: "#/definitions/Amount"
+      books:
+        type: "array"
+        items:
+          $ref: "#/definitions/Book"
+    title: "Cart"
+    description: "Order for books"
+    example:
+      total:
+        currency: "eur"
+        value: 80082819046101.171875
+      books:
+      - id: 0
+        title: "1984"
+        author: "Orwell George"
+        price:
+          value: 12
+          currency: "eur"
+      - id: 1
+        title: "Guida Galattica per autostoppisti"
+        author: "Douglas Adams"
+        price:
+          value: 10
+          currency: "eur"
   Book:
     type: "object"
     required:
@@ -92,28 +317,68 @@ definitions:
         format: "int64"
       title:
         type: "string"
-        example: "Il deserto dei tartari"
+      review:
+        type: "array"
+        items: 
+          $ref: "#/definitions/Review"
       author:
-        type: "string"
-        example: "Dino Buzzati"
+        type: "array"
+        items: 
+          $ref: "#/definitions/Author"
       price:
         $ref: "#/definitions/Amount"
+      eBook:
+        type: "boolean"
+        description: "True if eBook is available"
       status:
         type: "string"
         description: "book availability in the inventory"
         enum:
-        - "available"
+        - "Available"
         - "out of stock"
     title: "Book"
     description: "A book for sale in the store"
     example:
-      author: "Dino Buzzati"
-      price:
-        currency: "eur"
-        value: 602745618307040.375
       id: 0
-      title: "Il deserto dei tartari"
+      title: "Brave new world"
+      author: "Aldous Huxley"
+      price:
+        value: 10
+        currency: "eur"
       status: "available"
+      
+  Review:
+    type: object
+    required:
+    - "user"
+    - "book"
+    - "stars"
+    properties:
+        user:
+            $ref: "#/definitions/User"
+        book:    
+            $ref: "#/definitions/Book"
+        stars:
+           type: "number"
+           format: "integer"
+           description: "vote to the book from 1 to 5"
+           minimum: 1
+           maximum: 5
+        review:
+            type: "string"
+            description: "text of the review"
+    example:
+      user:
+        name: "Davide"
+      book:
+        id: 0
+        title: "1984"
+        author: "Orwell George"
+        price:
+          value: 12
+          currency: "eur"
+      stars: 2
+        
   Amount:
     type: "object"
     required:
@@ -124,13 +389,13 @@ definitions:
         type: "number"
         format: "double"
         minimum: 0.01
-        maximum: 1000000000000000
+        maximum: 10000
       currency:
         $ref: "#/definitions/Currency"
     description: "Price\n"
     example:
       currency: "eur"
-      value: 602745618307040.375
+      value: 11
   Currency:
     type: "string"
     pattern: "^[A-Z]{3,3}$"
