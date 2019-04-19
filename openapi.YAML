@@ -258,6 +258,63 @@ paths:
         404:
           description: "unauthorized"
       x-swagger-router-controller: "Cart"
+      
+  /authors:
+    get:
+      tags:
+      - "author"
+      summary: "Authors available in the inventory"
+      description: "List of author available in the inventory"
+      operationId: "authorsGET"
+      produces:
+      - "application/json"
+      parameters:
+      - name: "offset"
+        in: "query"
+        description: "Pagination offset. Default is 0."
+        required: false
+        type: "integer"
+      - name: "limit"
+        in: "query"
+        description: "Maximum number of items per page. Default is 5 and cannot exceed\
+          \ 500."
+        required: false
+        type: "integer"
+      responses:
+        200:
+          description: "A list of Authors"
+          schema:
+            type: "array"
+            items:
+              $ref: "#/definitions/Author"
+        404:
+          description: "Unexpected error"
+      x-swagger-router-controller: "Author"
+ 
+  /authors/{authorsName}:
+    get:
+      tags:
+      - "cart"
+      summary: "View the content of the cart"
+      operationId: "authorsNameGET"
+      produces:
+      - "application/json"
+      parameters:
+      - name: "authorsName"
+        in: "path"
+        required: true
+        type: "integer"
+        format: "int64"
+      responses:
+        200:
+          description: "A list of Authors"
+          schema:
+            type: "array"
+            items:
+              $ref: "#/definitions/Author"
+        404:
+          description: "Unexpected error"
+      x-swagger-router-controller: "Author"
 definitions:
   User:
     type: "object"
@@ -330,6 +387,24 @@ definitions:
       eBook:
         type: "boolean"
         description: "True if eBook is available"
+      intro:
+        type: "string"
+      genre:
+        type: "string"
+      factsheet:
+        type: "string"  
+      abstract:
+        type: "string"
+      firstTheme:
+        type: "string"
+      secondTheme:
+        type: "string"
+      thirdTheme:
+        type: "string"  
+      events:
+        type: "array"
+        items:
+          $ref: "#/definitions/Event"        
       status:
         type: "string"
         description: "book availability in the inventory"
@@ -378,7 +453,50 @@ definitions:
           value: 12
           currency: "eur"
       stars: 2
-        
+
+  Event:
+    type: object
+    required:
+    - "overview"
+    - "placeAndDate"
+    properties:
+        authors:    
+            type: "array"
+            items: 
+              $ref: "#/definitions/Author"     
+        books:    
+            type: "array"
+            items: 
+              $ref: "#/definitions/Book" 
+        overview:
+          format: "string"
+        place:
+          format: "string"
+        data:
+          format: "date"
+        advertisingPoster:
+          format: "jpg"
+        award:
+          format: "string"
+
+  Author:
+    type: object
+    required:
+    - "name"
+    - "books"
+    properties:
+        books:    
+            type: "array"
+            items: 
+              $ref: "#/definitions/Book" 
+        name:
+          format: "string"
+        life:
+          format: "string"        
+        photo:
+          format: "jpg"
+        award:
+          format: "string"
   Amount:
     type: "object"
     required:
