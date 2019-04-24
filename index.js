@@ -1,58 +1,9 @@
-/* const {Client} = require('pg')
-const client = new Client({
-    user: "postgres",
-    password:"admin",
-    host:"localhost",
-    port: 5432,
-    database:"postgres"
-})
 
-client.connect()
-.then(() => console.log("connected successfuly"))
-.then(() =>client.query("select * from events"))
-.then (result => console.table(result.rows))
-.catch(e => console.log(e))
-.finally(() => client.end())
+const express = require('express')
+const app = express()
 
-var express = require("express");
-var bodyParser = require("body-parser");
-var app = express();
+const PORT = process.env.PORT || 3000
 
-app.use(bodyParser.json());
-app.use(bodyParser.urlencoded({ extended: true }));
+app.get('/', (req, res) => res.send('Hello World!'))
 
-var server = app.listen(8080, function () { // create a server
-    console.log("app running on port.", server.address().port);
-});
-
-app.get("/", function(req, res) { // listens for requests to localhost:8080
-    res.send(result.rows); // put your data here
-});
-
-*/
-
-/*
-
-const pg        = require('pg');
-const express   = require('express');
-const app       = express();
-
-const config = {
-    host: 'ec2-54-243-197-120.compute-1.amazonaws.com',
-    user: 'nsgcqefizlkqets',
-    database: 'd61p52kthlqep8',
-    password: '2a74a9cca95e794f9baaa32eb449872ab85e8ad6d083ff1aa746a4f10d322d50',
-    port: 5432
-};
-heroku config:set DATABASE_URL=postgres://nsgcqefizlkqets:2a74a9cca95e794f9baaa32eb449872ab85e8ad6d083ff1aa746a4f10d322d50@ec2-54-243-197-120.compute-1.amazonaws.com:5432/d61p52kthlqep8
-
-*/
-var connectionString = "postgres://nsgcqefizlkqets:2a74a9cca95e794f9baaa32eb449872ab85e8ad6d083ff1aa746a4f10d322d50@ec2-54-243-197-120.compute-1.amazonaws.com:5432/d61p52kthlqep8"
-     
-pg.connect(connectionString, function(err, client, done) {
-   client.query('SELECT * FROM events', function(err, result) {
-      done();
-      if(err) return console.error(err);
-      console.log(result.rows);
-   });
-});
+app.listen(PORT, () => console.log(`Example app listening on port ${PORT}!`))
