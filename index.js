@@ -36,13 +36,15 @@ const express   = require('express');
 const app       = express();
 
 const config = {
-    user: 'postgres',
-    database: 'postgres',
-    password: 'admin',
+    host: 'ec2-54-243-197-120.compute-1.amazonaws.com',
+    user: 'nsgcqefizlkqets',
+    database: 'd61p52kthlqep8',
+    password: '2a74a9cca95e794f9baaa32eb449872ab85e8ad6d083ff1aa746a4f10d322d50',
     port: 5432
 };
 
 // pool takes the object above -config- as parameter
+/*
 const pool = new pg.Pool(config);
 
 app.get('/', (req, res, next) => {
@@ -63,4 +65,14 @@ app.get('/', (req, res, next) => {
 
 app.listen(4000, function () {
     console.log('Server is running.. on Port 4000');
+});
+*/
+var connectionString = "postgres://nsgcqefizlkqets:2a74a9cca95e794f9baaa32eb449872ab85e8ad6d083ff1aa746a4f10d322d50@ec2-54-243-197-120.compute-1.amazonaws.com:5432/d61p52kthlqep8"
+
+pg.connect(connectionString, function(err, client, done) {
+   client.query('SELECT * FROM events', function(err, result) {
+      done();
+      if(err) return console.error(err);
+      console.log(result.rows);
+   });
 });
