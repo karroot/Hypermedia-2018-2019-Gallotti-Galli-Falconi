@@ -30,23 +30,6 @@ app.get("/", function(req, res) { // listens for requests to localhost:8080
 });
 
 */
-pp.use(express.static('public'));
-app.use(bodyParser.json());
-
-app.get('/food', function(req, res) {
-    pg.defaults.ssl = true;
-    pg.connect(process.env.DATABASE_URL, function(err, client) {
-        if (err) throw err;
-        console.log('Connected to postgres! Getting schemas...');
-        client.query('SELECT * FROM events;').on('row', function(row) {
-        console.log(JSON.stringify(row));
-        });
-    });
-});
-
-http.listen(process.env.PORT || 3000, function(){
-    console.log('listening to port 3000!');
-});
 
 /*
 
@@ -64,3 +47,12 @@ const config = {
 heroku config:set DATABASE_URL=postgres://nsgcqefizlkqets:2a74a9cca95e794f9baaa32eb449872ab85e8ad6d083ff1aa746a4f10d322d50@ec2-54-243-197-120.compute-1.amazonaws.com:5432/d61p52kthlqep8
 
 */
+var connectionString = "postgres://nsgcqefizlkqets:2a74a9cca95e794f9baaa32eb449872ab85e8ad6d083ff1aa746a4f10d322d50@ec2-54-243-197-120.compute-1.amazonaws.com:5432/d61p52kthlqep8"
+     
+pg.connect(connectionString, function(err, client, done) {
+   client.query('SELECT * FROM events', function(err, result) {
+      done();
+      if(err) return console.error(err);
+      console.log(result.rows);
+   });
+});
