@@ -34,8 +34,8 @@ tags:
 - name: "Contact us"
   description: "Contact us"
 schemes:
-- "http"
 - "https"
+- "http"
 paths:
   /FAQ:
     get:
