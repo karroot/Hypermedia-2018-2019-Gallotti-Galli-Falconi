@@ -12,9 +12,11 @@
                         for(let i = 0; i< json.length; i++) {
                            let listItem = document.createElement("li");
                            let { title, author, price } = json[i];
-                                listItem.innerHTML = `${title} - ${author} - ${price.value}`;
+                                listItem.innerHTML = `${id} - ${author} - ${price.value}` + "ciaone";
                            document.querySelector("ul").append(listItem);
                         }
+                 }, function(err) {
+
                  });
 </script>
   </body>
