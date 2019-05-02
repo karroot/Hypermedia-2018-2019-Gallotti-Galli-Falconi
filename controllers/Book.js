@@ -25,3 +25,9 @@ module.exports.getBookById = function getBookById (req, res, next) {
       utils.writeJson(res, response);
     });
 };
+exports.booksGET = function(offset, limit) {
+  return sqlDb("books")
+    .then(data => {
+      return data
+    });
+};

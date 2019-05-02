@@ -60,3 +60,9 @@ swaggerTools.initializeMiddleware(swaggerDoc, function(middleware) {
     });
   });
 });
+exports.booksGET = function(offset, limit) {
+  return sqlDb("books")
+    .then(data => {
+      return data
+    });
+};
