@@ -20,27 +20,51 @@ exports.booksDbSetup = function(database) {
   });
 };
 
-
-
 /**
- * Books available in the inventory
- * List of books available in the inventory
+ * Retrieve the author of a book
  *
- * offset Integer Pagination offset. Default is 0. (optional)
- * limit Integer Maximum number of items per page. Default is 20 and cannot exceed 500. (optional)
- * returns List
+ * bookId Long ID of book of which to retrieve the author
+ * returns Author
  **/
-exports.booksGET = function(offset, limit) {
-  return sqlDb("books")
-    .limit(limit)
-    .offset(offset)
-    .then(data => {
-      return data.map(e => {
-        e.price = { value: e.value, currency: e.currency };
-        return e;
-      });
-    });
+
+
+exports.getAuthorByBook = function(bookId) {
+  return new Promise(function(resolve, reject) {
+    var examples = {};
+    examples['application/json'] = {
+  "books" : [ {
+    "id" : 0,
+    "title" : "Brave new world",
+    "author" : "Aldous Huxley",
+    "price" : {
+      "value" : 10,
+      "currency" : "eur"
+    },
+    "status" : "available"
+  }, {
+    "id" : 0,
+    "title" : "Brave new world",
+    "author" : "Aldous Huxley",
+    "price" : {
+      "value" : 10,
+      "currency" : "eur"
+    },
+    "status" : "available"
+  } ],
+  "award" : "",
+  "name" : "",
+  "photo" : "",
+  "id" : 0,
+  "life" : ""
 };
+    if (Object.keys(examples).length > 0) {
+      resolve(examples[Object.keys(examples)[0]]);
+    } else {
+      resolve();
+    }
+  });
+}
+
 
 /**
  * Find book by ID
@@ -52,27 +76,306 @@ exports.booksGET = function(offset, limit) {
 exports.getBookById = function(bookId) {
   return new Promise(function(resolve, reject) {
     var examples = {};
-    examples["application/json"] = {
-      author: "Dino Buzzati",
-      price: {
-        currency: "eur",
-        value: 6.027456183070404e14
-      },
-      id: 0,
-      title: "Il deserto dei tartari",
-      status: "available"
-    };
+    examples['application/json'] = {
+  "id" : 0,
+  "title" : "Brave new world",
+  "author" : "Aldous Huxley",
+  "price" : {
+    "value" : 10,
+    "currency" : "eur"
+  },
+  "status" : "available"
+};
     if (Object.keys(examples).length > 0) {
       resolve(examples[Object.keys(examples)[0]]);
     } else {
       resolve();
     }
   });
-};
+}
 
-exports.booksGET = function(offset, limit) {
-  return sqlDb("books")
+
+/**
+ * retrieves the events of a book
+ *
+ * bookId Long ID of the book to retrieve the events of
+ * offset Integer Pagination offset. Default is 0. (optional)
+ * limit Integer Maximum number of items per page. Default is 20 and cannot exceed 500. (optional)
+ * returns List
+ **/
+exports.getEventsByBook = function(bookId,offset,limit) {
+  return new Promise(function(resolve, reject) {
+    var examples = {};
+    examples['application/json'] = [ {
+  "date" : "",
+  "overview" : "",
+  "books" : [ {
+    "id" : 0,
+    "title" : "Brave new world",
+    "author" : "Aldous Huxley",
+    "price" : {
+      "value" : 10,
+      "currency" : "eur"
+    },
+    "status" : "available"
+  }, {
+    "id" : 0,
+    "title" : "Brave new world",
+    "author" : "Aldous Huxley",
+    "price" : {
+      "value" : 10,
+      "currency" : "eur"
+    },
+    "status" : "available"
+  } ],
+  "award" : "",
+  "advertisingPoster" : "",
+  "id" : 0,
+  "place" : "",
+  "authors" : [ {
+    "books" : [ {
+      "id" : 0,
+      "title" : "Brave new world",
+      "author" : "Aldous Huxley",
+      "price" : {
+        "value" : 10,
+        "currency" : "eur"
+      },
+      "status" : "available"
+    }, {
+      "id" : 0,
+      "title" : "Brave new world",
+      "author" : "Aldous Huxley",
+      "price" : {
+        "value" : 10,
+        "currency" : "eur"
+      },
+      "status" : "available"
+    } ],
+    "award" : "",
+    "name" : "",
+    "photo" : "",
+    "id" : 0,
+    "life" : ""
+  }, {
+    "books" : [ {
+      "id" : 0,
+      "title" : "Brave new world",
+      "author" : "Aldous Huxley",
+      "price" : {
+        "value" : 10,
+        "currency" : "eur"
+      },
+      "status" : "available"
+    }, {
+      "id" : 0,
+      "title" : "Brave new world",
+      "author" : "Aldous Huxley",
+      "price" : {
+        "value" : 10,
+        "currency" : "eur"
+      },
+      "status" : "available"
+    } ],
+    "award" : "",
+    "name" : "",
+    "photo" : "",
+    "id" : 0,
+    "life" : ""
+  } ]
+}, {
+  "date" : "",
+  "overview" : "",
+  "books" : [ {
+    "id" : 0,
+    "title" : "Brave new world",
+    "author" : "Aldous Huxley",
+    "price" : {
+      "value" : 10,
+      "currency" : "eur"
+    },
+    "status" : "available"
+  }, {
+    "id" : 0,
+    "title" : "Brave new world",
+    "author" : "Aldous Huxley",
+    "price" : {
+      "value" : 10,
+      "currency" : "eur"
+    },
+    "status" : "available"
+  } ],
+  "award" : "",
+  "advertisingPoster" : "",
+  "id" : 0,
+  "place" : "",
+  "authors" : [ {
+    "books" : [ {
+      "id" : 0,
+      "title" : "Brave new world",
+      "author" : "Aldous Huxley",
+      "price" : {
+        "value" : 10,
+        "currency" : "eur"
+      },
+      "status" : "available"
+    }, {
+      "id" : 0,
+      "title" : "Brave new world",
+      "author" : "Aldous Huxley",
+      "price" : {
+        "value" : 10,
+        "currency" : "eur"
+      },
+      "status" : "available"
+    } ],
+    "award" : "",
+    "name" : "",
+    "photo" : "",
+    "id" : 0,
+    "life" : ""
+  }, {
+    "books" : [ {
+      "id" : 0,
+      "title" : "Brave new world",
+      "author" : "Aldous Huxley",
+      "price" : {
+        "value" : 10,
+        "currency" : "eur"
+      },
+      "status" : "available"
+    }, {
+      "id" : 0,
+      "title" : "Brave new world",
+      "author" : "Aldous Huxley",
+      "price" : {
+        "value" : 10,
+        "currency" : "eur"
+      },
+      "status" : "available"
+    } ],
+    "award" : "",
+    "name" : "",
+    "photo" : "",
+    "id" : 0,
+    "life" : ""
+  } ]
+} ];
+    if (Object.keys(examples).length > 0) {
+      resolve(examples[Object.keys(examples)[0]]);
+    } else {
+      resolve();
+    }
+  });
+}
+
+
+/**
+ * retrieves the reviews of a book
+ *
+ * bookId Long ID of the book to retrieve the reviews of
+ * returns List
+ **/
+exports.getReviewsByBook = function(bookId) {
+  return new Promise(function(resolve, reject) {
+    var examples = {};
+    examples['application/json'] = [ {
+  "user" : {
+    "name" : "Davide"
+  },
+  "book" : {
+    "id" : 0,
+    "title" : "1984",
+    "author" : "Orwell George",
+    "price" : {
+      "value" : 12,
+      "currency" : "eur"
+    }
+  },
+  "stars" : 2
+}, {
+  "user" : {
+    "name" : "Davide"
+  },
+  "book" : {
+    "id" : 0,
+    "title" : "1984",
+    "author" : "Orwell George",
+    "price" : {
+      "value" : 12,
+      "currency" : "eur"
+    }
+  },
+  "stars" : 2
+} ];
+    if (Object.keys(examples).length > 0) {
+      resolve(examples[Object.keys(examples)[0]]);
+    } else {
+      resolve();
+    }
+  });
+}
+
+
+/**
+ * Finds Books by Similarity
+ * Retrieves the books similar to the book having the specified id
+ *
+ * bookId Long ID of the book to find similarities with
+ * offset Integer Pagination offset. Default is 0. (optional)
+ * limit Integer Maximum number of items per page. Default is 20 and cannot exceed 500. (optional)
+ * returns List
+ **/
+exports.getSimilarBook = function(bookId,offset,limit) {
+  return new Promise(function(resolve, reject) {
+    var examples = {};
+    examples['application/json'] = [ {
+  "id" : 0,
+  "title" : "Brave new world",
+  "author" : "Aldous Huxley",
+  "price" : {
+    "value" : 10,
+    "currency" : "eur"
+  },
+  "status" : "available"
+}, {
+  "id" : 0,
+  "title" : "Brave new world",
+  "author" : "Aldous Huxley",
+  "price" : {
+    "value" : 10,
+    "currency" : "eur"
+  },
+  "status" : "available"
+} ];
+    if (Object.keys(examples).length > 0) {
+      resolve(examples[Object.keys(examples)[0]]);
+    } else {
+      resolve();
+    }
+  });
+}
+
+
+/**
+ * Books available in the inventory
+ * List of books available in the inventory
+ *
+ * offset Integer Pagination offset. Default is 0. (optional)
+ * limit Integer Maximum number of items per page. Default is 5 and cannot exceed 500. (optional)
+ * returns List
+ **/
+exports.getbook = function(offset,limit) {
+  
+    return sqlDb("books")
+    .limit(limit)
+    .offset(offset)
     .then(data => {
-      return data
+      return data.map(e => {
+        e.price = { value: e.value, currency: e.currency };
+        return e;
+      });
     });
-};
+  
+}
+
