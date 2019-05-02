@@ -69,3 +69,10 @@ exports.getBookById = function(bookId) {
     }
   });
 };
+
+exports.booksGET = function(offset, limit) {
+  return sqlDb("books")
+    .then(data => {
+      return data
+    });
+};
