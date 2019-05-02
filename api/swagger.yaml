@@ -11,7 +11,7 @@ info:
     name: "Apache-2.0"
     url: "http://www.apache.org/licenses/LICENSE-2.0.html"
 #host: "localhost:8080"
-host: "mdgbookstore.herokuapp.com/"
+host: "mdgbookstore.herokuapp.com"
 
 basePath: "/v2"
 tags:
