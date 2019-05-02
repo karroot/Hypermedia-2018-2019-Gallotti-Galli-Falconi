@@ -3,7 +3,7 @@
           <title>Book store</title>
   </head>
   <body>
-          <h1>Our first server!</h1>
+          <h1>Our first server! staceppa</h1>
           <ul></ul>
          <script>       
                  fetch('v2/books').then(function(response) {
@@ -12,7 +12,7 @@
                         for(let i = 0; i< json.length; i++) {
                            let listItem = document.createElement("li");
                            let { title, author, price } = json[i];
-                                listItem.innerHTML = `${id} - ${author} - ${price.value}` + "ciaone";
+                                listItem.innerHTML = `${title} - ${author} - ${price.value}` + "ciaone";
                            document.querySelector("ul").append(listItem);
                         }
                  }, function(err) {

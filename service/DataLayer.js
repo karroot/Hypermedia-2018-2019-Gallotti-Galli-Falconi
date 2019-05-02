@@ -16,9 +16,3 @@ function setupDataLayer() {
 
 module.exports = { database: sqlDb, setupDataLayer };
 
-exports.booksGET = function(offset, limit) {
-  return sqlDb("books")
-    .then(data => {
-      return data
-    });
-};
