@@ -3,10 +3,10 @@
 var utils = require('../utils/writer.js');
 var Cart = require('../service/CartService');
 
-module.exports.dELETECartItem = function dELETECartItem (req, res, next) {
+module.exports.deleteCartItem = function deleteCartItem (req, res, next) {
   var userId = req.swagger.params['userId'].value;
   var body = req.swagger.params['body'].value;
-  Cart.dELETECartItem(userId,body)
+  Cart.deleteCartItem(userId,body)
     .then(function (response) {
       utils.writeJson(res, response);
     })
@@ -26,10 +26,10 @@ module.exports.getSingleCart = function getSingleCart (req, res, next) {
     });
 };
 
-module.exports.pOSTCartItem = function pOSTCartItem (req, res, next) {
+module.exports.postCartItem = function postCartItem (req, res, next) {
   var userId = req.swagger.params['userId'].value;
   var body = req.swagger.params['body'].value;
-  Cart.pOSTCartItem(userId,body)
+  Cart.postCartItem(userId,body)
     .then(function (response) {
       utils.writeJson(res, response);
     })

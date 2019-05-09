@@ -375,7 +375,7 @@ exports.getEvents = function(bookId,offset,limit) {
  * body Event Event object that needs to be added to the database
  * no response value expected for this operation
  **/
-exports.pOSTEvent = function(body) {
+exports.postEvent = function(body) {
   return new Promise(function(resolve, reject) {
     resolve();
   });
@@ -388,7 +388,7 @@ exports.pOSTEvent = function(body) {
  * body Event Event object that needs to be added to the database
  * returns Event
  **/
-exports.pUTEvent = function(body) {
+exports.putEvent = function(body) {
   return new Promise(function(resolve, reject) {
     var examples = {};
     examples['application/json'] = {

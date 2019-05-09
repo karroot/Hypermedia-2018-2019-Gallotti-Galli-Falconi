@@ -204,7 +204,7 @@ exports.logoutUser = function() {
  * password String 
  * no response value expected for this operation
  **/
-exports.pOSTuserLogin = function(username,password) {
+exports.postuserLogin = function(username,password) {
   return new Promise(function(resolve, reject) {
     resolve();
   });
@@ -218,7 +218,7 @@ exports.pOSTuserLogin = function(username,password) {
  * body User 
  * no response value expected for this operation
  **/
-exports.pOSTuserRegister = function(body) {
+exports.postuserRegister = function(body) {
   return new Promise(function(resolve, reject) {
     resolve();
   });

@@ -143,7 +143,7 @@ exports.getUserByReview = function(id) {
  * body Review Review object that needs to be added to the database
  * returns Review
  **/
-exports.pOSTReview = function(body) {
+exports.postReview = function(body) {
   return new Promise(function(resolve, reject) {
     var examples = {};
     examples['application/json'] = {
@@ -176,7 +176,7 @@ exports.pOSTReview = function(body) {
  * body Review Review object that needs to be modified
  * returns Review
  **/
-exports.pUTReview = function(body) {
+exports.putReview = function(body) {
   return new Promise(function(resolve, reject) {
     var examples = {};
     examples['application/json'] = {

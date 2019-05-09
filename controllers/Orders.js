@@ -40,9 +40,9 @@ module.exports.getOrderById = function getOrderById (req, res, next) {
     });
 };
 
-module.exports.pOSTOrder = function pOSTOrder (req, res, next) {
+module.exports.postOrder = function postOrder (req, res, next) {
   var body = req.swagger.params['body'].value;
-  Orders.pOSTOrder(body)
+  Orders.postOrder(body)
     .then(function (response) {
       utils.writeJson(res, response);
     })

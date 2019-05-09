@@ -61,10 +61,10 @@ module.exports.logoutUser = function logoutUser (req, res, next) {
     });
 };
 
-module.exports.pOSTuserLogin = function pOSTuserLogin (req, res, next) {
+module.exports.postuserLogin = function postuserLogin (req, res, next) {
   var username = req.swagger.params['username'].value;
   var password = req.swagger.params['password'].value;
-  User.pOSTuserLogin(username,password)
+  User.postuserLogin(username,password)
     .then(function (response) {
       utils.writeJson(res, response);
     })
@@ -73,9 +73,9 @@ module.exports.pOSTuserLogin = function pOSTuserLogin (req, res, next) {
     });
 };
 
-module.exports.pOSTuserRegister = function pOSTuserRegister (req, res, next) {
+module.exports.postuserRegister = function postuserRegister (req, res, next) {
   var body = req.swagger.params['body'].value;
-  User.pOSTuserRegister(body)
+  User.postuserRegister(body)
     .then(function (response) {
       utils.writeJson(res, response);
     })

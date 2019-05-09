@@ -38,9 +38,9 @@ module.exports.getEvents = function getEvents (req, res, next) {
     });
 };
 
-module.exports.pOSTEvent = function pOSTEvent (req, res, next) {
+module.exports.postEvent = function postEvent (req, res, next) {
   var body = req.swagger.params['body'].value;
-  Events.pOSTEvent(body)
+  Events.postEvent(body)
     .then(function (response) {
       utils.writeJson(res, response);
     })
@@ -49,9 +49,9 @@ module.exports.pOSTEvent = function pOSTEvent (req, res, next) {
     });
 };
 
-module.exports.pUTEvent = function pUTEvent (req, res, next) {
+module.exports.putEvent = function putEvent (req, res, next) {
   var body = req.swagger.params['body'].value;
-  Events.pUTEvent(body)
+  Events.putEvent(body)
     .then(function (response) {
       utils.writeJson(res, response);
     })

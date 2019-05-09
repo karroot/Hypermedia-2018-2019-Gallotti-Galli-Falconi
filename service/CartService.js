@@ -8,7 +8,7 @@
  * body CartItem Id of book and the quantity that needs to be removed from the cart
  * returns Cart
  **/
-exports.dELETECartItem = function(userId,body) {
+exports.deleteCartItem = function(userId,body) {
   return new Promise(function(resolve, reject) {
     var examples = {};
     examples['application/json'] = {
@@ -92,7 +92,7 @@ exports.getSingleCart = function(userId) {
  * body CartItem Id of book and the quantity that needs to be added to the cart
  * returns Cart
  **/
-exports.pOSTCartItem = function(userId,body) {
+exports.postCartItem = function(userId,body) {
   return new Promise(function(resolve, reject) {
     var examples = {};
     examples['application/json'] = {

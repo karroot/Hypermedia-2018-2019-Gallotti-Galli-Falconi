@@ -156,7 +156,7 @@ exports.getOrderById = function(id) {
  * body Order Order object that needs to be added to the database
  * no response value expected for this operation
  **/
-exports.pOSTOrder = function(body) {
+exports.postOrder = function(body) {
   return new Promise(function(resolve, reject) {
     resolve();
   });

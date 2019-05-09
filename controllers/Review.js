@@ -50,9 +50,9 @@ module.exports.getUserByReview = function getUserByReview (req, res, next) {
     });
 };
 
-module.exports.pOSTReview = function pOSTReview (req, res, next) {
+module.exports.postReview = function postReview (req, res, next) {
   var body = req.swagger.params['body'].value;
-  Review.pOSTReview(body)
+  Review.postReview(body)
     .then(function (response) {
       utils.writeJson(res, response);
     })
@@ -61,9 +61,9 @@ module.exports.pOSTReview = function pOSTReview (req, res, next) {
     });
 };
 
-module.exports.pUTReview = function pUTReview (req, res, next) {
+module.exports.putReview = function putReview (req, res, next) {
   var body = req.swagger.params['body'].value;
-  Review.pUTReview(body)
+  Review.putReview(body)
     .then(function (response) {
       utils.writeJson(res, response);
     })
