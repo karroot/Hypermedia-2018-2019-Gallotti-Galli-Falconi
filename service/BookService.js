@@ -1,7 +1,7 @@
 "use strict";
 
 let sqlDb;
-
+let sqlDb1;
 exports.booksDbSetup = function(database) {
   sqlDb = database;
   console.log("Checking if books table exists");
@@ -14,17 +14,38 @@ exports.booksDbSetup = function(database) {
         table.float("value");
         table.text("intro");
         table.text("title");
-        table.text("pictures");
         table.text("factSheet");
         table.text("genre");
         table.text("theme");
         table.enum("status", ["available", "out of stock"]);
-        table.text("eBook");
+        table.text("ebook");
         table.text("author1");
         table.text("author2");
         table.text("author3");
         table.text("author4");
         table.text("currency");
+
+      });
+    }
+  });
+};
+exports.similarbooksDbSetup = function(database) {
+  sqlDb1 = database;
+  console.log("Checking if books table exists");
+  return database.schema.hasTable("similarbooks").then(exists => {
+    if (!exists) {
+      console.log("It doesn't so we create it");
+      return database.schema.createTable("similarbooks", table => {
+        table.integer("bookid1")
+        .primary()
+        .references('id')
+        .inTable('books')
+        .onDelete('CASCADE');
+        table.integer("bookid2")
+        .notNullable();
+        database.schema.alterTable('bookid1', function(t)  {
+          t.unique(['bookId2',integer])
+        });
 
       });
     }
@@ -338,32 +359,12 @@ exports.getReviewsByBook = function(bookId) {
  * returns List
  **/
 exports.getSimilarBook = function(bookId,offset,limit) {
-  return new Promise(function(resolve, reject) {
-    var examples = {};
-    examples['application/json'] = [ {
-  "id" : 0,
-  "title" : "Brave new world",
-  "author" : "Aldous Huxley",
-  "price" : {
-    "value" : 10,
-    "currency" : "eur"
-  },
-  "status" : "available"
-}, {
-  "id" : 0,
-  "title" : "Brave new world",
-  "author" : "Aldous Huxley",
-  "price" : {
-    "value" : 10,
-    "currency" : "eur"
-  },
-  "status" : "available"
-} ];
-    if (Object.keys(examples).length > 0) {
-      resolve(examples[Object.keys(examples)[0]]);
-    } else {
-      resolve();
-    }
+    
+  return sqlDb1("similarbooks")
+  .limit(limit)
+  .offset(offset)
+  .then(data => {
+    return data
   });
 }
 
@@ -389,4 +390,3 @@ exports.getbook = function(offset,limit) {
     });
   
 }
-

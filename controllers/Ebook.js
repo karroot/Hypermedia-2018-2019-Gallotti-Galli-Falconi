@@ -3,9 +3,9 @@
 var utils = require('../utils/writer.js');
 var Ebook = require('../service/EbookService');
 
-module.exports.getAuthorByeBook = function getAuthorByeBook (req, res, next) {
+module.exports.getAuthorByebook = function getAuthorByebook (req, res, next) {
   var ebookId = req.swagger.params['ebookId'].value;
-  Ebook.getAuthorByeBook(ebookId)
+  Ebook.getAuthorByebook(ebookId)
     .then(function (response) {
       utils.writeJson(res, response);
     })
@@ -14,11 +14,11 @@ module.exports.getAuthorByeBook = function getAuthorByeBook (req, res, next) {
     });
 };
 
-module.exports.getEventsByeBook = function getEventsByeBook (req, res, next) {
+module.exports.getEventsByebook = function getEventsByebook (req, res, next) {
   var ebookId = req.swagger.params['ebookId'].value;
   var offset = req.swagger.params['offset'].value;
   var limit = req.swagger.params['limit'].value;
-  Ebook.getEventsByeBook(ebookId,offset,limit)
+  Ebook.getEventsByebook(ebookId,offset,limit)
     .then(function (response) {
       utils.writeJson(res, response);
     })
@@ -27,9 +27,9 @@ module.exports.getEventsByeBook = function getEventsByeBook (req, res, next) {
     });
 };
 
-module.exports.getReviewsByeBook = function getReviewsByeBook (req, res, next) {
+module.exports.getReviewsByebook = function getReviewsByebook (req, res, next) {
   var ebookId = req.swagger.params['ebookId'].value;
-  Ebook.getReviewsByeBook(ebookId)
+  Ebook.getReviewsByebook(ebookId)
     .then(function (response) {
       utils.writeJson(res, response);
     })
@@ -38,9 +38,9 @@ module.exports.getReviewsByeBook = function getReviewsByeBook (req, res, next) {
     });
 };
 
-module.exports.geteBookById = function geteBookById (req, res, next) {
+module.exports.getebookById = function getebookById (req, res, next) {
   var ebookId = req.swagger.params['ebookId'].value;
-  Ebook.geteBookById(ebookId)
+  Ebook.getebookById(ebookId)
     .then(function (response) {
       utils.writeJson(res, response);
     })

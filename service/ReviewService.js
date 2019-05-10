@@ -24,11 +24,12 @@ exports.reviewsDbSetup = function(database) {
         .inTable('books')
         .onDelete('CASCADE');
 
-        table.integer("stars")
-
-
+        table.integer("stars");
+        table.text("title");
         table.text("text");
-
+        database.schema.alterTable('userId', function(t)  {
+          t.unique(['bookId',integer])
+        });
       });
 
     }
@@ -46,7 +47,7 @@ exports.reviewsDbSetup = function(database) {
  * returns List
  **/
 exports.getAllReviews = function(userId,bookId,offset,limit) {
- return sqlDb("events")
+ return sqlDb("reviews")
   .limit(limit)
   .offset(offset)
   .then(data => {
