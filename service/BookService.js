@@ -9,12 +9,23 @@ exports.booksDbSetup = function(database) {
     if (!exists) {
       console.log("It doesn't so we create it");
       return database.schema.createTable("books", table => {
-        table.increments();
-        table.text("title");
-        table.text("author");
+        table.integer("id")
+        .primary();
         table.float("value");
-        table.text("currency");
+        table.text("intro");
+        table.text("title");
+        table.text("pictures");
+        table.text("factSheet");
+        table.text("genre");
+        table.text("theme");
         table.enum("status", ["available", "out of stock"]);
+        table.text("eBook");
+        table.text("author1");
+        table.text("author2");
+        table.text("author3");
+        table.text("author4");
+        table.text("currency");
+
       });
     }
   });

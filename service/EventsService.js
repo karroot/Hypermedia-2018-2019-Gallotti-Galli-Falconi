@@ -1,6 +1,58 @@
 'use strict';
 
+let sqlDb;
 
+exports.eventsDbSetup = function(database) {
+  sqlDb = database;
+  console.log("Checking if events table exists");
+  return database.schema.hasTable("events").then(exists => {
+    if (!exists) {
+      console.log("It doesn't so we create it");
+      return database.schema.createTable("events", table => {
+
+        table.date("date")
+        .primary();
+        table.text("place");
+        
+        table.text("overview");
+        table.text("poster");
+        table.integer("bookId")
+        .notNullable()
+        .references('id')
+        .inTable('books')
+        .onDelete('CASCADE');
+
+        table.text("author1")
+        .notNullable()
+        .references('name')
+        .inTable('authors')
+        .onDelete('CASCADE');
+
+        table.text("author2")
+        .references('name')
+        .inTable('authors')
+        .onDelete('CASCADE');
+        
+        table.text("author3")
+        .references('name')
+        .inTable('authors')
+        .onDelete('CASCADE');
+        
+        table.text("author4")
+        .references('name')
+        .inTable('authors')
+        .onDelete('CASCADE');
+        database.schema.alterTable('place', function(t)  {
+          t.unique(['date',date])
+        });
+      });
+
+
+
+    }
+    
+  });
+};
 /**
  * Retrieve the author of an event
  *
@@ -203,168 +255,11 @@ exports.getEventById = function(id) {
  * returns List
  **/
 exports.getEvents = function(bookId,offset,limit) {
-  return new Promise(function(resolve, reject) {
-    var examples = {};
-    examples['application/json'] = [ {
-  "date" : "",
-  "overview" : "",
-  "books" : [ {
-    "id" : 0,
-    "title" : "Brave new world",
-    "author" : "Aldous Huxley",
-    "price" : {
-      "value" : 10,
-      "currency" : "eur"
-    },
-    "status" : "available"
-  }, {
-    "id" : 0,
-    "title" : "Brave new world",
-    "author" : "Aldous Huxley",
-    "price" : {
-      "value" : 10,
-      "currency" : "eur"
-    },
-    "status" : "available"
-  } ],
-  "award" : "",
-  "advertisingPoster" : "",
-  "id" : 0,
-  "place" : "",
-  "authors" : [ {
-    "books" : [ {
-      "id" : 0,
-      "title" : "Brave new world",
-      "author" : "Aldous Huxley",
-      "price" : {
-        "value" : 10,
-        "currency" : "eur"
-      },
-      "status" : "available"
-    }, {
-      "id" : 0,
-      "title" : "Brave new world",
-      "author" : "Aldous Huxley",
-      "price" : {
-        "value" : 10,
-        "currency" : "eur"
-      },
-      "status" : "available"
-    } ],
-    "award" : "",
-    "name" : "",
-    "photo" : "",
-    "id" : 0,
-    "life" : ""
-  }, {
-    "books" : [ {
-      "id" : 0,
-      "title" : "Brave new world",
-      "author" : "Aldous Huxley",
-      "price" : {
-        "value" : 10,
-        "currency" : "eur"
-      },
-      "status" : "available"
-    }, {
-      "id" : 0,
-      "title" : "Brave new world",
-      "author" : "Aldous Huxley",
-      "price" : {
-        "value" : 10,
-        "currency" : "eur"
-      },
-      "status" : "available"
-    } ],
-    "award" : "",
-    "name" : "",
-    "photo" : "",
-    "id" : 0,
-    "life" : ""
-  } ]
-}, {
-  "date" : "",
-  "overview" : "",
-  "books" : [ {
-    "id" : 0,
-    "title" : "Brave new world",
-    "author" : "Aldous Huxley",
-    "price" : {
-      "value" : 10,
-      "currency" : "eur"
-    },
-    "status" : "available"
-  }, {
-    "id" : 0,
-    "title" : "Brave new world",
-    "author" : "Aldous Huxley",
-    "price" : {
-      "value" : 10,
-      "currency" : "eur"
-    },
-    "status" : "available"
-  } ],
-  "award" : "",
-  "advertisingPoster" : "",
-  "id" : 0,
-  "place" : "",
-  "authors" : [ {
-    "books" : [ {
-      "id" : 0,
-      "title" : "Brave new world",
-      "author" : "Aldous Huxley",
-      "price" : {
-        "value" : 10,
-        "currency" : "eur"
-      },
-      "status" : "available"
-    }, {
-      "id" : 0,
-      "title" : "Brave new world",
-      "author" : "Aldous Huxley",
-      "price" : {
-        "value" : 10,
-        "currency" : "eur"
-      },
-      "status" : "available"
-    } ],
-    "award" : "",
-    "name" : "",
-    "photo" : "",
-    "id" : 0,
-    "life" : ""
-  }, {
-    "books" : [ {
-      "id" : 0,
-      "title" : "Brave new world",
-      "author" : "Aldous Huxley",
-      "price" : {
-        "value" : 10,
-        "currency" : "eur"
-      },
-      "status" : "available"
-    }, {
-      "id" : 0,
-      "title" : "Brave new world",
-      "author" : "Aldous Huxley",
-      "price" : {
-        "value" : 10,
-        "currency" : "eur"
-      },
-      "status" : "available"
-    } ],
-    "award" : "",
-    "name" : "",
-    "photo" : "",
-    "id" : 0,
-    "life" : ""
-  } ]
-} ];
-    if (Object.keys(examples).length > 0) {
-      resolve(examples[Object.keys(examples)[0]]);
-    } else {
-      resolve();
-    }
+  return sqlDb("events")
+  .limit(limit)
+  .offset(offset)
+  .then(data => {
+    return data
   });
 }
 

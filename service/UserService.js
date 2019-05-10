@@ -1,6 +1,29 @@
 'use strict';
 
 
+let sqlDb;
+
+exports.usersDbSetup = function(database) {
+  sqlDb = database;
+  console.log("Checking if users table exists");
+  return database.schema.hasTable("users").then(exists => {
+    if (!exists) {
+      console.log("It doesn't so we create it");
+      return database.schema.createTable("users", table => {
+
+        table.integer("id")
+        .primary();
+        table.text("username")
+        .notNullable();
+        table.text("address");
+        table.text("password")
+        .notNullable();
+        table.text("creditCard");
+      });
+
+    }
+  });
+};
 /**
  * retrieves the cart of an user
  *

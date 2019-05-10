@@ -1,6 +1,30 @@
 'use strict';
 
 
+let sqlDb;
+
+exports.cartsDbSetup = function(database) {
+  sqlDb = database;
+  console.log("Checking if carts table exists");
+  return database.schema.hasTable("carts").then(exists => {
+    if (!exists) {
+      console.log("It doesn't so we create it");
+      return database.schema.createTable("carts", table => {
+
+        table.integer("userId")
+        .primary()
+        .references('id')
+        .inTable('users')
+        .onDelete('CASCADE');
+        table.float("total")
+        .notNullable();
+        
+      });
+
+    }
+
+  });
+};
 /**
  * Removes a cart item from the cart
  *
@@ -51,36 +75,11 @@ exports.deleteCartItem = function(userId,body) {
  * returns Cart
  **/
 exports.getSingleCart = function(userId) {
-  return new Promise(function(resolve, reject) {
-    var examples = {};
-    examples['application/json'] = {
-  "total" : {
-    "currency" : "eur",
-    "value" : 8.008281904610117E13
-  },
-  "books" : [ {
-    "id" : 0,
-    "title" : "1984",
-    "author" : "Orwell George",
-    "price" : {
-      "value" : 12,
-      "currency" : "eur"
-    }
-  }, {
-    "id" : 1,
-    "title" : "Guida Galattica per autostoppisti",
-    "author" : "Douglas Adams",
-    "price" : {
-      "value" : 10,
-      "currency" : "eur"
-    }
-  } ]
-};
-    if (Object.keys(examples).length > 0) {
-      resolve(examples[Object.keys(examples)[0]]);
-    } else {
-      resolve();
-    }
+  return sqlDb("carts")
+  .limit(limit)
+  .offset(offset)
+  .then(data => {
+    return data
   });
 }
 

@@ -1,5 +1,39 @@
 'use strict';
 
+let sqlDb;
+
+exports.reviewsDbSetup = function(database) {
+  sqlDb = database;
+  console.log("Checking if review table exists");
+  return database.schema.hasTable("reviews").then(exists => {
+    if (!exists) {
+      console.log("It doesn't so we create it");
+      return database.schema.createTable("reviews", table => {
+
+
+        table.integer("userId")
+        .primary()
+        .notNullable()
+        .references('id')
+        .inTable('users')
+        .onDelete('CASCADE');
+
+        table.integer("bookId")
+        .notNullable()
+        .references('id')
+        .inTable('books')
+        .onDelete('CASCADE');
+
+        table.integer("stars")
+
+
+        table.text("text");
+
+      });
+
+    }
+  });
+};
 
 /**
  * Finds reviews
@@ -12,42 +46,11 @@
  * returns List
  **/
 exports.getAllReviews = function(userId,bookId,offset,limit) {
-  return new Promise(function(resolve, reject) {
-    var examples = {};
-    examples['application/json'] = [ {
-  "user" : {
-    "name" : "Davide"
-  },
-  "book" : {
-    "id" : 0,
-    "title" : "1984",
-    "author" : "Orwell George",
-    "price" : {
-      "value" : 12,
-      "currency" : "eur"
-    }
-  },
-  "stars" : 2
-}, {
-  "user" : {
-    "name" : "Davide"
-  },
-  "book" : {
-    "id" : 0,
-    "title" : "1984",
-    "author" : "Orwell George",
-    "price" : {
-      "value" : 12,
-      "currency" : "eur"
-    }
-  },
-  "stars" : 2
-} ];
-    if (Object.keys(examples).length > 0) {
-      resolve(examples[Object.keys(examples)[0]]);
-    } else {
-      resolve();
-    }
+ return sqlDb("events")
+  .limit(limit)
+  .offset(offset)
+  .then(data => {
+    return data
   });
 }
 
