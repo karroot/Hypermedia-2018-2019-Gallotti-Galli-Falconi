@@ -18,7 +18,7 @@ function getInfo() {
     $.addTemplateFormatter({
         imgFormatter: function(value, template) {
                let v = value.replace(" ", "");
-               return `../img/team/${v}.jpg`
+               return `../assets/img/team/${v}.png`
         }
     });
 
