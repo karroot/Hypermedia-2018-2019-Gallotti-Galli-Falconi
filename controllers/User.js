@@ -62,15 +62,20 @@ module.exports.logoutUser = function logoutUser (req, res, next) {
 };
 
 module.exports.postuserLogin = function postuserLogin (req, res, next) {
-  var username = req.swagger.params['username'].value;
-  var password = req.swagger.params['password'].value;
-  User.postuserLogin(username,password)
-    .then(function (response) {
+  var username = req.swagger.params["username"].value;
+  var password = req.swagger.params["password"].value;
+  if(!req.session.loggedin) {
+      req.session.loggedin = true;
+  } else {
+     req.session.loggedin = !req.session.loggedin;
+  }
+  User.postuserLogin(username, password)
+    .then(function(response) {
       utils.writeJson(res, response);
     })
-    .catch(function (response) {
+    .catch(function(response) {
       utils.writeJson(res, response);
-    });
+});
 };
 
 module.exports.postuserRegister = function postuserRegister (req, res, next) {
