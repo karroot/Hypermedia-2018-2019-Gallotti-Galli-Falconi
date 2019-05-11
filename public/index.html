@@ -1,20 +1,128 @@
-<html>
+
+<!doctype html>
+<html lang="en">
   <head>
-          <title>Book store</title>
-  </head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet">
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    
+    <title>MDGbooks</title>
+    <!-- Fonts -->
+    <link href="https://fonts.googleapis.com/css?family=Oswald:400" rel="stylesheet"> 
+    <!-- Style Css -->
+    <link rel="stylesheet" href="./assets/css/style.css">
+    
+    <link rel="shortcut icon" type="image/ico" href="./assets/img/favicon.ico"/>
+	</head>
+
   <body>
-          <h1>Our first server!</h1>
-          <ul></ul>
-         <script>       
-                 fetch('v2/book').then(function(response) {
-                         return response.json();
-                 }).then(function(json) {
-                        for(let i = 0; i< json.length; i++) {
-                           let listItem = document.createElement("li");
-                           let { title, author, price } = json[i];
-                                listItem.innerHTML = `${title} - ${author} - ${price.value}`;
-                           document.querySelector("ul").append(listItem);
-                        }
-                 });
-</script>
+    <header>       
+        <nav class="navbar navbar-expand-lg navbar-light" >
+            <a class="navbar-brand" href="./index.html">
+                <img src="./assets/img/Logo.png" width="60" height="32" class="d-inline-block align-top" alt="MDGbooks">
+                MDGbooks
+            </a>  
+                <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+                  <span class="navbar-toggler-icon"></span>
+                </button>
+              
+                <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                  <ul class="navbar-nav mr-auto">
+                    <li class="nav-item">
+                        <li class="nav-item dropdown">
+                            <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                              Books
+                            </a>
+                            <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                              <a class="dropdown-item" href="#">eBooks</a>
+                              <a class="dropdown-item" href="./pages/book.html">All Books</a>
+                              <a class="dropdown-item" href="#">Best Sellers</a>
+                              <a class="dropdown-item" href="#">Our Favorites</a>
+                          </li>
+                    </li>
+                    <li class="nav-item"></li>   
+                      <a class="nav-link" href="#">Events</a>
+                    </li>
+                    </li>
+                    <li class="nav-item"></li>   
+                      <a class="nav-link" href="#">Authors  </a>
+                    </li>
+                  </ul>
+        <form class="form-inline">
+            <button href="#" class="btn btn-outline-secondary btn-sm " id="btn-login" type="button">Log In</button>
+            <button href="#" class="btn btn-primary btn-m " id="btn-signup" type="button" disabled >Sign Up</button>
+     
+        </form>
+    </nav>
+    </header>
+  
+    <div class="jumbotron">
+          <h1 class="display-4">Welcome!</h1>
+         <p class="lead">Welcome to MDGbooks!</p>
+         <h1 class="lead">Here you can find many books, both in eBooks and paperback's version, you can read an abstract of each book, as well as read the reviews of other users, or you can leave yours to help future customers.</h1>
+         <h1 class="lead">You can also find and participate in numerous events completely free of charge, and meet your favorite authors.</h1>
+        <hr class="my-4">
+        
+        <h1 class="title lead">Books</h1>
+        <p>Check out our collection of books and eBooks, there's something for everyone!</p>
+        <a class="btn btn-primary btn-lg" href="./pages/book.html" role="button">Shop!</a>
+        <hr class="my-4">
+        
+        <h1 class="title lead">Events</h1>
+        <p>Take part in our numerous events, they are totally free and you will have the opportunity to meet your favorite author.</p>
+        <a class="btn btn-primary btn-lg" href="#" role="button">Search!</a>
+    </div>
+
+    <footer class="footer-bs">
+        <div class="row">
+        	<div class="col-md-3 footer-brand animated fadeInLeft">
+            	<h2>MDGbooks</h2>
+                <p>MDGbooks is an on-line BOOK store, born after the idea of three friends, that decided to mix their passion with their skills.</p>
+               <!-- <p>© 2014 BS3 UI Kit, All rights reserved</p> -->
+            </div>
+        	<div class="col-md-3 footer-nav animated fadeInUp">
+            	<h4>Useful Info —</h4>
+            	<div class="col-md-12">
+                    <ul class="list">
+                        <li><a href="./pages/FAQ.html">FAQ</a></li>
+                        <li><a href="#">Contact Us</a></li>
+                        <li><a href="./pages/OrderingAndShipping.html">Ordering and Shipping</a></li>
+                    </ul>
+                </div>
+            </div>
+        	<div class="col-md-3 footer-social animated fadeInUp">
+                <h4>About —</h4>
+                 <div class="col-md-12">
+            	    <ul class="list">
+                        <li><a href="./pages/about.html">About Us</a></li>
+                        <li><a href="#">Work with Us</a></li>
+                     </ul>
+                 </div>
+            </div>
+        	<div class="col-md-3 footer-ns animated fadeInRight">
+            	<h4>Newsletter —</h4>
+                <p>Sign up for exclusive deals!</p>
+                <p>
+                    <div class="input-group" disable>
+                      <input type="text" class="form-control" disabled placeholder="Coming soon">
+                      <span class="input-group-btn">
+                        <button class="btn btn-default" id="btn-email" disabled type="button"><i class="fa fa-envelope" aria-hidden="true"></i>
+                        </button>
+                      </span>
+                    </div><!-- /input-group -->
+                 </p>
+            </div>
+        </div>
+    </footer>
+          
+    <!-- Optional JavaScript -->
+    <!-- jQuery first, then Popper.js, then Bootstrap JS -->
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
+
   </body>
+</html>
