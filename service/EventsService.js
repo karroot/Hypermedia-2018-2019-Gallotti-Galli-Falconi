@@ -9,13 +9,13 @@ exports.eventsDbSetup = function(database) {
     if (!exists) {
       console.log("It doesn't so we create it");
       return database.schema.createTable("events", table => {
-
-        table.date("date")
+        table.integer("id")
         .primary();
+        table.date("date")
+
         table.text("place");
-        
+        table.text("title");
         table.text("overview");
-        table.text("poster");
         table.integer("bookId")
         .notNullable()
         .references('id')
@@ -42,9 +42,7 @@ exports.eventsDbSetup = function(database) {
         .references('name')
         .inTable('authors')
         .onDelete('CASCADE');
-        database.schema.alterTable('place', function(t)  {
-          t.unique(['date',date])
-        });
+
       });
 
 

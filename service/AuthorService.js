@@ -14,7 +14,6 @@ exports.authorsDbSetup = function(database) {
         .primary();
         table.text("life");
         table.text("award");
-        table.text("photo");
       });
 
     }

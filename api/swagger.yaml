@@ -82,6 +82,7 @@ paths:
           description: "Unexpected error"
       x-swagger-router-controller: "Default"
   /book:
+
     get:
       tags:
       - "book"
@@ -280,21 +281,21 @@ paths:
         type: "integer"
       responses:
         200:
-          description: "A collection of eBooks"
+          description: "A collection of ebooks"
           schema:
             type: "array"
             items:
               $ref: "#/definitions/Book"
         404:
           description: "Unexpected error"
-      x-swagger-router-controller: "eBook"
+      x-swagger-router-controller: "Ebook"
   /ebook/{ebookId}:
     get:
       tags:
       - "ebook"
       summary: "Find ebook by ID"
       description: "Returns a ebook"
-      operationId: "geteBookById"
+      operationId: "getebookById"
       produces:
       - "application/json"
       parameters:
@@ -313,13 +314,13 @@ paths:
           description: "Invalid ID supplied"
         404:
           description: "Book not found"
-      x-swagger-router-controller: "eBook"
+      x-swagger-router-controller: "ebook"
   /ebook/{ebookId}/reviews:
     get:
       tags:
       - "ebook"
       summary: "retrieves the reviews of a book"
-      operationId: "getReviewsByeBook"
+      operationId: "getReviewsByebook"
       produces:
       - "application/json"
       parameters:
@@ -342,7 +343,7 @@ paths:
       tags:
       - "ebook"
       summary: "Retrieve the author of a book"
-      operationId: "getAuthorByeBook"
+      operationId: "getAuthorByebook"
       parameters:
       - name: "ebookId"
         in: "path"
@@ -365,7 +366,7 @@ paths:
       tags:
       - "ebook"
       summary: "retrieves the events of a book"
-      operationId: "getEventsByeBook"
+      operationId: "getEventsByebook"
       produces:
       - "application/json"
       parameters:
@@ -1308,9 +1309,9 @@ definitions:
           $ref: "#/definitions/Author"
       price:
         $ref: "#/definitions/Amount"
-      eBook:
+      ebook:
         type: "boolean"
-        description: "True if eBook is available"
+        description: "True if ebook is available"
       intro:
         type: "string"
       genre:

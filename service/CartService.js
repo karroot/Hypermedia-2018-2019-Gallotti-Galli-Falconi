@@ -2,6 +2,7 @@
 
 
 let sqlDb;
+let sqlDb1;
 
 exports.cartsDbSetup = function(database) {
   sqlDb = database;
@@ -19,6 +20,37 @@ exports.cartsDbSetup = function(database) {
         table.float("total")
         .notNullable();
         
+      });
+
+    }
+
+  });
+};
+
+exports.cartsdetailDbSetup = function(database) {
+  sqlDb1 = database;
+  console.log("Checking if carts table exists");
+  return database.schema.hasTable("cartsdetail").then(exists => {
+    if (!exists) {
+      console.log("It doesn't so we create it");
+      return database.schema.createTable("cartsdetail", table => {
+
+        table.integer("userId")
+        .primary()
+        .references('id')
+        .inTable('users')
+        .onDelete('CASCADE');
+        table.float("total")
+        .notNullable();
+        table.integer("quantity");
+        table.integer("bookId")
+        .references('id')
+        .inTable('books')
+        .onDelete('CASCADE');
+        
+        database.schema.alterTable('userId', function(t)  {
+          t.unique(['bookId',integer])
+        });
       });
 
     }
@@ -80,7 +112,13 @@ exports.getSingleCart = function(userId) {
   .offset(offset)
   .then(data => {
     return data
-  });
+  }),sqlDb1("cartsdetail")
+  .limit(limit)
+  .offset(offset)
+  .then(data => {
+    return data
+  })
+  ;
 }
 
 

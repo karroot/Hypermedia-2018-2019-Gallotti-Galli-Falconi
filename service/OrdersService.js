@@ -1,6 +1,63 @@
 'use strict';
 
 
+let sqlDb;
+let sqlD1;
+
+
+exports.ordersDbSetup = function(database) {
+  sqlDb = database;
+  console.log("Checking if authors table exists");
+  return database.schema.hasTable("orders").then(exists => {
+    if (!exists) {
+      console.log("It doesn't so we create it");
+      return database.schema.createTable("orders", table => {
+
+        table.integer("id")
+        .primary();
+        table.integer("userId")
+        .references('id')
+        .inTable('users')
+        .onDelete('CASCADE');
+        table.date("data");
+        table.float("total")
+        .notNullable();
+        
+      });
+
+    }
+  });
+};
+
+exports.ordersdetailDbSetup = function(database) {
+  sqlDb = database;
+  console.log("Checking if authors table exists");
+  return database.schema.hasTable("ordersdetail").then(exists => {
+    if (!exists) {
+      console.log("It doesn't so we create it");
+      return database.schema.createTable("ordersdetail", table => {
+
+        table.integer("orderId")
+        .primary()
+        .references('id')
+        .inTable('orders')
+        .onDelete('CASCADE');
+        table.integer("quantity")
+        .notNullable();
+        table.integer("bookId")
+        .references('id')
+        .inTable('books')
+        .onDelete('CASCADE');
+        
+        database.schema.alterTable('userId', function(t)  {
+          t.unique(['bookId',integer])
+        });
+      });
+
+    }
+
+  });
+};
 /**
  * Finds orders
  * Retrieves orders from the system
@@ -11,61 +68,18 @@
  * returns List
  **/
 exports.getAllOrders = function(userId,offset,limit) {
-  return new Promise(function(resolve, reject) {
-    var examples = {};
-    examples['application/json'] = [ {
-  "books" : [ {
-    "id" : 0,
-    "title" : "Brave new world",
-    "author" : "Aldous Huxley",
-    "price" : {
-      "value" : 10,
-      "currency" : "eur"
-    },
-    "status" : "available"
-  }, {
-    "id" : 0,
-    "title" : "Brave new world",
-    "author" : "Aldous Huxley",
-    "price" : {
-      "value" : 10,
-      "currency" : "eur"
-    },
-    "status" : "available"
-  } ],
-  "id" : 0,
-  "creationDate" : "2000-01-23T04:56:07.000+00:00",
-  "userId" : 6
-}, {
-  "books" : [ {
-    "id" : 0,
-    "title" : "Brave new world",
-    "author" : "Aldous Huxley",
-    "price" : {
-      "value" : 10,
-      "currency" : "eur"
-    },
-    "status" : "available"
-  }, {
-    "id" : 0,
-    "title" : "Brave new world",
-    "author" : "Aldous Huxley",
-    "price" : {
-      "value" : 10,
-      "currency" : "eur"
-    },
-    "status" : "available"
-  } ],
-  "id" : 0,
-  "creationDate" : "2000-01-23T04:56:07.000+00:00",
-  "userId" : 6
-} ];
-    if (Object.keys(examples).length > 0) {
-      resolve(examples[Object.keys(examples)[0]]);
-    } else {
-      resolve();
-    }
-  });
+  return sqlDb("orders")
+  .limit(limit)
+  .offset(offset)
+  .then(data => {
+    return data
+  }),sqlDb1("ordersdetail")
+  .limit(limit)
+  .offset(offset)
+  .then(data => {
+    return data
+  })
+  ;
 }
 
 
