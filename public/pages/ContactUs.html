@@ -1,0 +1,82 @@
+<!doctype html>
+<html lang="en">
+    <head>
+        <!-- Required meta tags -->
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+        <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet">
+        <!-- Bootstrap CSS -->
+        <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+        <title>Contact us</title>
+        <!-- Fonts -->
+        <link href="https://fonts.googleapis.com/css?family=Oswald:400" rel="stylesheet"> 
+        <!-- Style Css -->
+        <link rel="stylesheet" href="../assets/css/style.css">
+        <link rel="shortcut icon" type="image/ico" href="../assets/img/favicon.ico"/>
+  </head>
+
+  <body>
+    <div id="header"></div>
+    <div class="container w-75 p-3">
+        <h1>Contact Us</h1>
+        <p>Before contacting us, please read carefully our <a href="./FAQ.html">FAQ</a> and our <a href="./OrderingAndShipping.html">Ordering and Shipping information</a><br>
+            Still more question? Feel free to compile this form, our team will take care at your request as soon as possible.
+        </p>
+            <form>
+                <div class="form-row">
+                    <div class="form-group col-md-3">
+                        <label for="inputName4" >First Name</label>
+                        <input type="text" class="form-control" required id="inputName4" placeholder="First name">
+                    </div>
+                    <div class="form-group col-md-3">
+                        <label for="inputLastName4" >Last Name</label>
+                        <input type="text" class="form-control" required id="inputLastName4" placeholder="Last Name">
+                    </div>
+                </div>
+                <div class="form-row">
+                    <div class="form-group col-md-3" >
+                        <label for="inputEmail4">Email</label>
+                        <input type="email" class="form-control"required id="inputEmail4" placeholder="Email">
+                    </div>
+                    <div class="form-group col-md-3">
+                            <label for="Select">Choose a category</label>
+                            <select id="Select" class="form-control"placeholder="Please make a selection">
+                              <option>I'd like to sell my own book</option>
+                              <option>Where is my book?</option>
+                              <option>Problem with an order</option>
+                              <option>Returns and refunds</option>
+                              <option>I'd like to host an event</option>
+                            </select>
+                        </div>
+                </div>
+                <div class="form-row">
+                        <div class="form-group col-md-6" >
+                         <label for="validationTextarea">Message</label>
+                        <textarea class="form-control "  placeholder="Tell us more..." required></textarea>
+                        <div class="invalid-feedback">
+                          Please enter a message in the textarea.
+                        </div>   
+                    </div>
+                </div>
+                <button class="btn btn-primary" type="submit">Submit form</button>
+            </form>
+    <br></br>
+
+    <div id="footer"></div>
+
+        
+     <!-- jQuery first, then Popper.js, then Bootstrap JS -->
+     <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+     <script src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
+     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
+     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
+     <script src="../assets/js/utils.js"></script>
+
+     <script>
+       $(document).ready(getHeader());
+       $(document).ready(getFooter());
+     </script>
+ 
+ 
+  </body>
+</html>
