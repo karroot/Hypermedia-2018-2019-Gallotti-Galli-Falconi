@@ -1,5 +1,5 @@
 function getInfo() {
-   getHeader();
+    getHeaderFooter();
 
     $.getJSON("/assets/info.json", function(info) {
         console.log(info); // this will show the info it in firebug console
@@ -15,6 +15,4 @@ function getInfo() {
         $(".teamTwo-template-container").loadTemplate("#team-template", info.team[1]);
         $(".teamThree-template-container").loadTemplate("#team-template", info.team[2]);
     });
-
-    getFooter();
 };
