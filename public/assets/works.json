@@ -1,26 +1,24 @@
-{
-    "type": [{
+    [{
         "title": "Warehouse",
-	"title-complete" : "Warehouse Worker"
-        "description": "We are looking for a warehouse worker to participate in our warehouse operations and activities. Warehouse worker responsibilities include storing materials, picking, packing and scanning orders. The goal is to increase efficiency, profitability and customer satisfaction."
+	"title-complete" : "Warehouse Worker",
+        "description": "We are looking for a warehouse worker to participate in our warehouse operations and activities. Warehouse worker responsibilities include storing materials, picking, packing and scanning orders. The goal is to increase efficiency, profitability and customer satisfaction.",
 	"time" : "Posted 2 days ago"
     },
 	{
-        "title": "Warehouse",
-	"title-complete" : "Warehouse Worker"
-        "description": "We are looking for a warehouse worker to participate in our warehouse operations and activities. Warehouse worker responsibilities include storing materials, picking, packing and scanning orders. The goal is to increase efficiency, profitability and customer satisfaction."
+        "title": "Housekeeper",
+	"title-complete" : "Warehouse Worker",
+        "description": "We are looking for a warehouse worker to participate in our warehouse operations and activities. Warehouse worker responsibilities include storing materials, picking, packing and scanning orders. The goal is to increase efficiency, profitability and customer satisfaction.",
 	"time" : "Posted 2 days ago"
     },
 	{
-        "title": "Warehouse",
-	"title-complete" : "Warehouse Worker"
-        "description": "We are looking for a warehouse worker to participate in our warehouse operations and activities. Warehouse worker responsibilities include storing materials, picking, packing and scanning orders. The goal is to increase efficiency, profitability and customer satisfaction."
+        "title": "Backend programmer",
+	"title-complete" : "Warehouse Worker",
+        "description": "We are looking for a warehouse worker to participate in our warehouse operations and activities. Warehouse worker responsibilities include storing materials, picking, packing and scanning orders. The goal is to increase efficiency, profitability and customer satisfaction.",
 	"time" : "Posted 2 days ago"
     },
 	{
-        "title": "Warehouse",
-	"title-complete" : "Warehouse Worker"
-        "description": "We are looking for a warehouse worker to participate in our warehouse operations and activities. Warehouse worker responsibilities include storing materials, picking, packing and scanning orders. The goal is to increase efficiency, profitability and customer satisfaction."
+        "title": "Event manager",
+	"title-complete" : "Warehouse Worker",
+        "description": "We are looking for a warehouse worker to participate in our warehouse operations and activities. Warehouse worker responsibilities include storing materials, picking, packing and scanning orders. The goal is to increase efficiency, profitability and customer satisfaction.",
 	"time" : "Posted 2 days ago"
     }]
-}
