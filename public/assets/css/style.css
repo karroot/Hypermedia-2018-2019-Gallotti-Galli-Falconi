@@ -146,3 +146,8 @@ html, body {
     background-color: none;
     color: #a55800;
 }
+/*  Alert
+ */
+.alert{
+    display: none;
+}
