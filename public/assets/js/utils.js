@@ -1,9 +1,6 @@
-function getHeader() {
+function getHeaderFooter() {
 $("#header")
   .load('/assets/header.html');
-}
-
-function getFooter() {
-    $("#footer")
+  $("#footer")
   .load('/assets/footer.html');
 }

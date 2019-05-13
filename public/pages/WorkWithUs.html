@@ -1,0 +1,95 @@
+<!doctype html>
+<html lang="en">
+    <head>
+        <!-- Required meta tags -->
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+        <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet">
+        <!-- Bootstrap CSS -->
+        <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+        <title>Work with us</title>
+        <!-- Fonts -->
+        <link href="https://fonts.googleapis.com/css?family=Oswald:400" rel="stylesheet"> 
+        <!-- Style Css -->
+        <link rel="stylesheet" href="../assets/css/style.css">
+        <link rel="shortcut icon" type="image/ico" href="../assets/img/favicon.ico"/>
+
+     
+  </head>
+
+  <body>
+    <div id="header"></div>
+    <div class="content">
+    <div class="container my-4">
+        <h1>Looking for a job?</h1>
+        <p>It's your lucky day! We are hiring<br>
+            Watch here our open positions and feel free to applay.</p>
+            
+        <div class="work-One"></div>
+
+        <div class="modal fade" id="congratModal" tabindex="-1" role="dialog" aria-labelledby="congrttModalLabel" aria-hidden="true">
+                <div class="modal-dialog modal-dialog-centered" role="document">
+                  <div class="modal-content">
+                    <div class="modal-header">
+                      <h5 class="modal-title" id="congrttModalLabel">Congratulation!</h5>
+                      <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                      </button>
+                    </div>
+                    <div class="modal-body">
+                      You have successfully send your resume! <br></br>
+                      <div class="alert alert-warning mx-3" role="alert">
+                            <small><b>NOTE</b>: We are <b>not</b> hiring! This is a project for univerity.</small>
+                    </div>
+                    </div>
+                    <div class="modal-footer">
+                      <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                    </div>
+                  </div>
+                </div>
+              </div>
+        
+        <!-- Template -->
+        <script type="text/html" id="type-template">
+        <div class="card my-3">
+            <div class="card-header" data-content="title">
+            </div>
+            <div class="card-body">
+                <h5 class="card-title" data-content="title-complete"></h5>
+                <p class="card-text" data-content="description"></p>
+                <!-- Input file-->
+                <label for="inputGroupFile01" >Please attach your resume.</label>
+                <div class="input-group mb-3">
+                    <div class="custom-file">
+                        <label class="custom-file-label" required for="inputGroupFile01">Choose file</label>
+                        <input type="file" class="custom-file-input" id="inputGroupFile01" aria-describedby="inputGroupFileAddon01">
+                    </div>
+                </div>
+                <!--Button-->
+                <button href="#" class="btn btn-primary" data-toggle="modal" data-target="#congratModal">Go somewhere</button>
+            </div>
+            <div class="card-footer text-muted" data-content="time">
+            </div>
+        </div>
+    </script>
+    <br></br>
+    </div>
+</div>
+    <div id="footer"></div>
+
+        
+     <!-- jQuery first, then Popper.js, then Bootstrap JS -->
+     <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+     <script src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
+     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
+     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
+     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.loadtemplate/1.5.10/jquery.loadTemplate.min.js"></script>
+     <script src="../assets/js/utils.js"></script>
+     <script src="../assets/js/works.js"></script>
+
+     <script>
+        $(document).ready(getWorks());
+     </script>
+
+  </body>
+</html>
