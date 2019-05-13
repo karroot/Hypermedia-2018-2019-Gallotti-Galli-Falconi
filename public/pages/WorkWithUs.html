@@ -13,6 +13,8 @@
         <!-- Style Css -->
         <link rel="stylesheet" href="../assets/css/style.css">
         <link rel="shortcut icon" type="image/ico" href="../assets/img/favicon.ico"/>
+
+     
   </head>
 
   <body>
@@ -24,6 +26,29 @@
             Watch here our open positions and feel free to applay.</p>
             
         <div class="work-One"></div>
+
+        <div class="modal fade" id="congratModal" tabindex="-1" role="dialog" aria-labelledby="congrttModalLabel" aria-hidden="true">
+                <div class="modal-dialog modal-dialog-centered" role="document">
+                  <div class="modal-content">
+                    <div class="modal-header">
+                      <h5 class="modal-title" id="congrttModalLabel">Congratulation!</h5>
+                      <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                      </button>
+                    </div>
+                    <div class="modal-body">
+                      You have successfully send your resume! <br></br>
+                      <div class="alert alert-warning mx-3" role="alert">
+                            <small><b>NOTE</b>: We are <b>not</b> hiring! This is a project for univerity.</small>
+                    </div>
+                    </div>
+                    <div class="modal-footer">
+                      <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                    </div>
+                  </div>
+                </div>
+              </div>
+        
         <!-- Template -->
         <script type="text/html" id="type-template">
         <div class="card my-3">
@@ -41,7 +66,7 @@
                     </div>
                 </div>
                 <!--Button-->
-                <a href="#" class="btn btn-primary">Go somewhere</a>
+                <button href="#" class="btn btn-primary" data-toggle="modal" data-target="#congratModal">Go somewhere</button>
             </div>
             <div class="card-footer text-muted" data-content="time">
             </div>
@@ -65,7 +90,6 @@
      <script>
         $(document).ready(getWorks());
      </script>
- 
- 
+
   </body>
 </html>
