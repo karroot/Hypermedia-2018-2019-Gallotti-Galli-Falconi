@@ -2,23 +2,23 @@
         "title": "Warehouse",
 	"title-complete" : "Warehouse Worker",
         "description": "We are looking for a warehouse worker to participate in our warehouse operations and activities. Warehouse worker responsibilities include storing materials, picking, packing and scanning orders. The goal is to increase efficiency, profitability and customer satisfaction.",
-	"time" : "Posted 2 days ago"
+	"time" : "Posted 21 hours ago"
     },
 	{
-        "title": "Housekeeper",
-	"title-complete" : "Warehouse Worker",
-        "description": "We are looking for a warehouse worker to participate in our warehouse operations and activities. Warehouse worker responsibilities include storing materials, picking, packing and scanning orders. The goal is to increase efficiency, profitability and customer satisfaction.",
-	"time" : "Posted 2 days ago"
+        "title": "Customer Care",
+	"title-complete" : "Customer Service Manager",
+        "description": "We are looking for an experienced Customer Service Manager to provide excellent customer service and to promote this idea throughout the organisation. The goal is to keep the department running in an efficient and profitable manner, to increase customer satisfaction, loyalty and retention and to meet their expectations.",
+	"time" : "Posted yesterday"
     },
 	{
-        "title": "Backend programmer",
-	"title-complete" : "Warehouse Worker",
-        "description": "We are looking for a warehouse worker to participate in our warehouse operations and activities. Warehouse worker responsibilities include storing materials, picking, packing and scanning orders. The goal is to increase efficiency, profitability and customer satisfaction.",
-	"time" : "Posted 2 days ago"
+        "title": "Developer",
+	"title-complete" : "Back-end Programmer",
+        "description": "We are looking for an experienced Back-end developer to join our IT team. You will be responsible for the server side of our web applications.<br>If you have excellent programming skills and a passion for developing applications or improving existing ones, we would like to meet you. As a Back-end developer, you'll work closely with our engineers to ensure system consistency and improve user experience.<br>Ultimately, you should be able to develop and maintain functional and stable web applications to meet our company's needs.",
+	"time" : "Posted 3 days ago"
     },
 	{
-        "title": "Event manager",
-	"title-complete" : "Warehouse Worker",
-        "description": "We are looking for a warehouse worker to participate in our warehouse operations and activities. Warehouse worker responsibilities include storing materials, picking, packing and scanning orders. The goal is to increase efficiency, profitability and customer satisfaction.",
-	"time" : "Posted 2 days ago"
+        "title": "Event Manager",
+	"title-complete" : "Event Manager",
+        "description": "We are looking for a competent Event manager to oversee and organize events that will make an impact to a target audience. You'll ensure events are successful and cost-effective, paying attention to budget and time constraints.<br>An event manager is, above all, a project manager who understands marketing and promotion techniques. We want to see enthusiastic candidates with fresh ideas and the organizational skills required to not leave anything about an event to chance.",
+	"time" : "Posted 5 days ago"
     }]
