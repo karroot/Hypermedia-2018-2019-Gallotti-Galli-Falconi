@@ -339,7 +339,7 @@ exports.getebooks = function(offset,limit) {
   return sqlDb("books")
   .limit(limit)
   .offset(offset)
-  .where('items.ebook', '=', 'true')
+  .where('ebook', '=', 'true')
   .then(data => {
     return data
   });
