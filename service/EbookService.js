@@ -341,7 +341,7 @@ exports.getebooks = function(offset,limit) {
   .offset(offset)
   .then(data => {
     return data
-    .where('items.ebook', '=', 'si')
+    .where('items.ebook', '=', 'true')
   });
 }
 
