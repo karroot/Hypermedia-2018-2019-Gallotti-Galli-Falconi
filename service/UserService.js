@@ -228,9 +228,8 @@ exports.logoutUser = function() {
  * no response value expected for this operation
  **/
 exports.postuserLogin = function(username,password) {
-  return new Promise(function(resolve, reject) {
-    resolve();
-  });
+  
+  return sqlDb("users").where({"username":username ,"password":password});
 }
 
 
