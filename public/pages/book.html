@@ -17,7 +17,7 @@
 
   <body>
     <div id="header"></div>
-    <div class="content">
+    <div class="content space-header">
       <nav aria-label="breadcrumb">
         <ol class="breadcrumb">
           <li class="breadcrumb-item"><a href="../index.html">Home</a></li>
@@ -26,7 +26,7 @@
       </nav>
     <div class="container my-4">
         <h1> Books </h1> 
-  </div>
+    </div>
       <div class="container my-5">
         
       <div class="row">
@@ -37,6 +37,7 @@
                   <div class="bookCard2-template-container"></div>
       </div>
       </div>
+      </div>
   </div>
 
   <div id="footer"></div>
@@ -45,10 +46,10 @@
   <script type="text/html" id="template">
       <div class="card mb-3 shadow-sm" style="max-width: 540px;">
               <div class="row no-gutters">
-                <div class="col-md-4">
+                <div class="col-4">
                   <img data-src="id" data-format="picFormatter" data-format-target="src" class="card-img-top" data-alt="title">
                 </div>
-                <div class="col-md-8">
+                <div class="col-8">
                   <div class="card-body">
                     <h4 class="card-title" data-content="title"></h4>
                     <p class="card-text my-3"  data-format="factFormatter" data-content="factSheet"></p>
