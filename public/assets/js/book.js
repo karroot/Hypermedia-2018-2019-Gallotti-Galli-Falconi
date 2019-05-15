@@ -25,7 +25,15 @@ function parseData(book) {
                      }
               }
        });
-
+  
+       book.map(b => {
+              b.authorid1 = `/pages/author?id=${b.authorid1}`;
+              if(b.authorid2!=null) b.authorid2 = `/pages/author?id=${b.authorid2}`;
+              if(b.authorid3!=null) b.authorid3 = `/pages/author?id=${b.authorid3}`;
+              if(b.authorid4!=null) b.authorid4 = `/pages/author?id=${b.authorid4}`;
+                     }
+              );
+       
        var book1 = book.slice(0, book.length/2); 
        var book2 = book.slice(book.length/2, book.length);
        $(".bookCard1-template-container").loadTemplate("#template", book2, {
