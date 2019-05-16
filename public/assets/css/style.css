@@ -12,6 +12,9 @@ html, body {
 .content {
     flex: 1 0 auto;
 }
+.space-header {
+    margin-top: 63px;
+}
 
 /*  Navbar
  */
@@ -43,6 +46,7 @@ html, body {
     margin-left : 5%;
     margin-right: 5%;
 }
+
 /*  Buttons
  */
 .btn {
@@ -145,4 +149,14 @@ html, body {
 .fa {
     background-color: none;
     color: #a55800;
+}
+
+
+/* Card for mobile
+ */
+@media (min-width: 576px) {
+    .card-image-top {
+        height: 30%;
+    }
+   
 }

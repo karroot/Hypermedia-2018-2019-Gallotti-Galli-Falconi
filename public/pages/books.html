@@ -1,0 +1,104 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet">
+
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    <title>Books</title>
+    <!-- Fonts -->
+    <link href="https://fonts.googleapis.com/css?family=Oswald:400" rel="stylesheet"> 
+    <link rel="shortcut icon" type="image/ico" href="../assets/img/favicon.ico"/>
+    <!-- Style Css -->
+    <link rel="stylesheet" href="../assets/css/style.css">
+
+  <body>
+    <div id="header"></div>
+    <div class="content space-header">
+      <nav aria-label="breadcrumb">
+        <ol class="breadcrumb">
+          <li class="breadcrumb-item"><a href="../index.html">Home</a></li>
+          <li class="breadcrumb-item active" aria-current="page">All Books</li>
+        </ol>
+      </nav>
+    <div class="container my-4"> 
+      <h1> Books 
+          <div class="d-flex justify-content-end">
+            <select id="book-genre" class="btn btn-primary" onchange="handleDateChange()">
+              <!--Only for exemple!-->
+              <option>Fantasy</option>
+              <option>Romance</option>
+              <option>Thriller</option>
+            </select>
+            <select id="book-theme" class="btn btn-primary" onchange="handleTypeChange()">
+              <!--Only for exemple!-->
+              <option>Love</option>
+              <option>War</option>
+              <option>Death</option>
+            </select>
+            <select id="book-ebook" class="btn btn-primary" onchange="handleTypeChange()">
+              <!--Only for exemple!-->
+                <option>eBook</option>
+                <option>Paper</option>
+              </select> 
+            </div>
+          </h1>
+          
+  </div>
+      <div class="container my-5">
+        
+        <div class=" d-flex justify-content-around flex-direction: row">      
+          <div class="bookCard1-template-container"></div>
+          <div class="bookCard2-template-container"></div>
+        </div>
+      </div>
+      </div>
+  </div>
+
+  <div id="footer"></div>
+
+  <!-- Template -->
+  <script type="text/html" id="template">
+      <div class="card mb-3 shadow-sm" style="max-width: 540px;">
+              <div class="row no-gutters">
+                <div class="col-4">
+                  <img data-src="id" data-format="picFormatter" data-format-target="src" class="card-img-top" data-alt="title">
+                </div>
+                <div class="col-8">
+                  <div class="card-body">
+                    <h4 class="card-title" data-content="title"></h4>
+                    <p class="card-text my-3"  data-format="factFormatter" data-content="factSheet"></p>
+                    <p class="card-text"> <small class="text-muted"> Written by </small> 
+                      <a class="card-text" data-href="authorid1" data-content="author1" data-format="authorOneFormatter"></a>
+                      <a class="card-text" data-href="authorid2" data-content="author2" data-format="authorFormatter"></a>
+                      <a class="card-text" data-href="authorid3" data-content="author3" data-format="authorFormatter"></a>
+                      <a class="card-text" data-href="authorid4" data-content="author4" data-format="authorFormatter"></a>
+                    </p>
+                    <a class="btn btn-primary" data-href="id" data-format="bookHrefFormatter" data-format-target="href">INFO</a>
+                  </div>
+                </div>
+              </div>
+              
+            </div>
+      </script>
+
+  <!-- jQuery first, then Popper.js, then Bootstrap JS -->    
+  <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+  <script src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
+  <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.loadtemplate/1.5.10/jquery.loadTemplate.min.js"></script>
+  <script src="/assets/js/utils.js"></script>
+  <script src="/assets/js/book.js"></script>
+
+  <script type="text/javascript"> 
+    $(document).ready(getHeaderFooter());
+    $(document).ready(getBooks());
+   </script>
+
+
+  </body>
+</html>
