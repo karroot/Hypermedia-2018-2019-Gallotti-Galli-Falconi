@@ -1,0 +1,77 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet">
+
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    <title>Author</title>
+    <!-- Fonts -->
+    <link href="https://fonts.googleapis.com/css?family=Oswald:400" rel="stylesheet"> 
+    <link rel="shortcut icon" type="image/ico" href="../assets/img/favicon.ico"/>
+    <!-- Style Css -->
+    <link rel="stylesheet" href="../assets/css/style.css">
+  </head>
+  <body>
+    <div id="header"></div>
+    <div class="content space-header">
+      <nav aria-label="breadcrumb">
+        <ol class="breadcrumb">
+          <li class="breadcrumb-item"><a href="../index.html">Home</a></li>
+          <li class="breadcrumb-item active" aria-current="page">All Authors</li>
+        </ol>
+      </nav>
+    <div class="container my-4"> 
+      <h1 class="my-3"> Authors</h1>
+      <p class="my-1">Here you can find all our author and discover their life.</p>
+      <p>Is there your favourite? Let's meet him/her at one of our events!</p>
+  </div>
+      <div class="container my-5">
+        <div class=" d-flex justify-content-around flex-direction: row">      
+          <div class="authorCard-template-container"></div>
+        </div>
+      </div>
+      </div>
+  </div>
+
+  <div id="footer"></div>
+
+  <!-- Template -->
+  <script type="text/html" id="template">
+      <div class="card mb-3 shadow-sm" style="max-width: 740px;">
+              <div class="row no-gutters">
+                <div class="col-4">
+                  <img data-src="authorid" data-format="picFormatter" data-format-target="src" class="card-img rounded-circl" data-alt="name">
+                </div>
+                <div class="col-8">
+                  <div class="card-body">
+                    <h4 class="card-title" data-content="name"></h4>
+                    <p class="card-text my-3"  data-format="lifeFormatter" data-content="life"></p>
+                    <a class="btn btn-primary" data-href="authorid" data-format="authorHrefFormatter" data-format-target="href">INFO</a>
+                  </div>
+                </div>
+              </div>
+              
+            </div>
+      </script>
+
+  <!-- jQuery first, then Popper.js, then Bootstrap JS -->    
+  <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+  <script src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
+  <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.loadtemplate/1.5.10/jquery.loadTemplate.min.js"></script>
+  <script src="/assets/js/utils.js"></script>
+  <script src="/assets/js/author.js"></script>
+
+  <script type="text/javascript"> 
+    $(document).ready(getHeaderFooter());
+    $(document).ready(getAuthors());
+   </script>
+
+
+  </body>
+</html>

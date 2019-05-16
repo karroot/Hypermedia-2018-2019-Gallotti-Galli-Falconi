@@ -49,7 +49,7 @@ function parseData(book) {
 
 function getBookById() {
        let book_id = parseQueryString(location.search).id;
-       if (!book_id) location.replace("/pages/book.html");
+       if (!book_id) location.replace("/pages/books.html");
        fetch(`/v2/book/${book_id}`).then(function(response) {
               return response.json();
       }).then(parseBookData)   
