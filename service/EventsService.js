@@ -76,15 +76,7 @@ exports.eventsDbSetup = function(database) {
     
   });
 };
-/**
- * Retrieve the author of an event
- *
- * id Long ID of event of which to retrieve the author
- * returns Event
- **/
-exports.getAuthorByEvents = function(id) {
-//come altri getauthorby
-}
+
 
 
 /**

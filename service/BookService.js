@@ -87,8 +87,9 @@ exports.getEventsByBook = function(bookId,offset,limit) {
  **/
 exports.getReviewsByBook = function(bookId) {
   return sqlDb1("reviews")
+  .select('reviews.bookId','reviews.title','reviews.stars','reviews.text')
   .where({bookId: bookId})
-  .then(data => {
+   .then(data => {
     return data
   });
 }

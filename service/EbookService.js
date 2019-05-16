@@ -30,23 +30,6 @@ exports.ebooksDbSetup = function(database) {
   });
 };
 
-/**
- * Retrieve the author of a book
- *
- * ebookId Long ID of book of which to retrieve the author
- * returns Author
- **/
-exports.getAuthorByebook = function(ebookId) {
-  return sqlDb("books")
-  
-  .joinRaw(`join "authors"`)
-  
-  .where({id: ebookId})
-
-  .then(data => {
-    return data
-  });
-}
 
 
 /**

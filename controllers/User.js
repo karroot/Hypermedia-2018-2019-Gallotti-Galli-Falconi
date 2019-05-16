@@ -71,17 +71,20 @@ module.exports.postuserLogin = function postuserLogin (req, res, next) {
   }
   User.postuserLogin(username, password)
     .then(function(response) {
-      if(response.length ==1) 
-        Utils.writejson(res,response,200);
-      else
-        Utils.writejson(res,response,404);
+      
+      if(response.length ==1) {
+        utils.writeJson(res,response,200);
+        console.log("CAZZO1");}
+      else{
+        utils.writeJson(res,response,404);
+        console.log("CAZZO2");}
       }
     )
     .catch(function(response) {
       if(response.length ==1) 
-        Utils.writejson(res,response,200);
+        utils.writeJson(res,response,200);
       else
-        Utils.writejson(res,response,404);
+        utils.writeJson(res,response,404);
 });
 };
 
