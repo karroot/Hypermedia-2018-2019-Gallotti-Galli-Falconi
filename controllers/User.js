@@ -52,10 +52,13 @@ module.exports.getUserById = function getUserById (req, res, next) {
 };
 
 module.exports.logoutUser = function logoutUser (req, res, next) {
+
   User.logoutUser()
     .then(function (response) {
+      req.session.loggedin = false;
       utils.writeJson(res, response);
     })
+
     .catch(function (response) {
       utils.writeJson(res, response);
     });
@@ -72,19 +75,20 @@ module.exports.postuserLogin = function postuserLogin (req, res, next) {
   User.postuserLogin(username, password)
     .then(function(response) {
       
-      if(response.length ==1) {
-        utils.writeJson(res,response,200);
-        console.log("CAZZO1");}
+      if(response.length == 1) {
+        utils.writeJson(res,response,200);}
       else{
-        utils.writeJson(res,response,404);
-        console.log("CAZZO2");}
+        utils.writeJson(res,response,406);}
       }
     )
     .catch(function(response) {
-      if(response.length ==1) 
+      if(response.length ==1) {
         utils.writeJson(res,response,200);
-      else
+       }
+      else{
         utils.writeJson(res,response,404);
+   
+      }
 });
 };
 

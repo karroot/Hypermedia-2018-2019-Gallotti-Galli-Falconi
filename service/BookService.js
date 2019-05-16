@@ -52,13 +52,6 @@ exports.similarbooksDbSetup = function(database) {
   });
 };
 
-/**
- * Retrieve the author of a book
- *
- * bookId Long ID of book of which to retrieve the author
- * returns Author
- **/
-
 
 
 
@@ -151,3 +144,4 @@ exports.getBookById = function(bookId) {
     return data
   });
 }
+//get  theme by book e get genere by book

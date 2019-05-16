@@ -92,32 +92,10 @@ exports.getAllOrders = function(userId,offset,limit) {
  * returns List
  **/
 exports.getBooksByOrder = function(id,offset,limit) {
-  return new Promise(function(resolve, reject) {
-    var examples = {};
-    examples['application/json'] = [ {
-  "id" : 0,
-  "title" : "Brave new world",
-  "author" : "Aldous Huxley",
-  "price" : {
-    "value" : 10,
-    "currency" : "eur"
-  },
-  "status" : "available"
-}, {
-  "id" : 0,
-  "title" : "Brave new world",
-  "author" : "Aldous Huxley",
-  "price" : {
-    "value" : 10,
-    "currency" : "eur"
-  },
-  "status" : "available"
-} ];
-    if (Object.keys(examples).length > 0) {
-      resolve(examples[Object.keys(examples)[0]]);
-    } else {
-      resolve();
-    }
+  return sqlDb("books")
+  .where({id: id})
+  .then(data => {
+    return data
   });
 }
 
@@ -129,37 +107,10 @@ exports.getBooksByOrder = function(id,offset,limit) {
  * returns Order
  **/
 exports.getOrderById = function(id) {
-  return new Promise(function(resolve, reject) {
-    var examples = {};
-    examples['application/json'] = {
-  "books" : [ {
-    "id" : 0,
-    "title" : "Brave new world",
-    "author" : "Aldous Huxley",
-    "price" : {
-      "value" : 10,
-      "currency" : "eur"
-    },
-    "status" : "available"
-  }, {
-    "id" : 0,
-    "title" : "Brave new world",
-    "author" : "Aldous Huxley",
-    "price" : {
-      "value" : 10,
-      "currency" : "eur"
-    },
-    "status" : "available"
-  } ],
-  "id" : 0,
-  "creationDate" : "2000-01-23T04:56:07.000+00:00",
-  "userId" : 6
-};
-    if (Object.keys(examples).length > 0) {
-      resolve(examples[Object.keys(examples)[0]]);
-    } else {
-      resolve();
-    }
+  return sqlDb("orders")
+  .where({id: ebookId})
+  .then(data => {
+    return data
   });
 }
 

@@ -23,14 +23,16 @@
             <div class="card rounded-lg py-4" style="width: 22rem;">
                 <img class="my-4 mx-auto" src="/assets/img/logo.png" alt="logo" width="113" height="76">
                 <div class="card-body">
-                    <form class="form-signin">
+                    <form class="form-signin" name="signIn">
                         <h1 class="h3 mb-4 font-weight-normal d-flex justify-content-center">Please log in</h1>
                         <label for="inputEmail" class="sr-only">Email address</label>
-                        <input type="email" id="inputEmail" class="form-control my-3" placeholder="Email address" required="" autofocus="" >
+                        <input type="email"  name="email" id="inputEmail" class="form-control my-3" placeholder="Email address" required autofocus="" />
                         <label for="inputPassword" class="sr-only">Password</label>
-                        <input type="password" id="inputPassword" class="form-control mb-5" placeholder="Password" required="">
-                        <button class="btn btn-lg btn-primary btn-block my-4" type="submit">Log in</button>
-                    </form>
+                        <input type="password" id="inputPassword" class="form-control mb-5" placeholder="Password" name="password" required />
+                        <button id="clickThis" class="btn btn-lg btn-primary btn-block my-4" type="submit">Log in</button>
+                   
+
+                      </form>
                 </div>
             </div>  
         </div>
@@ -49,8 +51,28 @@
 
   <script type="text/javascript"> 
     $(document).ready(getHeaderFooter());
-   </script>
 
 
+   
+   
+          
+    </script>
+     
+     <button>Send an HTTP POST request to a page </button>
+     <script>
+        $(document).ready(function(){
+     $("button").click(function(){
+              $.post("http://localhost:5000/v2/user/login/",
+              {
+                username: "gabbo@hotmail.it",
+                password: "passwordsicura"
+              },
+              function(data,status){
+                console.log(data);
+                alert("Data: " + data + "\nStatus: " + status);
+              });
+            });
+          });
+        </script>
   </body>
 </html>

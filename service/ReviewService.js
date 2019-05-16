@@ -11,12 +11,9 @@ exports.reviewsDbSetup = function(database) {
       return database.schema.createTable("reviews", table => {
 
 
-        table.integer("userId")
+        table.integer("Id")
         .primary()
-        .notNullable()
-        .references('id')
-        .inTable('users')
-        .onDelete('CASCADE');
+        .notNullable();
 
         table.integer("bookId")
         .notNullable()
@@ -27,9 +24,7 @@ exports.reviewsDbSetup = function(database) {
         table.integer("stars");
         table.text("title");
         table.text("text");
-        database.schema.alterTable('userId', function(t)  {
-          t.unique(['bookId',integer])
-        });
+
       });
 
     }
@@ -63,23 +58,10 @@ exports.getAllReviews = function(userId,bookId,offset,limit) {
  * returns Book
  **/
 exports.getBookByReview = function(id) {
-  return new Promise(function(resolve, reject) {
-    var examples = {};
-    examples['application/json'] = {
-  "id" : 0,
-  "title" : "Brave new world",
-  "author" : "Aldous Huxley",
-  "price" : {
-    "value" : 10,
-    "currency" : "eur"
-  },
-  "status" : "available"
-};
-    if (Object.keys(examples).length > 0) {
-      resolve(examples[Object.keys(examples)[0]]);
-    } else {
-      resolve();
-    }
+  return sqlDb("books")
+  .where({bookId: id})
+  .then(data => {
+    return data
   });
 }
 
@@ -91,54 +73,14 @@ exports.getBookByReview = function(id) {
  * returns Review
  **/
 exports.getReviewById = function(id) {
-  return new Promise(function(resolve, reject) {
-    var examples = {};
-    examples['application/json'] = {
-  "user" : {
-    "name" : "Davide"
-  },
-  "book" : {
-    "id" : 0,
-    "title" : "1984",
-    "author" : "Orwell George",
-    "price" : {
-      "value" : 12,
-      "currency" : "eur"
-    }
-  },
-  "stars" : 2
-};
-    if (Object.keys(examples).length > 0) {
-      resolve(examples[Object.keys(examples)[0]]);
-    } else {
-      resolve();
-    }
+  return sqlDb("reviews")
+  .where({id: id})
+  .then(data => {
+    return data
   });
 }
 
 
-/**
- * Retrieve the user a review was written by
- *
- * id Long ID of review of which to retrieve the user who wrote it
- * returns User
- **/
-exports.getUserByReview = function(id) {
-  return new Promise(function(resolve, reject) {
-    var examples = {};
-    examples['application/json'] = {
-  "id" : 1,
-  "name" : "Davide",
-  "address" : "Via Roma, Roma",
-  "creditcard" : "xdfehc"
-};
-    if (Object.keys(examples).length > 0) {
-      resolve(examples[Object.keys(examples)[0]]);
-    } else {
-      resolve();
-    }
-  });
-}
 
 
 /**
