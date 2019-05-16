@@ -7,10 +7,10 @@ function getAuthors() {
 function parseData(author) {
     $.addTemplateFormatter({
            authorHrefFormatter: function(value, template) {
-                return `/pages/book.html?id=${value}`;
+                return `/pages/author.html?id=${value}`;
            },
            picFormatter: function(value, template) {
-                return `/assets/img/author/${value}.png`;
+                return `/assets/img/authors/${value}.png`;
            },
            lifeFormatter: function(value, template) {
                 let life = value.split(".", 1);
