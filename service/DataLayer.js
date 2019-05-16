@@ -13,7 +13,7 @@ let{ordersDbSetup}= require("./OrdersService");
 let{ordersdetailDbSetup}= require("./OrdersService");
 let sqlDb = sqlDbFactory({
   client: "pg",
-  connection: "postgres://nsgcqefizlkqet:2a74a9cca95e794f9baaa32eb449872ab85e8ad6d083ff1aa746a4f10d322d50@ec2-54-243-197-120.compute-1.amazonaws.com:5432/d61p52kthlqep8?ssl=true",
+  connection: "postgres://zukqofzuebtodv:9504c45261593bad18faa162159c97396532fb3f04a42a2df71901fe02358544@ec2-23-21-148-223.compute-1.amazonaws.com:5432/d4vs02g9lbjm5s?ssl=true",
   ssl: true,
   debug: true
 });
