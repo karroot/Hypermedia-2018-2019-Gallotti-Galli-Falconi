@@ -19,10 +19,10 @@ exports.ebooksDbSetup = function(database) {
         table.text("theme");
         table.enum("status", ["available", "out of stock"]);
         table.text("ebook");
-        table.text("author1");
-        table.text("author2");
-        table.text("author3");
-        table.text("author4");
+        table.integer("authorid1");
+        table.integer("authorid2");
+        table.integer("authorid3");
+        table.integer("authorid4");
         table.text("currency");
 
       });
@@ -37,39 +37,14 @@ exports.ebooksDbSetup = function(database) {
  * returns Author
  **/
 exports.getAuthorByebook = function(ebookId) {
-  return new Promise(function(resolve, reject) {
-    var examples = {};
-    examples['application/json'] = {
-  "books" : [ {
-    "id" : 0,
-    "title" : "Brave new world",
-    "author" : "Aldous Huxley",
-    "price" : {
-      "value" : 10,
-      "currency" : "eur"
-    },
-    "status" : "available"
-  }, {
-    "id" : 0,
-    "title" : "Brave new world",
-    "author" : "Aldous Huxley",
-    "price" : {
-      "value" : 10,
-      "currency" : "eur"
-    },
-    "status" : "available"
-  } ],
-  "award" : "",
-  "name" : "",
-  "photo" : "",
-  "id" : 0,
-  "life" : ""
-};
-    if (Object.keys(examples).length > 0) {
-      resolve(examples[Object.keys(examples)[0]]);
-    } else {
-      resolve();
-    }
+  return sqlDb("books")
+  
+  .joinRaw(`join "authors"`)
+  
+  .where({id: ebookId})
+
+  .then(data => {
+    return data
   });
 }
 
@@ -83,168 +58,10 @@ exports.getAuthorByebook = function(ebookId) {
  * returns List
  **/
 exports.getEventsByebook = function(ebookId,offset,limit) {
-  return new Promise(function(resolve, reject) {
-    var examples = {};
-    examples['application/json'] = [ {
-  "date" : "",
-  "overview" : "",
-  "books" : [ {
-    "id" : 0,
-    "title" : "Brave new world",
-    "author" : "Aldous Huxley",
-    "price" : {
-      "value" : 10,
-      "currency" : "eur"
-    },
-    "status" : "available"
-  }, {
-    "id" : 0,
-    "title" : "Brave new world",
-    "author" : "Aldous Huxley",
-    "price" : {
-      "value" : 10,
-      "currency" : "eur"
-    },
-    "status" : "available"
-  } ],
-  "award" : "",
-  "advertisingPoster" : "",
-  "id" : 0,
-  "place" : "",
-  "authors" : [ {
-    "books" : [ {
-      "id" : 0,
-      "title" : "Brave new world",
-      "author" : "Aldous Huxley",
-      "price" : {
-        "value" : 10,
-        "currency" : "eur"
-      },
-      "status" : "available"
-    }, {
-      "id" : 0,
-      "title" : "Brave new world",
-      "author" : "Aldous Huxley",
-      "price" : {
-        "value" : 10,
-        "currency" : "eur"
-      },
-      "status" : "available"
-    } ],
-    "award" : "",
-    "name" : "",
-    "photo" : "",
-    "id" : 0,
-    "life" : ""
-  }, {
-    "books" : [ {
-      "id" : 0,
-      "title" : "Brave new world",
-      "author" : "Aldous Huxley",
-      "price" : {
-        "value" : 10,
-        "currency" : "eur"
-      },
-      "status" : "available"
-    }, {
-      "id" : 0,
-      "title" : "Brave new world",
-      "author" : "Aldous Huxley",
-      "price" : {
-        "value" : 10,
-        "currency" : "eur"
-      },
-      "status" : "available"
-    } ],
-    "award" : "",
-    "name" : "",
-    "photo" : "",
-    "id" : 0,
-    "life" : ""
-  } ]
-}, {
-  "date" : "",
-  "overview" : "",
-  "books" : [ {
-    "id" : 0,
-    "title" : "Brave new world",
-    "author" : "Aldous Huxley",
-    "price" : {
-      "value" : 10,
-      "currency" : "eur"
-    },
-    "status" : "available"
-  }, {
-    "id" : 0,
-    "title" : "Brave new world",
-    "author" : "Aldous Huxley",
-    "price" : {
-      "value" : 10,
-      "currency" : "eur"
-    },
-    "status" : "available"
-  } ],
-  "award" : "",
-  "advertisingPoster" : "",
-  "id" : 0,
-  "place" : "",
-  "authors" : [ {
-    "books" : [ {
-      "id" : 0,
-      "title" : "Brave new world",
-      "author" : "Aldous Huxley",
-      "price" : {
-        "value" : 10,
-        "currency" : "eur"
-      },
-      "status" : "available"
-    }, {
-      "id" : 0,
-      "title" : "Brave new world",
-      "author" : "Aldous Huxley",
-      "price" : {
-        "value" : 10,
-        "currency" : "eur"
-      },
-      "status" : "available"
-    } ],
-    "award" : "",
-    "name" : "",
-    "photo" : "",
-    "id" : 0,
-    "life" : ""
-  }, {
-    "books" : [ {
-      "id" : 0,
-      "title" : "Brave new world",
-      "author" : "Aldous Huxley",
-      "price" : {
-        "value" : 10,
-        "currency" : "eur"
-      },
-      "status" : "available"
-    }, {
-      "id" : 0,
-      "title" : "Brave new world",
-      "author" : "Aldous Huxley",
-      "price" : {
-        "value" : 10,
-        "currency" : "eur"
-      },
-      "status" : "available"
-    } ],
-    "award" : "",
-    "name" : "",
-    "photo" : "",
-    "id" : 0,
-    "life" : ""
-  } ]
-} ];
-    if (Object.keys(examples).length > 0) {
-      resolve(examples[Object.keys(examples)[0]]);
-    } else {
-      resolve();
-    }
+  return sqlDb("events")
+  .where({bookId: ebookId})
+  .then(data => {
+    return data
   });
 }
 
@@ -256,44 +73,13 @@ exports.getEventsByebook = function(ebookId,offset,limit) {
  * returns List
  **/
 exports.getReviewsByebook = function(ebookId) {
-  return new Promise(function(resolve, reject) {
-    var examples = {};
-    examples['application/json'] = [ {
-  "user" : {
-    "name" : "Davide"
-  },
-  "book" : {
-    "id" : 0,
-    "title" : "1984",
-    "author" : "Orwell George",
-    "price" : {
-      "value" : 12,
-      "currency" : "eur"
-    }
-  },
-  "stars" : 2
-}, {
-  "user" : {
-    "name" : "Davide"
-  },
-  "book" : {
-    "id" : 0,
-    "title" : "1984",
-    "author" : "Orwell George",
-    "price" : {
-      "value" : 12,
-      "currency" : "eur"
-    }
-  },
-  "stars" : 2
-} ];
-    if (Object.keys(examples).length > 0) {
-      resolve(examples[Object.keys(examples)[0]]);
-    } else {
-      resolve();
-    }
+  return sqlDb("reviews")
+  .where({bookId: ebookId})
+  .then(data => {
+    return data
   });
 }
+
 
 
 /**
@@ -304,23 +90,10 @@ exports.getReviewsByebook = function(ebookId) {
  * returns Book
  **/
 exports.getebookById = function(ebookId) {
-  return new Promise(function(resolve, reject) {
-    var examples = {};
-    examples['application/json'] = {
-  "id" : 0,
-  "title" : "Brave new world",
-  "author" : "Aldous Huxley",
-  "price" : {
-    "value" : 10,
-    "currency" : "eur"
-  },
-  "status" : "available"
-};
-    if (Object.keys(examples).length > 0) {
-      resolve(examples[Object.keys(examples)[0]]);
-    } else {
-      resolve();
-    }
+  return sqlDb("books")
+  .where({id: ebookId})
+  .then(data => {
+    return data
   });
 }
 

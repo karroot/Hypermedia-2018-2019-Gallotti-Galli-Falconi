@@ -22,26 +22,51 @@ exports.eventsDbSetup = function(database) {
         .inTable('books')
         .onDelete('CASCADE');
 
-        table.text("author1")
+        table.text("authorname1")
         .notNullable()
         .references('name')
         .inTable('authors')
         .onDelete('CASCADE');
 
-        table.text("author2")
+        table.text("authorname2")
         .references('name')
         .inTable('authors')
         .onDelete('CASCADE');
         
-        table.text("author3")
+        table.text("authorname3")
         .references('name')
         .inTable('authors')
         .onDelete('CASCADE');
         
-        table.text("author4")
+        table.text("authorname4")
         .references('name')
         .inTable('authors')
         .onDelete('CASCADE');
+
+        table.integer("authorid1")
+        .notNullable()
+        .references('authorid')
+        .inTable('authors')
+        .onDelete('CASCADE');
+
+        table.integer("authorid2")
+        .notNullable()
+        .references('authorid')
+        .inTable('authors')
+        .onDelete('CASCADE');
+
+        table.integer("authorid3")
+        .notNullable()
+        .references('authorid')
+        .inTable('authors')
+        .onDelete('CASCADE');
+
+        table.integer("authorid4")
+        .notNullable()
+        .references('authorid')
+        .inTable('authors')
+        .onDelete('CASCADE');
+
 
       });
 
@@ -58,92 +83,7 @@ exports.eventsDbSetup = function(database) {
  * returns Event
  **/
 exports.getAuthorByEvents = function(id) {
-  return new Promise(function(resolve, reject) {
-    var examples = {};
-    examples['application/json'] = {
-  "date" : "",
-  "overview" : "",
-  "books" : [ {
-    "id" : 0,
-    "title" : "Brave new world",
-    "author" : "Aldous Huxley",
-    "price" : {
-      "value" : 10,
-      "currency" : "eur"
-    },
-    "status" : "available"
-  }, {
-    "id" : 0,
-    "title" : "Brave new world",
-    "author" : "Aldous Huxley",
-    "price" : {
-      "value" : 10,
-      "currency" : "eur"
-    },
-    "status" : "available"
-  } ],
-  "award" : "",
-  "advertisingPoster" : "",
-  "id" : 0,
-  "place" : "",
-  "authors" : [ {
-    "books" : [ {
-      "id" : 0,
-      "title" : "Brave new world",
-      "author" : "Aldous Huxley",
-      "price" : {
-        "value" : 10,
-        "currency" : "eur"
-      },
-      "status" : "available"
-    }, {
-      "id" : 0,
-      "title" : "Brave new world",
-      "author" : "Aldous Huxley",
-      "price" : {
-        "value" : 10,
-        "currency" : "eur"
-      },
-      "status" : "available"
-    } ],
-    "award" : "",
-    "name" : "",
-    "photo" : "",
-    "id" : 0,
-    "life" : ""
-  }, {
-    "books" : [ {
-      "id" : 0,
-      "title" : "Brave new world",
-      "author" : "Aldous Huxley",
-      "price" : {
-        "value" : 10,
-        "currency" : "eur"
-      },
-      "status" : "available"
-    }, {
-      "id" : 0,
-      "title" : "Brave new world",
-      "author" : "Aldous Huxley",
-      "price" : {
-        "value" : 10,
-        "currency" : "eur"
-      },
-      "status" : "available"
-    } ],
-    "award" : "",
-    "name" : "",
-    "photo" : "",
-    "id" : 0,
-    "life" : ""
-  } ]
-};
-    if (Object.keys(examples).length > 0) {
-      resolve(examples[Object.keys(examples)[0]]);
-    } else {
-      resolve();
-    }
-  });
+//come altri getauthorby
 }
 
 
@@ -154,108 +94,8 @@ exports.getAuthorByEvents = function(id) {
  * returns Event
  **/
 exports.getEventById = function(id) {
-  return new Promise(function(resolve, reject) {
-    var examples = {};
-    examples['application/json'] = {
-  "date" : "",
-  "overview" : "",
-  "books" : [ {
-    "id" : 0,
-    "title" : "Brave new world",
-    "author" : "Aldous Huxley",
-    "price" : {
-      "value" : 10,
-      "currency" : "eur"
-    },
-    "status" : "available"
-  }, {
-    "id" : 0,
-    "title" : "Brave new world",
-    "author" : "Aldous Huxley",
-    "price" : {
-      "value" : 10,
-      "currency" : "eur"
-    },
-    "status" : "available"
-  } ],
-  "award" : "",
-  "advertisingPoster" : "",
-  "id" : 0,
-  "place" : "",
-  "authors" : [ {
-    "books" : [ {
-      "id" : 0,
-      "title" : "Brave new world",
-      "author" : "Aldous Huxley",
-      "price" : {
-        "value" : 10,
-        "currency" : "eur"
-      },
-      "status" : "available"
-    }, {
-      "id" : 0,
-      "title" : "Brave new world",
-      "author" : "Aldous Huxley",
-      "price" : {
-        "value" : 10,
-        "currency" : "eur"
-      },
-      "status" : "available"
-    } ],
-    "award" : "",
-    "name" : "",
-    "photo" : "",
-    "id" : 0,
-    "life" : ""
-  }, {
-    "books" : [ {
-      "id" : 0,
-      "title" : "Brave new world",
-      "author" : "Aldous Huxley",
-      "price" : {
-        "value" : 10,
-        "currency" : "eur"
-      },
-      "status" : "available"
-    }, {
-      "id" : 0,
-      "title" : "Brave new world",
-      "author" : "Aldous Huxley",
-      "price" : {
-        "value" : 10,
-        "currency" : "eur"
-      },
-      "status" : "available"
-    } ],
-    "award" : "",
-    "name" : "",
-    "photo" : "",
-    "id" : 0,
-    "life" : ""
-  } ]
-};
-    if (Object.keys(examples).length > 0) {
-      resolve(examples[Object.keys(examples)[0]]);
-    } else {
-      resolve();
-    }
-  });
-}
-
-
-/**
- * Finds events
- * Retrieves events from the system
- *
- * bookId Integer The id of the book of which you want to retrieve the events (optional)
- * offset Integer Pagination offset. Default is 0. (optional)
- * limit Integer Maximum number of items per page. Default is 20 and cannot exceed 500. (optional)
- * returns List
- **/
-exports.getEvents = function(bookId,offset,limit) {
   return sqlDb("events")
-  .limit(limit)
-  .offset(offset)
+  .where({id: id})
   .then(data => {
     return data
   });

@@ -19,10 +19,10 @@ exports.booksDbSetup = function(database) {
         table.text("theme");
         table.enum("status", ["available", "out of stock"]);
         table.text("ebook");
-        table.text("author1");
-        table.text("author2");
-        table.text("author3");
-        table.text("author4");
+        table.integer("authorid1");
+        table.integer("authorid2");
+        table.integer("authorid3");
+        table.integer("authorid4");
         table.text("currency");
 
       });
@@ -60,71 +60,6 @@ exports.similarbooksDbSetup = function(database) {
  **/
 
 
-exports.getAuthorByBook = function(bookId) {
-  return new Promise(function(resolve, reject) {
-    var examples = {};
-    examples['application/json'] = {
-  "books" : [ {
-    "id" : 0,
-    "title" : "Brave new world",
-    "author" : "Aldous Huxley",
-    "price" : {
-      "value" : 10,
-      "currency" : "eur"
-    },
-    "status" : "available"
-  }, {
-    "id" : 0,
-    "title" : "Brave new world",
-    "author" : "Aldous Huxley",
-    "price" : {
-      "value" : 10,
-      "currency" : "eur"
-    },
-    "status" : "available"
-  } ],
-  "award" : "",
-  "name" : "",
-  "photo" : "",
-  "id" : 0,
-  "life" : ""
-};
-    if (Object.keys(examples).length > 0) {
-      resolve(examples[Object.keys(examples)[0]]);
-    } else {
-      resolve();
-    }
-  });
-}
-
-
-/**
- * Find book by ID
- * Returns a book
- *
- * bookId Long ID of book to return
- * returns Book
- **/
-exports.getBookById = function(bookId) {
-  return new Promise(function(resolve, reject) {
-    var examples = {};
-    examples['application/json'] = {
-  "id" : 0,
-  "title" : "Brave new world",
-  "author" : "Aldous Huxley",
-  "price" : {
-    "value" : 10,
-    "currency" : "eur"
-  },
-  "status" : "available"
-};
-    if (Object.keys(examples).length > 0) {
-      resolve(examples[Object.keys(examples)[0]]);
-    } else {
-      resolve();
-    }
-  });
-}
 
 
 /**
@@ -136,168 +71,10 @@ exports.getBookById = function(bookId) {
  * returns List
  **/
 exports.getEventsByBook = function(bookId,offset,limit) {
-  return new Promise(function(resolve, reject) {
-    var examples = {};
-    examples['application/json'] = [ {
-  "date" : "",
-  "overview" : "",
-  "books" : [ {
-    "id" : 0,
-    "title" : "Brave new world",
-    "author" : "Aldous Huxley",
-    "price" : {
-      "value" : 10,
-      "currency" : "eur"
-    },
-    "status" : "available"
-  }, {
-    "id" : 0,
-    "title" : "Brave new world",
-    "author" : "Aldous Huxley",
-    "price" : {
-      "value" : 10,
-      "currency" : "eur"
-    },
-    "status" : "available"
-  } ],
-  "award" : "",
-  "advertisingPoster" : "",
-  "id" : 0,
-  "place" : "",
-  "authors" : [ {
-    "books" : [ {
-      "id" : 0,
-      "title" : "Brave new world",
-      "author" : "Aldous Huxley",
-      "price" : {
-        "value" : 10,
-        "currency" : "eur"
-      },
-      "status" : "available"
-    }, {
-      "id" : 0,
-      "title" : "Brave new world",
-      "author" : "Aldous Huxley",
-      "price" : {
-        "value" : 10,
-        "currency" : "eur"
-      },
-      "status" : "available"
-    } ],
-    "award" : "",
-    "name" : "",
-    "photo" : "",
-    "id" : 0,
-    "life" : ""
-  }, {
-    "books" : [ {
-      "id" : 0,
-      "title" : "Brave new world",
-      "author" : "Aldous Huxley",
-      "price" : {
-        "value" : 10,
-        "currency" : "eur"
-      },
-      "status" : "available"
-    }, {
-      "id" : 0,
-      "title" : "Brave new world",
-      "author" : "Aldous Huxley",
-      "price" : {
-        "value" : 10,
-        "currency" : "eur"
-      },
-      "status" : "available"
-    } ],
-    "award" : "",
-    "name" : "",
-    "photo" : "",
-    "id" : 0,
-    "life" : ""
-  } ]
-}, {
-  "date" : "",
-  "overview" : "",
-  "books" : [ {
-    "id" : 0,
-    "title" : "Brave new world",
-    "author" : "Aldous Huxley",
-    "price" : {
-      "value" : 10,
-      "currency" : "eur"
-    },
-    "status" : "available"
-  }, {
-    "id" : 0,
-    "title" : "Brave new world",
-    "author" : "Aldous Huxley",
-    "price" : {
-      "value" : 10,
-      "currency" : "eur"
-    },
-    "status" : "available"
-  } ],
-  "award" : "",
-  "advertisingPoster" : "",
-  "id" : 0,
-  "place" : "",
-  "authors" : [ {
-    "books" : [ {
-      "id" : 0,
-      "title" : "Brave new world",
-      "author" : "Aldous Huxley",
-      "price" : {
-        "value" : 10,
-        "currency" : "eur"
-      },
-      "status" : "available"
-    }, {
-      "id" : 0,
-      "title" : "Brave new world",
-      "author" : "Aldous Huxley",
-      "price" : {
-        "value" : 10,
-        "currency" : "eur"
-      },
-      "status" : "available"
-    } ],
-    "award" : "",
-    "name" : "",
-    "photo" : "",
-    "id" : 0,
-    "life" : ""
-  }, {
-    "books" : [ {
-      "id" : 0,
-      "title" : "Brave new world",
-      "author" : "Aldous Huxley",
-      "price" : {
-        "value" : 10,
-        "currency" : "eur"
-      },
-      "status" : "available"
-    }, {
-      "id" : 0,
-      "title" : "Brave new world",
-      "author" : "Aldous Huxley",
-      "price" : {
-        "value" : 10,
-        "currency" : "eur"
-      },
-      "status" : "available"
-    } ],
-    "award" : "",
-    "name" : "",
-    "photo" : "",
-    "id" : 0,
-    "life" : ""
-  } ]
-} ];
-    if (Object.keys(examples).length > 0) {
-      resolve(examples[Object.keys(examples)[0]]);
-    } else {
-      resolve();
-    }
+  return sqlDb1("events")
+  .where({bookId: bookId})
+  .then(data => {
+    return data
   });
 }
 
@@ -309,42 +86,10 @@ exports.getEventsByBook = function(bookId,offset,limit) {
  * returns List
  **/
 exports.getReviewsByBook = function(bookId) {
-  return new Promise(function(resolve, reject) {
-    var examples = {};
-    examples['application/json'] = [ {
-  "user" : {
-    "name" : "Davide"
-  },
-  "book" : {
-    "id" : 0,
-    "title" : "1984",
-    "author" : "Orwell George",
-    "price" : {
-      "value" : 12,
-      "currency" : "eur"
-    }
-  },
-  "stars" : 2
-}, {
-  "user" : {
-    "name" : "Davide"
-  },
-  "book" : {
-    "id" : 0,
-    "title" : "1984",
-    "author" : "Orwell George",
-    "price" : {
-      "value" : 12,
-      "currency" : "eur"
-    }
-  },
-  "stars" : 2
-} ];
-    if (Object.keys(examples).length > 0) {
-      resolve(examples[Object.keys(examples)[0]]);
-    } else {
-      resolve();
-    }
+  return sqlDb1("reviews")
+  .where({bookId: bookId})
+  .then(data => {
+    return data
   });
 }
 
@@ -363,6 +108,7 @@ exports.getSimilarBook = function(bookId,offset,limit) {
   return sqlDb1("similarbooks")
   .limit(limit)
   .offset(offset)
+  .where({bookid1: bookId})
   .then(data => {
     return data
   });
@@ -389,4 +135,18 @@ exports.getbook = function(offset,limit) {
       });
     });
   
+}
+/**
+ * Find book by ID
+ * Returns a book
+ *
+ * bookId Long ID of book to return
+ * returns Book
+ **/
+exports.getBookById = function(bookId) {
+  return sqlDb("books")
+  .where({id: bookId})
+  .then(data => {
+    return data
+  });
 }
