@@ -29,7 +29,7 @@
                         <input type="email"  name="email" id="inputEmail" class="form-control my-3" placeholder="Email address" required autofocus="" />
                         <label for="inputPassword" class="sr-only">Password</label>
                         <input type="password" id="inputPassword" class="form-control mb-5" placeholder="Password" name="password" required />
-                        <button id="clickThis" class="btn btn-lg btn-primary btn-block my-4" type="submit">Log in</button>
+                        <button id="clickThis" class="btn btn-lg btn-primary btn-block my-4">Log in</button>
                    
 
                       </form>
@@ -65,8 +65,8 @@
 
 
         $(document).ready(function(){
-     $("button").click(function(){
-              $.post("https://mdgbookstore.herokuapp.com/v2/user/login/",
+     $("clickThis").click(function(){
+              $.post("http://localhost:5000/v2/user/login/",
               {
                 username: "gabbo@hotmail.it",
                 password: "passwordsicura"
