@@ -65,9 +65,9 @@ module.exports.getSimilarBook = function getSimilarBook (req, res, next) {
 module.exports.getbook = function getbook (req, res, next) {
   var offset = req.swagger.params['offset'].value;
   var limit = req.swagger.params['limit'].value;
-  if (!req.session || !req.session.loggedin) {
-    utils.writeJson(res, { error: "sorry, you must be authorized" }, 404);
-  } else {
+ // if (!req.session || !req.session.loggedin) {
+ //   utils.writeJson(res, { error: "sorry, you must be authorized" }, 404);
+ // } else {
   Book.getbook(offset,limit)
     .then(function (response) {
       utils.writeJson(res, response);
@@ -75,4 +75,4 @@ module.exports.getbook = function getbook (req, res, next) {
     .catch(function (response) {
       utils.writeJson(res, response);
     });}
-};
+;
