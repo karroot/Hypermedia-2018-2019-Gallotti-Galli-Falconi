@@ -502,7 +502,7 @@ paths:
       - "user"
       summary: "Login"
       description: "Login with a form"
-      operationId: "POSTuserLogin"
+      operationId: "postuserLogin"
       consumes:
       - "application/x-www-form-urlencoded"
       produces:
@@ -528,7 +528,7 @@ paths:
       - "user"
       summary: "Register"
       description: "Register into the store"
-      operationId: "POSTuserRegister"
+      operationId: "postuserRegister"
       consumes:
       - "application/x-www-form-urlencoded"
       produces:
@@ -668,7 +668,7 @@ paths:
       tags:
       - "cart"
       summary: "Add a new cart item to the cart"
-      operationId: "POSTCartItem"
+      operationId: "postCartItem"
       consumes:
       - "application/json"
       produces:
@@ -896,7 +896,7 @@ paths:
       tags:
       - "events"
       summary: "Add a new event to the store"
-      operationId: "POSTEvent"
+      operationId: "postEvent"
       consumes:
       - "application/json"
       produces:
@@ -1010,7 +1010,7 @@ paths:
       tags:
       - "review"
       summary: "Add a new review to the store"
-      operationId: "POSTReview"
+      operationId: "postReview"
       consumes:
       - "application/json"
       produces:
