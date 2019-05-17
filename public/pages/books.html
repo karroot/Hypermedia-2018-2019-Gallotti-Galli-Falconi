@@ -66,7 +66,7 @@
       <div class="card mb-3 shadow-sm" style="max-width: 540px;">
               <div class="row no-gutters">
                 <div class="col-4">
-                  <img data-src="id" data-format="picFormatter" data-format-target="src" class="card-img-top" data-alt="title">
+                  <img data-src="id" data-format="picFormatter" data-format-target="src" class="card-img img-card" data-alt="title">
                 </div>
                 <div class="col-8">
                   <div class="card-body">
@@ -78,12 +78,14 @@
                       <a class="card-text" data-href="authorid3" data-content="author3" data-format="authorFormatter"></a>
                       <a class="card-text" data-href="authorid4" data-content="author4" data-format="authorFormatter"></a>
                     </p>
-                    <a class="btn btn-primary" data-href="id" data-format="bookHrefFormatter" data-format-target="href">INFO</a>
                   </div>
+                  <a class="btn btn-primary btn-info-desktop" data-href="id" data-format="bookHrefFormatter" data-format-target="href">INFO</a>
                 </div>
               </div>
-              
-            </div>
+              <div class="card-footer wrapper" media= "screen and (max-width: 576px)">
+                <a class="btn btn-primary btn-info-mobile"  data-href="id" data-format="bookHrefFormatter" data-format-target="href">INFO</a>
+              </div> 
+        </div>
       </script>
 
   <!-- jQuery first, then Popper.js, then Bootstrap JS -->    

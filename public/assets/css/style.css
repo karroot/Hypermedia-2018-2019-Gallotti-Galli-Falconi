@@ -157,11 +157,32 @@ html, body {
 }
 
 
-/* Card for mobile
+/*  Book's card for Mobile
  */
-@media (min-width: 576px) {
-    .card-image-top {
-        height: 30%;
+@media only screen and (max-width: 1199px) {
+    .img-card{
+        position: relative;
+        top: 50%;
+        transform: translate(0%, -50%);
     }
-   
+    [class*="wrapper"] {
+        display: "true";
+    }
+    .btn-info-desktop {
+        display: none;
+    }
+}
+/*  Book's card for Desktop
+ */
+@media only screen and (min-width: 1200px) {
+    [class*="wrapper"] {
+        display: none;
+    }
+    .btn-info-desktop {
+        display: "true";
+        position: absolute;
+        left: 82%;
+        top: 87%;
+        transform: translate(-50%, -50%);
+    }
 }
