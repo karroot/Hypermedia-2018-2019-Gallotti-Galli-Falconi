@@ -16,7 +16,8 @@ $('#singIn').submit(function(e) {
   url: $('#singIn').attr('action'),
   data: $('#singIn').serialize().replace("%40", "@"),
   success: function(msg){
-        alert("Loggato: " + $('#singIn').serialize().replace("%40", "@"));
+        alert("Login successful!");
+        history.go(-1); 
   },
   error: function(XMLHttpRequest, textStatus, errorThrown) {
     alert("Error: email or password incorrect");
