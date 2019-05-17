@@ -74,11 +74,11 @@ module.exports.postuserLogin = function postuserLogin (req, res, next) {
   }
   User.postuserLogin(username, password)
     .then(function(response) {
-      
       if(response.length == 1) {
         utils.writeJson(res,response,200);}
       else{
-        utils.writeJson(res,response,406);}
+        
+        utils.writeJson(res,response,403);}
       }
     )
     .catch(function(response) {
@@ -86,7 +86,7 @@ module.exports.postuserLogin = function postuserLogin (req, res, next) {
         utils.writeJson(res,response,200);
        }
       else{
-        utils.writeJson(res,response,404);
+        utils.writeJson(res,response,403);
    
       }
 });

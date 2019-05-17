@@ -53,26 +53,30 @@
     $(document).ready(getHeaderFooter());
    
    
-          
+   
     </script>
      
-     <button>Send an HTTP POST request to a page </button>
+     <button>LOGIN VERO </button>
      
- <script >
+ <script>
         $(document).ready(function(){
      $("button").click(function(){
-              $.post("https://mdgbookstore.herokuapp.com/v2/user/login/",
-              {
-                username: "gabbo@hotmail.it",
-                password: "passwordsicura"
-              },
-              function(data,status){
-                console.log(data);
-                alert("Data: " + data + "\nStatus: " + status);
-              });
-            });
-          });
+$.ajax({
+  type: "POST",
+  url: "../v2/user/login/",
+  data: { username: "gabbo@hotmail.it", password: "passwordsicur" },
+  success: function(msg){
+        alert( "loggato: " + msg );
+  },
+  error: function(XMLHttpRequest, textStatus, errorThrown) {
+     alert("dati sbagliatir");
+  }
+});
+});  
+});  
         </script>
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
-  </body>
+
+       
+      </body>
 </html>
