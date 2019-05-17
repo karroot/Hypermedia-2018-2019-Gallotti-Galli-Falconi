@@ -8,7 +8,7 @@
 
     <!-- Bootstrap CSS -->
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
-    <title>Author</title>
+    <title>Log in</title>
     <!-- Fonts -->
     <link href="https://fonts.googleapis.com/css?family=Oswald:400" rel="stylesheet"> 
     <link rel="shortcut icon" type="image/ico" href="../assets/img/favicon.ico"/>
@@ -23,15 +23,13 @@
             <div class="card rounded-lg py-4" style="width: 22rem;">
                 <img class="my-4 mx-auto" src="/assets/img/logo.png" alt="logo" width="113" height="76">
                 <div class="card-body">
-                    <form class="form-signin" name="signIn">
+                    <form class="form-signin" id="singIn" method="POST" action="/v2/user/login/">
                         <h1 class="h3 mb-4 font-weight-normal d-flex justify-content-center">Please log in</h1>
                         <label for="inputEmail" class="sr-only">Email address</label>
-                        <input type="email"  name="email" id="inputEmail" class="form-control my-3" placeholder="Email address" required autofocus="" />
+                        <input type="email" name="username" class="form-control my-3" placeholder="Email address" required />
                         <label for="inputPassword" class="sr-only">Password</label>
-                        <input type="password" id="inputPassword" class="form-control mb-5" placeholder="Password" name="password" required />
-                        <button id="clickThis" class="btn btn-lg btn-primary btn-block my-4">Log in</button>
-                   
-
+                        <input type="password" class="form-control mb-5" placeholder="Password" name="password" required />
+                        <button id="login" class="btn btn-lg btn-primary btn-block my-4">Log in</button>
                       </form>
                 </div>
             </div>  
@@ -51,32 +49,6 @@
 
   <script type="text/javascript"> 
     $(document).ready(getHeaderFooter());
-   
-   
-   
-    </script>
+  </script>
      
-     <button>LOGIN VERO </button>
-     
- <script>
-        $(document).ready(function(){
-     $("button").click(function(){
-$.ajax({
-  type: "POST",
-  url: "../v2/user/login/",
-  data: { username: "gabbo@hotmail.it", password: "passwordsicura" },
-  success: function(msg){
-        alert( "loggato: " + msg );
-  },
-  error: function(XMLHttpRequest, textStatus, errorThrown) {
-     alert("dati sbagliatir");
-  }
-});
-});  
-});  
-        </script>
-        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
-
-       
-      </body>
 </html>
