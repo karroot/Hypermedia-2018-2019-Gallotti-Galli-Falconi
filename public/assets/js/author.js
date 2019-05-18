@@ -12,19 +12,16 @@ function parseData(author) {
            picFormatter: function(value, template) {
                 return `/assets/img/authors/${value}.png`;
            },
-           lifeFormatter: function(value, template) {
-                /*  Original
-                let life = value.split(".", 1);
-                */
+           lifeFormatterMobile: function(life, template) {
 
+            let lifeMobile = life.substr(0, 100);
+            return lifeMobile+'...';
+           },
+           lifeFormatter: function(value, template) {
                 /*  Extract a substring
                  */
                 let life = value.substr(0, 230);
-                /*  End of edit
-                 */
-                
-                return life+'...';
-                  
+                return life+'...';      
            }
     });
 
