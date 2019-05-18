@@ -63,5 +63,5 @@ module.exports.getbook = function getbook (req, res, next) {
     })
     .catch(function (response) {
       utils.writeJson(res, response);
-    });}
-;
+    })};
+

@@ -101,9 +101,7 @@ exports.getEventById = function(id) {
  * no response value expected for this operation
  **/
 exports.postEvent = function(body) {
-  return new Promise(function(resolve, reject) {
-    resolve();
-  });
+
 }
 
 

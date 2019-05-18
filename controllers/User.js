@@ -14,11 +14,9 @@ module.exports.getCartByUser = function getCartByUser (req, res, next) {
     });
 };
 
-module.exports.getOrdersByUser = function getOrdersByUser (req, res, next) {
+module.exports.getCartDetailByUser = function getCartDetailByUser (req, res, next) {
   var id = req.swagger.params['id'].value;
-  var offset = req.swagger.params['offset'].value;
-  var limit = req.swagger.params['limit'].value;
-  User.getOrdersByUser(id,offset,limit)
+  User.getCartDetailByUser(id)
     .then(function (response) {
       utils.writeJson(res, response);
     })
