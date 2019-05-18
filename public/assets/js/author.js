@@ -13,8 +13,17 @@ function parseData(author) {
                 return `/assets/img/authors/${value}.png`;
            },
            lifeFormatter: function(value, template) {
+                /*  Original
                 let life = value.split(".", 1);
-                return life[0]+'.';
+                */
+
+                /*  Extract a substring
+                 */
+                let life = value.substr(0, 230);
+                /*  End of edit
+                 */
+                
+                return life+'...';
                   
            }
     });

@@ -5,7 +5,6 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet">
-
     <!-- Bootstrap CSS -->
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
     <title>Author</title>
@@ -49,8 +48,10 @@
                 <div class="col-8">
                   <div class="card-body">
                     <h4 class="card-title" data-content="name"></h4>
-                    <p class="card-text my-3"  data-format="lifeFormatter" data-content="life"></p>
-                    <a class="btn btn-primary" data-href="authorid" data-format="authorHrefFormatter" data-format-target="href">INFO</a>
+                    <div class="author-life-container">
+                    <p class="card-text my-3 life-desc" data-format="lifeFormatter" data-content="life"></p>
+                  </div>
+                    <a class="btn btn-primary" data-href="authorid" data-format="authorHrefFormatter" data-format-target="href">MORE</a>
                   </div>
                 </div>
               </div>
