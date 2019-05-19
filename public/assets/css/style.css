@@ -73,10 +73,10 @@ html, body {
 #btn-signup {
     background-color: #ffeeee;
     color: #201f1fe8;
-    border: none;   
+    border: none !important;   
 }
 #btn-signup:hover {
-    background-color: #ffccbc;
+    background-color: #ffeeee !important;
     border: none;
 }
 #btn-login {
@@ -93,7 +93,25 @@ html, body {
     background-color: #ffca47;
     margin: 0px !important;
 }
-
+#btn-logout {
+    background-color: #0091A0;;
+    border: 1px solid #0091A0;;
+    color: #f1f1f1;
+}
+#btn-logout:hover {
+    background-color: rgb(0, 102, 255);
+    border: 1px solid rgb(0, 102, 255);
+}
+#btn-cart {
+    margin-right: 10px;
+}
+.fa-shopping-cart {
+    color:  #212529ab;
+}
+.fa-shopping-cart:hover {
+    color:rgba(0,0,0,.9);
+    border: 1px solid rgba(0,0,0,.9);   
+}
 /*  Footer
  */
 #footer {
