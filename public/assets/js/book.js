@@ -27,12 +27,12 @@ function parseData(book) {
        });
   
        book.map(b => {
-              b.authorid1 = `/pages/author?id=${b.authorid1}`;
+              b.authorid1 = `/pages/author.html?id=${b.authorid1}`;
               if(b.authorid2!=null) {
-                     b.authorid2 = `/pages/author?id=${b.authorid2}`;
+                     b.authorid2 = `/pages/author.html?id=${b.authorid2}`;
                      if(b.authorid3!=null) {
-                            b.authorid3 = `/pages/author?id=${b.authorid3}`;
-                            if(b.authorid4!=null) b.authorid4 = `/pages/author?id=${b.authorid4}`
+                            b.authorid3 = `/pages/author.html?id=${b.authorid3}`;
+                            if(b.authorid4!=null) b.authorid4 = `/pages/author.html?id=${b.authorid4}`
                      };
               }
        });

@@ -11,7 +11,7 @@ exports.reviewsDbSetup = function(database) {
       return database.schema.createTable("reviews", table => {
 
 
-        table.integer("Id")
+        table.integer("UserId")
         .primary()
         .notNullable();
 
@@ -90,29 +90,11 @@ exports.getReviewById = function(id) {
  * returns Review
  **/
 exports.postReview = function(body) {
-  return new Promise(function(resolve, reject) {
-    var examples = {};
-    examples['application/json'] = {
-  "user" : {
-    "name" : "Davide"
-  },
-  "book" : {
-    "id" : 0,
-    "title" : "1984",
-    "author" : "Orwell George",
-    "price" : {
-      "value" : 12,
-      "currency" : "eur"
-    }
-  },
-  "stars" : 2
-};
-    if (Object.keys(examples).length > 0) {
-      resolve(examples[Object.keys(examples)[0]]);
-    } else {
-      resolve();
-    }
-  });
+
+  return sqlDb("Reviews").where({"bookId":body.bookId,"userId":body.userId ,"stars":body.stars,"title":body.title,"text":body.text})
+  .join('users', {'reviews.userId': 'users.id'})
+  .join('cartdetail',{'reviews.userId': 'cartdetail.userId'})
+  .join('cartdetail',{'reviews.bookId': 'cartdetail.bookId'});
 }
 
 
@@ -123,28 +105,9 @@ exports.postReview = function(body) {
  * returns Review
  **/
 exports.putReview = function(body) {
-  return new Promise(function(resolve, reject) {
-    var examples = {};
-    examples['application/json'] = {
-  "user" : {
-    "name" : "Davide"
-  },
-  "book" : {
-    "id" : 0,
-    "title" : "1984",
-    "author" : "Orwell George",
-    "price" : {
-      "value" : 12,
-      "currency" : "eur"
-    }
-  },
-  "stars" : 2
-};
-    if (Object.keys(examples).length > 0) {
-      resolve(examples[Object.keys(examples)[0]]);
-    } else {
-      resolve();
-    }
-  });
+  return sqlDb("Reviews").where({"bookId":body.bookId,"userId":body.userId ,"stars":body.stars,"title":body.title,"text":body.text})
+  .join('users', {'reviews.userId': 'users.id'})
+  .join('cartdetail',{'reviews.userId': 'cartdetail.userId'})
+  .join('cartdetail',{'reviews.bookId': 'cartdetail.bookId'});
 }
 

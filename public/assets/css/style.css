@@ -231,11 +231,20 @@ html, body {
     .author-life-container {
         display:  none;
     }
+    .mx-responsive {
+        margin-left: 1rem;
+        margin-right: 1rem;
+    }
 }
 /* Description for TabletAndUp
  */
 @media only screen and (min-width: 768px) {
     .author-life-container-mobile {
         display: none;
+    }
+
+    .mx-responsive {
+        margin-left: 2rem;
+        margin-right: 2rem;
     }
 }

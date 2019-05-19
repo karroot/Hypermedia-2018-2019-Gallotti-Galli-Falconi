@@ -15,16 +15,7 @@ module.exports.deleteCartItem = function deleteCartItem (req, res, next) {
     });
 };
 
-module.exports.getSingleCart = function getSingleCart (req, res, next) {
-  var userId = req.swagger.params['userId'].value;
-  Cart.getSingleCart(userId)
-    .then(function (response) {
-      utils.writeJson(res, response);
-    })
-    .catch(function (response) {
-      utils.writeJson(res, response);
-    });
-};
+
 
 
 module.exports.postCartItem = function postCartItem (req, res, next) {

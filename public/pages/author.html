@@ -7,7 +7,7 @@
     <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet">
     <!-- Bootstrap CSS -->
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
-    <title>Authors</title>
+    <title>Author</title>
     <!-- Fonts -->
     <link href="https://fonts.googleapis.com/css?family=Oswald:400" rel="stylesheet"> 
     <link rel="shortcut icon" type="image/ico" href="../assets/img/favicon.ico"/>
@@ -17,53 +17,55 @@
   <body>
     <div id="header"></div>
     <div class="content space-header">
-      <nav aria-label="breadcrumb">
-        <ol class="breadcrumb">
-          <li class="breadcrumb-item"><a href="../index.html">Home</a></li>
-          <li class="breadcrumb-item active" aria-current="page">All Authors</li>
-        </ol>
-      </nav>
-    <div class="container my-4"> 
-      <h1 class="my-3"> Authors</h1>
-      <p class="my-1">Here you can find all our author and discover their life.</p>
-      <p>Is there your favourite? Let's meet him/her at one of our events!</p>
-  </div>
-      <div class="container my-5">
-        <div class=" d-flex justify-content-around flex-direction: row">      
-          <div class="authorCard-template-container"></div>
+        <div class="breadcrumb-template-container"></div>
+        
+        <div class="container my-4"> 
+            <div class="author-template-container"></div>
+            <h2 class="my-3 pt-4">Books:</h2>
+            <div class="d-flex flex-direction: row">
+              <div class="book1-template-container"></div>
+              <div class="book2-template-container"></div>
+              <div class="book3-template-container"></div>
+              <div class="book4-template-container"></div>
+              <div class="book5-template-container"></div>
+            </div>
+            <h2 class="my-3 pt-4">Events:</h2>
+            <div class="event-template-container"></div>
         </div>
-      </div>
-      </div>
-  </div>
+    </div>
+      
+
 
   <div id="footer"></div>
 
   <!-- Template -->
   <script type="text/html" id="template">
-      <div class="card mb-3 shadow-sm" style="max-width: 740px;">
-        <div class="row no-gutters">
-          <div class="col-4">
-            <img data-src="authorid" data-format="picFormatter" data-format-target="src" class="card-img img-card rounded-circle" data-alt="name">
-          </div>
-          <div class="col-8">
+    <h1 class="my-3" data-content="name"> </h1>
+    <img data-src="authorid" data-format="picFormatter" data-format-target="src" class="rounded-circle mx-auto d-block my-4" data-alt="name" style="width: 15rem;">
+    <p data-content="life" class="text-justify"></p>
+    <h2 class="my-3 pt-4">Awards:</h2>
+    <p data-content="award" class="text-justify"></p>
+  </script>
+
+  <script type="text/html" id="bookTemplate">
+    <a data-href="id" data-format="bookHrefFormatter" data-format-target="href" class="card my-3 mx-responsive shadow-sm" style="width: 10rem;">
+            <img data-src="id" data-format="picBookFormatter" data-format-target="src" class="card-img-top" data-alt="title">
             <div class="card-body">
-              <h4 class="card-title" data-content="name"></h4>
-              <!-- TabletAndUp -->
-              <div class="author-life-container">
-              <p class="card-text my-3 life-desc" data-format="lifeFormatter" data-content="life"></p>
-              </div>
-              <!-- /TabletAndUp -->
-              <!-- Mobile -->
-              <div class="author-life-container-mobile">
-                <p class="card-text my-3 life-desc" data-format="lifeFormatterMobile" data-content="life"></p>
-              </div>
-              <!-- /Mobile -->
-              <a class="btn btn-primary" data-href="authorid" data-format="authorHrefFormatter" data-format-target="href">MORE</a>
+              <p class="card-text font-weight-bold" data-content="title"></p>
             </div>
-          </div>
-        </div>
-      </div>
-    </script>
+    </a>
+  </script>
+
+    
+  <script type="text/html" id="breadcrumbTemplate">
+    <nav aria-label="breadcrumb">
+        <ol class="breadcrumb">
+          <li class="breadcrumb-item"><a href="../index.html">Home</a></li>
+          <li class="breadcrumb-item"><a href="./authors.html">All Authors</a></li>
+          <li class="breadcrumb-item active" aria-current="page" data-content="name"></li>
+        </ol>
+    </nav>
+  </script>
 
   <!-- jQuery first, then Popper.js, then Bootstrap JS -->    
   <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
@@ -76,7 +78,7 @@
 
   <script type="text/javascript"> 
     $(document).ready(getHeaderFooter());
-    $(document).ready(getAuthors());
+    $(document).ready(getAuthorById());
    </script>
 
 

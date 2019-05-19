@@ -65,61 +65,12 @@ exports.cartsdetailDbSetup = function(database) {
  * returns Cart
  **/
 exports.deleteCartItem = function(userId,body) {
-  return new Promise(function(resolve, reject) {
-    var examples = {};
-    examples['application/json'] = {
-  "total" : {
-    "currency" : "eur",
-    "value" : 8.008281904610117E13
-  },
-  "books" : [ {
-    "id" : 0,
-    "title" : "1984",
-    "author" : "Orwell George",
-    "price" : {
-      "value" : 12,
-      "currency" : "eur"
-    }
-  }, {
-    "id" : 1,
-    "title" : "Guida Galattica per autostoppisti",
-    "author" : "Douglas Adams",
-    "price" : {
-      "value" : 10,
-      "currency" : "eur"
-    }
-  } ]
-};
-    if (Object.keys(examples).length > 0) {
-      resolve(examples[Object.keys(examples)[0]]);
-    } else {
-      resolve();
-    }
-  });
+  return sqlDb("cartsdetail").where({"bookId":body.bookId,"userId":body.userId ,"total":body.total,"quantity":body.quantity })
+  ,sqlDb("carts").where({"userId":body.userId ,"total":body.total, })
+;
 }
 
 
-/**
- * Finds a cart
- * Retrieves a cart from the system
- *
- * userId String The id of the user of the cart to retrieve
- * returns Cart
- **/
-exports.getSingleCart = function(userId) {
-  return sqlDb("carts")
-  .limit(limit)
-  .offset(offset)
-  .then(data => {
-    return data
-  }),sqlDb1("cartsdetail")
-  .limit(limit)
-  .offset(offset)
-  .then(data => {
-    return data
-  })
-  ;
-}
 
 
 /**
@@ -130,36 +81,8 @@ exports.getSingleCart = function(userId) {
  * returns Cart
  **/
 exports.postCartItem = function(userId,body) {
-  return new Promise(function(resolve, reject) {
-    var examples = {};
-    examples['application/json'] = {
-  "total" : {
-    "currency" : "eur",
-    "value" : 8.008281904610117E13
-  },
-  "books" : [ {
-    "id" : 0,
-    "title" : "1984",
-    "author" : "Orwell George",
-    "price" : {
-      "value" : 12,
-      "currency" : "eur"
-    }
-  }, {
-    "id" : 1,
-    "title" : "Guida Galattica per autostoppisti",
-    "author" : "Douglas Adams",
-    "price" : {
-      "value" : 10,
-      "currency" : "eur"
-    }
-  } ]
-};
-    if (Object.keys(examples).length > 0) {
-      resolve(examples[Object.keys(examples)[0]]);
-    } else {
-      resolve();
-    }
-  });
+  return sqlDb("cartsdetail").where({"bookId":body.bookId,"userId":body.userId ,"total":body.total,"quantity":body.quantity })
+  ,sqlDb("carts").where({"userId":body.userId ,"total":body.total, })
+;
 }
 

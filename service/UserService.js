@@ -38,13 +38,20 @@ exports.getCartByUser = function(id) {
   });
 }
 
-exports.getCartdetailsByUser = function(id) {
-  return sqlDb("cartsdetails")
+/**
+ * retrieves the cart of an user
+ *
+ * id Long ID of the user to retrieve the cart from
+ * returns Cart
+ **/
+exports.getCartDetailByUser = function(id) {
+  return sqlDb("cartsdetail")
   .where({userId: id})
   .then(data => {
     return data
   });
 }
+
 
 /**
  * retrieves the orders of an user
