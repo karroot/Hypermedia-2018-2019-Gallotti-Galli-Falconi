@@ -26,28 +26,22 @@
         </ol>
       </nav>
     <div class="container my-4"> 
-      <h1> Books 
+      <h1> Books
           <div class="d-flex justify-content-end">
-            <select id="book-genre" class="btn btn-primary" onchange="handleDateChange()">
-              
-            </select>
-            <select id="book-theme" class="btn btn-primary" onchange="handleTypeChange()">
-             
-            </select>
-            <select id="book-ebook" class="btn btn-primary" onchange="handleTypeChange()">
-              <!--Only for exemple!-->
-                <option>All format</option>
-                <option>Only eBook</option>
+            <select id="book-genre" class="btn btn-primary" onchange="handleChange()"></select>
+            <select id="book-theme" class="btn btn-primary" onchange="handleChange()"></select>
+            <select id="book-format" class="btn btn-primary" onchange="handleChange()">
+              <option id="">All format</option>
+              <option id="eBook">Only eBook</option>
               </select> 
             </div>
       </h1>
           
   </div>
       <div class="container my-5">
-        
-        <div class=" d-flex justify-content-around flex-direction: row">      
-          <div class="bookCard1-template-container"></div>
-          <div class="bookCard2-template-container"></div>
+        <div class="d-flex justify-content-around flex-direction: row">      
+          <div id="book1" class="bookCard1-template-container book"></div>
+          <div id="book2" class="bookCard2-template-container book"></div>
         </div>
       </div>
       </div>
@@ -93,6 +87,7 @@
 
   <script type="text/javascript">
     $(document).ready(getBooks());
+    getTheme();
    </script>
 
 
