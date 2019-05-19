@@ -66,7 +66,7 @@ exports.cartsdetailDbSetup = function(database) {
  **/
 exports.deleteCartItem = function(userId,body) {
   return sqlDb("cartsdetail").where({"bookId":body.bookId,"userId":body.userId ,"total":body.total,"quantity":body.quantity })
-  ,sqlDb("carts").where({"userId":body.userId ,"total":body.total, })
+  ,sqlDb1("carts").where({"userId":body.userId ,"total":body.total, })
 ;
 }
 

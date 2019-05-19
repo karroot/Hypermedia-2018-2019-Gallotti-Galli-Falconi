@@ -10,7 +10,7 @@ exports.authorsDbSetup = function(database) {
       console.log("It doesn't so we create it");
       return database.schema.createTable("authors", table => {
 
-        table.text("authorId")
+        table.integer("authorId")
         .primary();
         table.text("name");
         table.text("life");
@@ -20,6 +20,33 @@ exports.authorsDbSetup = function(database) {
     }
   });
 };
+
+exports.authorsAndBookDbSetup = function(database) {
+  sqlDb = database;
+  console.log("Checking if authorsAndBooks table exists");
+  return database.schema.hasTable("authorsAndBooks").then(exists => {
+    if (!exists) {
+      console.log("It doesn't so we create it");
+      return database.schema.createTable("authorsAndBooks", table => {
+
+        table.integer("authorid")
+        .notNullable()
+        .references('authorid')
+        .inTable('authors')
+        .onDelete('CASCADE');
+        table.integer("bookid")
+        .notNullable()
+        .references('id')
+        .inTable('books')
+        .onDelete('CASCADE');
+
+      });
+
+    }
+  });
+};
+
+
 /**
  * Find authors by ID
  *
@@ -43,11 +70,10 @@ exports.getAuthorById = function(id) {
  * limit Integer Maximum number of items per page. Default is 20 and cannot exceed 500. (optional)
  * returns List
  **/
-exports.getBookByAuthor = function(id,offset,limit) {
-  return sqlDb("books")
-  .where(function() {
-  this.where({authorid1: id}).orWhere({authorid2: id}).orWhere({authorid3: id}).orWhere({authorid4: id})
-})
+exports.getBookByAuthor = function(id) {
+  return sqlDb("authorsAndBooks")
+  .where({authorid: id})
+  .join('books', {'AuthorsAndBooks.bookid': 'books.id'})
   .then(data => {
     return data
   });

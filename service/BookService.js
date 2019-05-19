@@ -19,10 +19,6 @@ exports.booksDbSetup = function(database) {
         table.text("theme");
         table.enum("status", ["available", "out of stock"]);
         table.text("ebook");
-        table.integer("authorid1");
-        table.integer("authorid2");
-        table.integer("authorid3");
-        table.integer("authorid4");
         table.text("currency");
 
       });
@@ -71,7 +67,14 @@ exports.getEventsByBook = function(bookId,offset,limit) {
   });
 }
 
-
+exports.getAuthorByBook = function(id,offset,limit) {
+  return sqlDb("authorsAndBooks")
+  .where({bookid: id})
+  .join('authors', {'AuthorsAndBooks.authorid': 'author.authorId'})
+  .then(data => {
+    return data
+  });
+}
 /**
  * retrieves the reviews of a book
  *
