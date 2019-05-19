@@ -60,7 +60,7 @@ exports.gettheme = function(offset,limit) {
   return sqlDb("books")
   .limit(limit)
   .offset(offset)
-  .select('theme')
+  .distinct('theme')
   .then(data => {
     return data
   });
