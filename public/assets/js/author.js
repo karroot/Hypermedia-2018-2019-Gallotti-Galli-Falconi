@@ -6,7 +6,6 @@ function getAuthors() {
 
 function parseData(author) {
     templateFormatter();
-
     $(".authorCard-template-container").loadTemplate("#template", author.sort(function(a, b){ //order alphabetically
         if(a.name < b.name) { return -1; }
         if(a.name > b.name) { return 1; }
@@ -35,6 +34,8 @@ function getBookByAuthor() {
 function parseAuthorData(author) {
     templateFormatter();
     
+    document.title = author[0].name;
+
     author.map(a => a.life.split("\n").join("<br>"));
     author.filter(a => a.award==null).map(a => a.award = "This author hasn't won any awards yet.");
 
