@@ -4,6 +4,18 @@ var utils = require('../utils/writer.js');
 var Book = require('../service/BookService');
 
 
+module.exports.getAuthorByBook = function getAuthorByBook (req, res, next) {
+  var bookId = req.swagger.params['bookId'].value;
+  var offset = req.swagger.params['offset'].value;
+  var limit = req.swagger.params['limit'].value;
+  Book.getAuthorByBook(bookId,offset,limit)
+    .then(function (response) {
+      utils.writeJson(res, response);
+    })
+    .catch(function (response) {
+      utils.writeJson(res, response);
+    });
+};
 
 module.exports.getBookById = function getBookById (req, res, next) {
   var bookId = req.swagger.params['bookId'].value;

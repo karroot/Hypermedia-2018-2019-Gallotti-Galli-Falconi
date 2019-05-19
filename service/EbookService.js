@@ -18,11 +18,6 @@ exports.ebooksDbSetup = function(database) {
         table.text("genre");
         table.text("theme");
         table.enum("status", ["available", "out of stock"]);
-        table.text("ebook");
-        table.integer("authorid1");
-        table.integer("authorid2");
-        table.integer("authorid3");
-        table.integer("authorid4");
         table.text("currency");
 
       });
@@ -79,7 +74,14 @@ exports.getebookById = function(ebookId) {
     return data
   });
 }
-
+exports.getAuthorByebook = function(id,offset,limit) {
+  return sqlDb("authorsAndBooks")
+  .where({id: ebookId})
+  .join('authors', {'AuthorsAndBooks.authorid': 'author.authorId'})
+  .then(data => {
+    return data
+  });
+}
 
 /**
  * Books available in the inventory
