@@ -1,9 +1,9 @@
-function getHeaderFooter() {
+$(document).ready( () => {
 $("#header")
   .load('/assets/header.html');
   $("#footer")
   .load('/assets/footer.html');
-}
+})
 
 //Login
 $('#singIn').submit(function(e) {
