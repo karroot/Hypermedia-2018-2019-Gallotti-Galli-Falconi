@@ -35,8 +35,7 @@ function parseAuthorData(author) {
     templateFormatter();
     
     document.title = author[0].name;
-
-    author.map(a => a.life.split("\n").join("<br>"));
+    author[0].life = author[0].life.split('\n').join('<br>');
     author.filter(a => a.award==null).map(a => a.award = "This author hasn't won any awards yet.");
 
     $(".breadcrumb-template-container").loadTemplate("#breadcrumbTemplate", author, {
