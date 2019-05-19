@@ -5,6 +5,9 @@
 };    
 
 function parseData(book) {
+
+       getTheme();
+
        $.addTemplateFormatter({
               bookHrefFormatter: function(value, template) {
                      return `/pages/book.html?id=${value}`;
@@ -45,6 +48,7 @@ function parseData(book) {
        $(".bookCard2-template-container").loadTemplate("#template", book1, {
               append: true
        });
+
 }
 
 function getBookById() {
@@ -57,4 +61,32 @@ function getBookById() {
 
 function parseBookData(book) {
        
+}
+
+function getTheme() {
+       fetch('/v2/theme').then(function(response) {
+              return response.json();
+      }).then(populateThemeOptions)
+      getGenre();
+      
+}
+
+function getGenre() {
+       fetch('/v2/genre').then(function(response) {
+              return response.json();
+      }).then(populateGenreOptions)
+}
+
+function populateGenreOptions(genre) {
+       let html = "<option id='all'>All genre</option>";
+       genre.forEach(g => (html += `<option id='${g.genre}'>${g.genre}</option>`));
+       console.log(html);
+       $("#book-genre")[0].innerHTML = html;
+}
+
+function populateThemeOptions(theme) {
+       let html =  "<option id='all'>All theme</option>";;
+       theme.forEach(t => (html += `<option id='${t.theme}'>${t.theme}</option>`));
+       console.log(html);
+       $("#book-theme")[0].innerHTML = html;
 }
