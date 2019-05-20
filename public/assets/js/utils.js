@@ -1,6 +1,6 @@
 $(document).ready( () => {
 $("#header")
-  .load('/assets/loggedHeader.html');
+  .load('/assets/header.html');
   $("#footer")
   .load('/assets/footer.html');
 })
