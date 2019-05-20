@@ -33,15 +33,15 @@ exports.similarbooksDbSetup = function(database) {
       console.log("It doesn't so we create it");
       return database.schema.createTable("similarbooks", table => {
         table.integer("bookid1")
-        .primary()
+        .notNullable()
         .references('id')
         .inTable('books')
         .onDelete('CASCADE');
         table.integer("bookid2")
         .notNullable();
-        database.schema.alterTable('bookid1', function(t)  {
-          t.unique(['bookId2',integer])
-        });
+
+        table.unique(['bookid2', 'bookid1']);
+        table.primary(['bookid2','bookid1']);
 
       });
     }
@@ -70,7 +70,7 @@ exports.getEventsByBook = function(bookId,offset,limit) {
 exports.getAuthorByBook = function(id,offset,limit) {
   return sqlDb("authorsAndBooks")
   .where({bookid: id})
-  .join('authors', {'AuthorsAndBooks.authorid': 'author.authorId'})
+  .join('authors', {'authorsAndBooks.authorid': 'authors.authorid'})
   .then(data => {
     return data
   });

@@ -40,6 +40,9 @@ exports.authorsAndBookDbSetup = function(database) {
         .inTable('books')
         .onDelete('CASCADE');
 
+
+        table.unique(['authorid', 'bookid']);
+        table.primary(['authorid','bookid']);
       });
 
     }
@@ -73,7 +76,7 @@ exports.getAuthorById = function(id) {
 exports.getBookByAuthor = function(id) {
   return sqlDb("authorsAndBooks")
   .where({authorid: id})
-  .join('books', {'AuthorsAndBooks.bookid': 'books.id'})
+  .join('books', {'authorsAndBooks.bookid': 'books.id'})
   .then(data => {
     return data
   });

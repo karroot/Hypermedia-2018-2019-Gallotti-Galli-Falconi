@@ -77,7 +77,7 @@ exports.getebookById = function(ebookId) {
 exports.getAuthorByebook = function(id,offset,limit) {
   return sqlDb("authorsAndBooks")
   .where({id: ebookId})
-  .join('authors', {'AuthorsAndBooks.authorid': 'author.authorId'})
+  .join('authors', {'authorsAndBooks.authorid': 'authors.authorid'})
   .then(data => {
     return data
   });
