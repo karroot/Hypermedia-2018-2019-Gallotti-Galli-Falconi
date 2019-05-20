@@ -103,14 +103,13 @@ html, body {
     border: 1px solid rgb(0, 102, 255);
 }
 #btn-cart {
-    margin-right: 10px;
+    margin-right: 20px;
 }
 .fa-shopping-cart {
     color:  #212529ab;
 }
 .fa-shopping-cart:hover {
-    color:rgba(0,0,0,.9);
-    border: 1px solid rgba(0,0,0,.9);   
+    color:rgba(0,0,0,.9); 
 }
 /*  Footer
  */
