@@ -27,7 +27,7 @@ function getAll() {
        };
 }
 
-function geteBook() {
+/* function geteBook() {
        if(GENRE_FILTER == "" && THEME_FILTER == "") {
               fetch('/v2/ebook').then(function(response) {
                      return response.json();
@@ -45,17 +45,29 @@ function geteBook() {
                      return response.json();
               }).then(filtereBook)
        };
-}
+} */
 
 function filterBook(book) {
        book = book.filter(b => b.genre==GENRE_FILTER);
        parseData(book);
 }
 
-function filtereBook(book) {
+/* function filtereBook(book) {
        if(GENRE_FILTER != "" && THEME_FILTER != "") book = book.filter(b => b.genre==GENRE_FILTER);
        book = book.filter(b => b.ebook==true);
        parseData(book);
+} */
+
+function geteBook() {
+       fetch('/v2/ebook').then(function(response) {
+              return response.json();
+       }).then(filtereBook);
+}
+
+function filtereBook(eBook) {
+       if(GENRE_FILTER!="") eBook = eBook.filter(b => b.genre==GENRE_FILTER);
+       if(THEME_FILTER!="") eBook = eBook.filter(b => b.theme==THEME_FILTER);
+       parseData(eBook);
 }
 
 function parseData(book) {
