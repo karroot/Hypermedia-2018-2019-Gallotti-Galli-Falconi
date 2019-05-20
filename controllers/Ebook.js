@@ -3,7 +3,18 @@
 var utils = require('../utils/writer.js');
 var Ebook = require('../service/EbookService');
 
-
+module.exports.getAuthorByebook = function getAuthorByebook (req, res, next) {
+  var ebookId = req.swagger.params['ebookId'].value;
+  var offset = req.swagger.params['offset'].value;
+  var limit = req.swagger.params['limit'].value;
+  Ebook.getAuthorByebook(ebookId,offset,limit)
+    .then(function (response) {
+      utils.writeJson(res, response);
+    })
+    .catch(function (response) {
+      utils.writeJson(res, response);
+    });
+};
 
 module.exports.getEventsByebook = function getEventsByebook (req, res, next) {
   var ebookId = req.swagger.params['ebookId'].value;

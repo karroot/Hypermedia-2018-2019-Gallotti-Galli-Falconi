@@ -22,50 +22,8 @@ exports.eventsDbSetup = function(database) {
         .inTable('books')
         .onDelete('CASCADE');
 
-        table.text("authorname1")
-        .notNullable()
-        .references('name')
-        .inTable('authors')
-        .onDelete('CASCADE');
 
-        table.text("authorname2")
-        .references('name')
-        .inTable('authors')
-        .onDelete('CASCADE');
-        
-        table.text("authorname3")
-        .references('name')
-        .inTable('authors')
-        .onDelete('CASCADE');
-        
-        table.text("authorname4")
-        .references('name')
-        .inTable('authors')
-        .onDelete('CASCADE');
-
-        table.integer("authorid1")
-        .notNullable()
-        .references('authorid')
-        .inTable('authors')
-        .onDelete('CASCADE');
-
-        table.integer("authorid2")
-        .notNullable()
-        .references('authorid')
-        .inTable('authors')
-        .onDelete('CASCADE');
-
-        table.integer("authorid3")
-        .notNullable()
-        .references('authorid')
-        .inTable('authors')
-        .onDelete('CASCADE');
-
-        table.integer("authorid4")
-        .notNullable()
-        .references('authorid')
-        .inTable('authors')
-        .onDelete('CASCADE');
+       
 
 
       });

@@ -1,5 +1,4 @@
 function getInfo() {
-    getHeaderFooter();
 
     $.getJSON("/assets/info.json", function(info) {
         console.log(info); // this will show the info it in firebug console

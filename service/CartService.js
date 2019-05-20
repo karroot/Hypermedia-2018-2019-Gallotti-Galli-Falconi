@@ -36,7 +36,7 @@ exports.cartsdetailDbSetup = function(database) {
       return database.schema.createTable("cartsdetail", table => {
 
         table.integer("userId")
-        .primary()
+        .notNullable()
         .references('id')
         .inTable('users')
         .onDelete('CASCADE');
@@ -44,13 +44,14 @@ exports.cartsdetailDbSetup = function(database) {
         .notNullable();
         table.integer("quantity");
         table.integer("bookId")
+        .notNullable()
         .references('id')
         .inTable('books')
         .onDelete('CASCADE');
-        
-        database.schema.alterTable('userId', function(t)  {
-          t.unique(['bookId',integer])
-        });
+
+        table.unique(['userId', 'bookId']);
+        table.primary(['userId','bookId']);
+
       });
 
     }
@@ -66,7 +67,7 @@ exports.cartsdetailDbSetup = function(database) {
  **/
 exports.deleteCartItem = function(userId,body) {
   return sqlDb("cartsdetail").where({"bookId":body.bookId,"userId":body.userId ,"total":body.total,"quantity":body.quantity })
-  ,sqlDb("carts").where({"userId":body.userId ,"total":body.total, })
+  ,sqlDb1("carts").where({"userId":body.userId ,"total":body.total, })
 ;
 }
 

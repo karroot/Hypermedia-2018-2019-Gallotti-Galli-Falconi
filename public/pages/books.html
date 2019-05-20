@@ -21,39 +21,27 @@
     <div class="content space-header">
       <nav aria-label="breadcrumb">
         <ol class="breadcrumb">
-          <li class="breadcrumb-item"><a href="../index.html">Home</a></li>
+          <li class="breadcrumb-item"><a href="/">Home</a></li>
           <li class="breadcrumb-item active" aria-current="page">All Books</li>
         </ol>
       </nav>
     <div class="container my-4"> 
-      <h1> Books 
+      <h1> Books
           <div class="d-flex justify-content-end">
-            <select id="book-genre" class="btn btn-primary" onchange="handleDateChange()">
-              <!--Only for exemple!-->
-              <option>Fantasy</option>
-              <option>Romance</option>
-              <option>Thriller</option>
-            </select>
-            <select id="book-theme" class="btn btn-primary" onchange="handleTypeChange()">
-              <!--Only for exemple!-->
-              <option>Love</option>
-              <option>War</option>
-              <option>Death</option>
-            </select>
-            <select id="book-ebook" class="btn btn-primary" onchange="handleTypeChange()">
-              <!--Only for exemple!-->
-                <option>eBook</option>
-                <option>Paper</option>
+            <select id="book-genre" class="btn btn-primary" onchange="handleChange()"></select>
+            <select id="book-theme" class="btn btn-primary" onchange="handleChange()"></select>
+            <select id="book-format" class="btn btn-primary" onchange="handleChange()">
+              <option id="">All format</option>
+              <option id="eBook">Only eBook</option>
               </select> 
             </div>
-          </h1>
+      </h1>
           
   </div>
       <div class="container my-5">
-        
-        <div class=" d-flex justify-content-around flex-direction: row">      
-          <div class="bookCard1-template-container"></div>
-          <div class="bookCard2-template-container"></div>
+        <div class="d-flex justify-content-around flex-direction: row">      
+          <div id="book1" class="bookCard1-template-container book"></div>
+          <div id="book2" class="bookCard2-template-container book"></div>
         </div>
       </div>
       </div>
@@ -71,13 +59,9 @@
                 <div class="col-8">
                   <div class="card-body">
                     <h4 class="card-title" data-content="title"></h4>
-                    <p class="card-text my-3"  data-format="factFormatter" data-content="factSheet"></p>
-                    <p class="card-text"> <small class="text-muted"> Written by </small> 
-                      <a class="card-text" data-href="authorid1" data-content="author1" data-format="authorOneFormatter"></a>
-                      <a class="card-text" data-href="authorid2" data-content="author2" data-format="authorFormatter"></a>
-                      <a class="card-text" data-href="authorid3" data-content="author3" data-format="authorFormatter"></a>
-                      <a class="card-text" data-href="authorid4" data-content="author4" data-format="authorFormatter"></a>
-                    </p>
+                    <p class="card-text my-3 fact-card"  data-format="factFormatter" data-content="factSheet"></p>
+                    <br>
+                    <p class="card-text font-weight-bold price-card" data-content="price" data-format="priceFormatter"></p>
                   </div>
                   <a class="btn btn-primary btn-info-desktop" data-href="id" data-format="bookHrefFormatter" data-format-target="href">INFO</a>
                 </div>
@@ -97,9 +81,9 @@
   <script src="/assets/js/utils.js"></script>
   <script src="/assets/js/book.js"></script>
 
-  <script type="text/javascript"> 
-    $(document).ready(getHeaderFooter());
+  <script type="text/javascript">
     $(document).ready(getBooks());
+    getTheme();
    </script>
 
 

@@ -58,7 +58,7 @@ exports.getgenre = function(offset,limit) {
   return sqlDb("books")
   .limit(limit)
   .offset(offset)
-  .select('genre')
+  .distinct('genre')
   .then(data => {
     return data
   });
