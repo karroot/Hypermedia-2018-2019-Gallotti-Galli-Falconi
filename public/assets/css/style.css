@@ -176,6 +176,14 @@ html, body {
         top: 87%;
         transform: translate(-50%, -50%);
     }
+    .price-card {
+        position: absolute;
+        top: 65%;
+    }
+    .fact-card {
+        position: absolute;
+        top: 30%;
+    }
 }
 /*  Author's info text
     Gradient effect
