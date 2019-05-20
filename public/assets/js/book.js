@@ -54,7 +54,7 @@ function filterBook(book) {
 
 function filtereBook(book) {
        if(GENRE_FILTER != "" && THEME_FILTER != "") book = book.filter(b => b.genre==GENRE_FILTER);
-       book = book.filter(b => b.ebook);
+       book = book.filter(b => b.ebook==true);
        parseData(book);
 }
 
