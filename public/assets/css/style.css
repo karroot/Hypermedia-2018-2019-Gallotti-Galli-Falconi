@@ -208,15 +208,7 @@ html, body {
     }
     .price-card {
         position: absolute;
-        top: 62%;
-    }
-    .fact-card {
-        position: absolute;
-        top: 30%;
-    }
-    .author-card {
-        position: absolute;
-        top: 72%;
+        top: 65%;
     }
 }
 /*  Author's info text
