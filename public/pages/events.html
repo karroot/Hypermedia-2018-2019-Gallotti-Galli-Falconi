@@ -29,6 +29,8 @@
 
       <div class="container clearfix"> 
         <h1> Events</h1>
+        <p class="my-1">Here you can find all our next events.</p>
+        <p>Do you want to partecipate? It's free! See you there!</p>
         <!-- <div class="float-right">
           <select id="book-genre" class="btn btn-filter btn-primary" onchange="handleChange()"></select>
           <select id="book-theme" class="btn btn-filter btn-primary" onchange="handleChange()"></select>
@@ -40,15 +42,8 @@
       </div>
 
       <div class="container my-5">
-        <div class="d-flex justify-content-around flex-direction: row">      
-<!--           <div id="event" class="eventCard1-template-container event"></div> -->          
-             <div class="card bg-dark text-white">
-                <img class="event-img" src="/assets/img/placeholder.png" alt="Event image">
-                <div class="card-img-overlay">
-                    <h5 class="card-title" data-content="title"></h5>
-                </div>
-            </div>
-
+        <div class="d-flex justify-content-around flex-direction: row">
+          <div id="event" class="eventCard1-template-container event"></div>
         </div>
       </div>
     </div>
@@ -57,16 +52,15 @@
 
   <!-- Template -->
   <script type="text/html" id="template">
-    <div class="card bg-dark text-white">
-        <img class="event-img" src="../assets/img/placeholder.png" alt="Event image">
-        <div class="event-info-container">
-            <div class="card-img-overlay">
-                <h5 class="card-title">Card title</h5>
-                <p class="card-text">This is a wider card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.</p>
-                <p class="card-text">Last updated 3 mins ago</p>
-            </div>
+      <div class="row no-gutters">
+        <div class="card bg-dark text-white">
+          <img class="event-img"  data-format="picFormatter" data-format-target="src" data-src="id" alt="Event image">
+          <div class="card-img-overlay">
+              <h2 class="card-title event-title centred" data-content="title"></h2>
+          </div>
         </div>
     </div>
+    <br>
   </script>
 
   <!-- jQuery first, then Popper.js, then Bootstrap JS -->    
@@ -76,7 +70,7 @@
   <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.loadtemplate/1.5.10/jquery.loadTemplate.min.js"></script>
   <script src="/assets/js/utils.js"></script>
-  <script src="/assets/js/book.js"></script>
+  <script src="/assets/js/event.js"></script>
 
   <script type="text/javascript">
     $(document).ready(getEvents());
