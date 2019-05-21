@@ -58,7 +58,7 @@ exports.getEventById = function(id) {
  * id Long ID of event that needs to be fetched
  * returns Event
  **/
-exports.getEvents = function(id) {
+exports.getEvents = function() {
   return sqlDb("events")
   .then(data => {
     return data
