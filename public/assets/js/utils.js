@@ -15,7 +15,9 @@ $('#singIn').submit(function(e) {
   type: $('#singIn').attr('method'),
   url: $('#singIn').attr('action'),
   data: $('#singIn').serialize().replace("%40", "@"),
-  success: function(msg){
+  success: function(data,status){
+        console.log(data);
+        console.log(status);
         alert("Login successful!");
         history.go(-1); 
   },

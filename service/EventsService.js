@@ -53,6 +53,19 @@ exports.getEventById = function(id) {
 
 
 /**
+ * Find events by ID
+ *
+ * id Long ID of event that needs to be fetched
+ * returns Event
+ **/
+exports.getEvents = function(id) {
+  return sqlDb("events")
+  .then(data => {
+    return data
+  });
+}
+
+/**
  * Add a new event to the store
  *
  * body Event Event object that needs to be added to the database
