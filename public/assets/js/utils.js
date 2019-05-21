@@ -1,9 +1,18 @@
 $(document).ready( () => {
-$("#header")
-  .load('/assets/header.html');
+  try{
+    if(isAuthenticated()) {
+      $("#header")
+        .load('/assets/loggedHeader.html');
+    } else {
+      $("#header")
+        .load('/assets/header.html');
+    }
   $("#footer")
   .load('/assets/footer.html');
-})
+  }catch(e)  {
+    window.location.href = "/pages/error.html";
+  }
+});
 
 //Login
 $('#singIn').submit(function(e) {
@@ -17,7 +26,12 @@ $('#singIn').submit(function(e) {
   data: $('#singIn').serialize().replace("%40", "@"),
   success: function(msg){
         alert("Login successful!");
-        history.go(-1); 
+        try{
+          sessionStorage.setItem("authenticate", "true");
+          history.go(-1); 
+        } catch(e)  {
+          window.location.href = "/pages/error.html";
+        }
   },
   error: function(XMLHttpRequest, textStatus, errorThrown) {
     alert("Error: email or password incorrect");
@@ -33,4 +47,15 @@ function parseQueryString(search_string) {
     qs[t[0]] = t[1];
   });
   return qs;
+}
+
+
+function isAuthenticated() {
+    if(sessionStorage.getItem("authenticate")=="true") return true;
+    else return false; 
+}
+
+function logout() {
+  sessionStorage.clear();
+  history.go(0); //refresh page
 }
