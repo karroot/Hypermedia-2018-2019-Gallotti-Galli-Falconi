@@ -159,13 +159,8 @@ function templateFormatter() {
                      return value.split("\n").join("<br>");
                      
               },
-              authorOneFormatter : function(value, template) {
-                     return `<small class="text-muted"> ${value}</small>`;
-              },
-              authorFormatter : function(value, template) {
-                     if(value!=null) {
-                            return `<small class="text-muted">, ${value}</small>`;
-                     }
+              priceFormatter : function(value, template) {
+                     return value.value+value.currency;
               }
        });
 }
