@@ -1,6 +1,7 @@
 'use strict';
 
-
+var bcrypt = require('bcrypt');
+let saltRounds = 10;
 let sqlDb;
 
 exports.usersDbSetup = function(database) {
@@ -95,8 +96,11 @@ exports.logoutUser = function() {
  * no response value expected for this operation
  **/
 exports.postuserLogin = function(username,password) {
-  
-  return sqlDb("users").where({"address":username ,"password":password});
+  //per ora facciamo così per sapere le password da salvare , poi lo faremo direttamente nel register
+  let hash = bcrypt.hashSync(password,10);
+console.log("pass :");
+console.log(hash);
+  return sqlDb("users").where({"address":username});
 }
 
 exports.getUserById = function(id) {

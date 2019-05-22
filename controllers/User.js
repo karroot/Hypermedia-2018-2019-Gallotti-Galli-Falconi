@@ -2,6 +2,8 @@
 
 var utils = require('../utils/writer.js');
 var User = require('../service/UserService');
+var bcrypt = require('bcrypt');
+let saltRounds = 10;
 
 module.exports.getCartByUser = function getCartByUser (req, res, next) {
   
@@ -85,26 +87,24 @@ module.exports.logoutUser = function logoutUser (req, res, next) {
 module.exports.postuserLogin = function postuserLogin (req, res, next) {
   var username = req.swagger.params["username"].value;
   var password = req.swagger.params["password"].value;
-  if(!req.session.loggedin) {
-      req.session.loggedin = true;
-  } else {
-     req.session.loggedin = !req.session.loggedin;
-  }
+
   User.postuserLogin(username, password)
-    .then(function(response) {
-      if(response.length == 1) {
-        console.log("response ");
-        console.log(response);
-        console.log(" response id ");
-        console.log(response[0].id);
-        req.session.logged_id= response[0].id;
-        utils.writeJson(res,response,200);}
-      else{
-        
-        utils.writeJson(res,response,403);}
-      }
-    )
-    .catch(function(response) {
+  .then(function(response){ 
+
+     bcrypt.compare(password, response[0].password, function (err, result) {
+
+    if (result == true) {
+      req.session.logged_id= response[0].id;
+      utils.writeJson(res,response,200);
+
+    } else {
+
+      utils.writeJson(res,response,403);
+    }});
+   
+    
+  })
+  .catch(function(response) {
       if(response.length ==1) {
         utils.writeJson(res,response,200);
        }

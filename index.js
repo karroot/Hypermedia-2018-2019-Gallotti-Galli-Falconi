@@ -11,6 +11,8 @@ var serverPort = process.env.PORT || 8080;
 let cookieSession = require("cookie-session");
 let cookieParser = require("cookie-parser");
 let serveStatic = require("serve-static");
+var bcrypt = require('bcrypt');
+let saltRounds = 10;
 
 let { setupDataLayer } = require("./service/DataLayer");
 
