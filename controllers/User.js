@@ -4,18 +4,27 @@ var utils = require('../utils/writer.js');
 var User = require('../service/UserService');
 
 module.exports.getCartByUser = function getCartByUser (req, res, next) {
+  
   var id = req.swagger.params['id'].value;
-  User.getCartByUser(id)
+  if (req.session.logged_id != id ) {
+    utils.writeJson(res, { error: "sorry, you must be authorized" }, 404);
+} else 
+{ User.getCartByUser(id)
     .then(function (response) {
       utils.writeJson(res, response);
     })
     .catch(function (response) {
       utils.writeJson(res, response);
     });
-};
+}};
 
 module.exports.getCartDetailByUser = function getCartDetailByUser (req, res, next) {
   var id = req.swagger.params['id'].value;
+  if (req.session.logged_id != id ) {
+    utils.writeJson(res, { error: "sorry, you must be authorized" }, 404);
+    
+} else 
+{
   User.getCartDetailByUser(id)
     .then(function (response) {
       utils.writeJson(res, response);
@@ -23,7 +32,7 @@ module.exports.getCartDetailByUser = function getCartDetailByUser (req, res, nex
     .catch(function (response) {
       utils.writeJson(res, response);
     });
-};
+}};
 
 module.exports.getReviewsByUser = function getReviewsByUser (req, res, next) {
   var id = req.swagger.params['id'].value;
@@ -40,13 +49,24 @@ module.exports.getReviewsByUser = function getReviewsByUser (req, res, next) {
 
 module.exports.getUserById = function getUserById (req, res, next) {
   var id = req.swagger.params['id'].value;
-  User.getUserById(id)
+  if (req.session.logged_id == id ){
+    User.getUserById(id)
     .then(function (response) {
       utils.writeJson(res, response);
     })
     .catch(function (response) {
       utils.writeJson(res, response);
     });
+}  
+else 
+{
+  
+  //res.writeHead(301,
+  //  { Location: "../"  }
+//  );
+  utils.writeJson(res, { error: "sorry, you must be authorized" }, 404);
+ // res.end();
+}
 };
 
 module.exports.logoutUser = function logoutUser (req, res, next) {
@@ -73,6 +93,11 @@ module.exports.postuserLogin = function postuserLogin (req, res, next) {
   User.postuserLogin(username, password)
     .then(function(response) {
       if(response.length == 1) {
+        console.log("response ");
+        console.log(response);
+        console.log(" response id ");
+        console.log(response[0].id);
+        req.session.logged_id= response[0].id;
         utils.writeJson(res,response,200);}
       else{
         
@@ -93,10 +118,21 @@ module.exports.postuserLogin = function postuserLogin (req, res, next) {
 module.exports.postuserRegister = function postuserRegister (req, res, next) {
   var body = req.swagger.params['body'].value;
   User.postuserRegister(body)
-    .then(function (response) {
-      utils.writeJson(res, response);
-    })
-    .catch(function (response) {
-      utils.writeJson(res, response);
+    .then(function(response) {
+      if(response.length == 1) {
+        utils.writeJson(res,response,404);}
+      else{
+        
+        utils.writeJson(res,response,200);}
+      }
+    )
+    .catch(function(response) {
+      if(response.length ==1) {
+        utils.writeJson(res,response,400);
+       }
+      else{
+        utils.writeJson(res,response,200);
+   
+      }
     });
-};
+}
