@@ -40,7 +40,7 @@ exports.cartsdetailDbSetup = function(database) {
         .references('id')
         .inTable('users')
         .onDelete('CASCADE');
-        table.float("total")
+        table.float("value")
         .notNullable();
         table.integer("quantity");
         table.integer("bookId")
@@ -58,18 +58,7 @@ exports.cartsdetailDbSetup = function(database) {
 
   });
 };
-/**
- * Removes a cart item from the cart
- *
- * userId Long ID of the user whose cart needs to be modified
- * body CartItem Id of book and the quantity that needs to be removed from the cart
- * returns Cart
- **/
-exports.deleteCartItem = function(userId,body) {
-  return sqlDb("cartsdetail").where({"bookId":body.bookId,"userId":body.userId ,"total":body.total,"quantity":body.quantity })
-  ,sqlDb1("carts").where({"userId":body.userId ,"total":body.total, })
-;
-}
+
 
 
 
@@ -81,9 +70,23 @@ exports.deleteCartItem = function(userId,body) {
  * body CartItem Id of book and the quantity that needs to be added to the cart
  * returns Cart
  **/
-exports.postCartItem = function(userId,body) {
-  return sqlDb("cartsdetail").where({"bookId":body.bookId,"userId":body.userId ,"total":body.total,"quantity":body.quantity })
-  ,sqlDb("carts").where({"userId":body.userId ,"total":body.total, })
-;
+exports.putCartDetailByUserId = function(userId,body) {
+  return sqlDb("cartsdetail")
+  .where({"userId":userId  })
+  .insert({"userId":userId ,"bookId":body.bookId,"total":body.total,"quantity":body.quantity});
 }
+
+/**
+ * Add a new cart item to the cart
+ *
+ * userId Long ID of the user whose cart needs to be modified
+ * body CartItem Id of book and the quantity that needs to be added to the cart
+ * returns Cart
+ **/
+exports.putCartByUserId = function(userId,body) {
+  return sqlDb("cartsdetail")
+  .where({"userId":userId  })
+  .insert({"userId":userId ,"total":body.total});
+}
+
 

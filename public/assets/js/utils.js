@@ -26,7 +26,6 @@ $('#singIn').submit(function(e) {
     console.log(data);
           alert("Login successful!");
           try{
-            sessionStorage.setItem("id", data[0].id);
             sessionStorage.setItem("authenticate", "true");
             history.go(-1); 
           } catch(e)  {

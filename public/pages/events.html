@@ -7,7 +7,7 @@
     <script defer src="https://use.fontawesome.com/releases/v5.8.2/js/all.js" integrity="sha384-DJ25uNYET2XCl5ZF++U8eNxPWqcKohUUBUpKGlNLMchM7q4Wjg2CUpjHLaL8yYPH" crossorigin="anonymous"></script>
     <!-- Bootstrap CSS -->
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
-    <title>Books</title>
+    <title>Events</title>
     <!-- Fonts -->
     <link href="https://fonts.googleapis.com/css?family=Oswald:400" rel="stylesheet"> 
     <link rel="shortcut icon" type="image/ico" href="../assets/img/favicon.ico"/>
@@ -17,31 +17,33 @@
   
   <body>
     <div id="header"></div>
+
     <div class="content space-header">
 
       <nav aria-label="breadcrumb">
         <ol class="breadcrumb">
           <li class="breadcrumb-item"><a href="/">Home</a></li>
-          <li class="breadcrumb-item active" aria-current="page">All Books</li>
+          <li class="breadcrumb-item active" aria-current="page">All Events</li>
         </ol>
       </nav>
 
       <div class="container clearfix"> 
-        <h1> Books</h1>
-        <div class="float-right">
+        <h1> Events</h1>
+        <p class="my-1">Here you can find all our next events.</p>
+        <p>Do you want to partecipate? It's free! See you there!</p>
+        <!-- <div class="float-right">
           <select id="book-genre" class="btn btn-filter btn-primary" onchange="handleChange()"></select>
           <select id="book-theme" class="btn btn-filter btn-primary" onchange="handleChange()"></select>
           <select id="book-format" class="btn btn-filter btn-primary" onchange="handleChange()">
             <option id="">All format</option>
             <option id="eBook">Only eBook</option>
           </select> 
-        </div>
+        </div> -->
       </div>
 
       <div class="container my-5">
-        <div class="d-flex justify-content-around flex-direction: row">      
-          <div id="book1" class="bookCard1-template-container book"></div>
-          <div id="book2" class="bookCard2-template-container book"></div>
+        <div class="d-flex justify-content-around flex-direction: row">
+          <div id="event" class="eventCard1-template-container event"></div>
         </div>
       </div>
     </div>
@@ -50,25 +52,15 @@
 
   <!-- Template -->
   <script type="text/html" id="template">
-    <div class="card mb-3 shadow-sm" style="max-width: 540px;">
       <div class="row no-gutters">
-        <div class="col-4">
-          <img data-src="id" data-format="picFormatter" data-format-target="src" class="card-img img-card" data-alt="title">
-        </div>
-        <div class="col-8">
-          <div class="card-body">
-            <h4 class="card-title" data-content="title"></h4>
-            <p class="card-text my-3"  data-format="factFormatter" data-content="factSheet"></p>
-            <br>
-            <p class="card-text font-weight-bold price-card" data-content="price" data-format="priceFormatter"></p>
+        <div class="card bg-dark text-white">
+          <img class="event-img"  data-format="picFormatter" data-format-target="src" data-src="id" alt="Event image">
+          <div class="card-img-overlay">
+              <h2 class="card-title event-title centred" data-content="title"></h2>
           </div>
-          <a class="btn btn-primary btn-info-desktop" data-href="id" data-format="bookHrefFormatter" data-format-target="href">INFO</a>
         </div>
-      </div>
-      <div class="card-footer wrapper" media= "screen and (max-width: 576px)">
-        <a class="btn btn-primary btn-info-mobile"  data-href="id" data-format="bookHrefFormatter" data-format-target="href">INFO</a>
-      </div> 
     </div>
+    <br>
   </script>
 
   <!-- jQuery first, then Popper.js, then Bootstrap JS -->    
@@ -78,11 +70,10 @@
   <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.loadtemplate/1.5.10/jquery.loadTemplate.min.js"></script>
   <script src="/assets/js/utils.js"></script>
-  <script src="/assets/js/book.js"></script>
+  <script src="/assets/js/event.js"></script>
 
   <script type="text/javascript">
-    $(document).ready(getBooks());
-    getTheme();
+    $(document).ready(getEvents());
    </script>
 
 

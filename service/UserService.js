@@ -99,7 +99,10 @@ exports.postuserLogin = function(username,password) {
   return sqlDb("users").where({"address":username ,"password":password});
 }
 
-
+exports.getUserById = function(id) {
+  
+  return sqlDb("users").where({"id":id});
+}
 /**
  * Register
  * Register into the store

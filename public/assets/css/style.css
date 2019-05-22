@@ -71,13 +71,13 @@ html, body {
 
 }
 #btn-signup {
-    background-color: #00d800;
-    color: #201f1fe8;
+    background-color: #0091A0;;
+    color: #ffffff !important;
     border: none !important;   
 }
 #btn-signup:hover {
-    background-color: #359967 !important;
-    color: #f1f1f1 !important;
+    background-color: rgb(1, 104, 116) !important;
+    color: #ffffff !important;
     border: none;
 }
 #btn-login {
@@ -100,8 +100,8 @@ html, body {
     color: #f1f1f1;
 }
 #btn-logout:hover {
-    background-color: rgb(0, 100, 107);
-    border: 1px solid rgb(0, 100, 107);
+    background-color: rgb(1, 104, 116);
+    border: 1px solid rgb(1, 104, 116);
 }
 #btn-cart {
     margin-right: 20px;
@@ -208,15 +208,7 @@ html, body {
     }
     .price-card {
         position: absolute;
-        top: 62%;
-    }
-    .fact-card {
-        position: absolute;
-        top: 30%;
-    }
-    .author-card {
-        position: absolute;
-        top: 72%;
+        top: 65%;
     }
 }
 /*  Author's info text
@@ -271,4 +263,9 @@ html, body {
         margin-left: 2rem;
         margin-right: 2rem;
     }
+}
+/*  Events shade info
+ */
+.event-title {
+    background-image: linear-gradient( to left, rgba(0, 0, 0, 0), rgba(0, 0, 0, 0), rgba(0, 0, 0, 0.692));
 }

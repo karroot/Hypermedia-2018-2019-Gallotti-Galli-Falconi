@@ -18,14 +18,36 @@ module.exports.deleteCartItem = function deleteCartItem (req, res, next) {
 
 
 
-module.exports.postCartItem = function postCartItem (req, res, next) {
+module.exports.putCartByUserId = function putCartByUserId (req, res, next) {
   var userId = req.swagger.params['userId'].value;
   var body = req.swagger.params['body'].value;
-  Cart.postCartItem(userId,body)
+    if (req.session.logged_id != id ) {
+    utils.writeJson(res, { error: "sorry, you must be authorized" }, 404);
+} else 
+{
+  Cart.putCartByUserId(userId,body)
     .then(function (response) {
       utils.writeJson(res, response);
     })
     .catch(function (response) {
       utils.writeJson(res, response);
     });
+}
+};
+
+module.exports.putCartDetailByUserId = function putCartDetailByUserId (req, res, next) {
+  var userId = req.swagger.params['userId'].value;
+  var body = req.swagger.params['body'].value;
+    if (req.session.logged_id != id ) {
+    utils.writeJson(res, { error: "sorry, you must be authorized" }, 404);
+} else 
+{
+  Cart.putCartDetailByUserId(userId,body)
+    .then(function (response) {
+      utils.writeJson(res, response);
+    })
+    .catch(function (response) {
+      utils.writeJson(res, response);
+    });
+}
 };
