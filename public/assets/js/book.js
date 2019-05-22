@@ -75,17 +75,6 @@ function parseData(book) {
        $("#book2").html("");
 
        if(!book.length) emptyData();
-      
-       book.map(b => {
-              b.authorid1 = `/pages/author.html?id=${b.authorid1}`;
-              if(b.authorid2!=null) {
-                     b.authorid2 = `/pages/author.html?id=${b.authorid2}`;
-                     if(b.authorid3!=null) {
-                            b.authorid3 = `/pages/author.html?id=${b.authorid3}`;
-                            if(b.authorid4!=null) b.authorid4 = `/pages/author.html?id=${b.authorid4}`
-                     };
-              }
-       });
 
        templateFormatter();
 
