@@ -120,18 +120,18 @@ module.exports.postuserRegister = function postuserRegister (req, res, next) {
   User.postuserRegister(body)
     .then(function(response) {
       if(response.length == 1) {
-        utils.writeJson(res,response,404);}
+        utils.writeJson(res,response,200);}
       else{
         
-        utils.writeJson(res,response,200);}
+        utils.writeJson(res,response,403);}
       }
     )
     .catch(function(response) {
       if(response.length ==1) {
-        utils.writeJson(res,response,400);
+        utils.writeJson(res,response,200);
        }
       else{
-        utils.writeJson(res,response,200);
+        utils.writeJson(res,response,403);
    
       }
     });

@@ -13,7 +13,8 @@ exports.usersDbSetup = function(database) {
       return database.schema.createTable("users", table => {
 
         table.integer("id")
-        .primary();
+        .primary()
+        .increments();
         table.text("username")
         .notNullable();
         table.text("address");
@@ -54,24 +55,6 @@ exports.getCartDetailByUser = function(id) {
 }
 
 
-/**
- * retrieves the orders of an user
- *
- * id Long ID of the user to retrieve the orders from
- * offset Integer Pagination offset. Default is 0. (optional)
- * limit Integer Maximum number of items per page. Default is 20 and cannot exceed 500. (optional)
- * returns List
- **/
-exports.getOrdersByUser = function(id,offset,limit) {
-
-  exports.getCartByUser = function(id) {
-    return sqlDb("orders")
-    .where({userId: id})
-    .then(data => {
-      return data
-    });
-  }
-}
 
 
 /**
@@ -81,9 +64,7 @@ exports.getOrdersByUser = function(id,offset,limit) {
  * no response value expected for this operation
  **/
 exports.logoutUser = function() {
-  return new Promise(function(resolve, reject) {
-    resolve();
-  });
+  req.session.logged_id=false;
 }
 
 
@@ -115,8 +96,24 @@ exports.getUserById = function(id) {
  * no response value expected for this operation
  **/
 exports.postuserRegister = function(body) {
-  return new Promise(function(resolve, reject) {
-    resolve();
+  return sqlDb("users").select("address")
+  .where("address", body.email)
+  .then(userNametList => {
+      if (userNameList.length === 0) {
+          return knex('users')
+            .returning('id')
+            .insert([{
+              username: req.body.username,
+              address: req.body.email,
+              creditCard: req.body.creditCard,
+              password: bcrypt.hashSync(req.body.password, 10)
+            }])
+            .then((newUserId) => {
+                console.log('inserted user', newUserId);
+            });
+      }
+      console.log('not inserting user');
+      return;
   });
 }
 
