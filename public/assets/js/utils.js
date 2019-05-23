@@ -18,22 +18,22 @@ $(document).ready( () => {
 $('#singIn').submit(function(e) {
   e.preventDefault();
 
+  $("#fail-login")[0].innerHTML = ''
   $.ajax({
     type: $('#singIn').attr('method'),
     url: $('#singIn').attr('action'),
     data: $('#singIn').serialize().replace("%40", "@"),
     success: function(data, status){
-    console.log(data);
-          alert("Login successful!");
           try{
-            sessionStorage.setItem("authenticate", "true");
-            history.go(-1); 
+            sessionStorage.setItem("authenticate", "true"); 
+           $('#successModal').modal('show');
+           window.setTimeout( function() {history.back()}, 1300 );
           } catch(e)  {
-            window.location.href = "/pages/error.html";
+            //window.location.href = "/pages/error.html";
           }
     },
     error: function(XMLHttpRequest, textStatus, errorThrown) {
-      alert("Error: email or password incorrect");
+      $("#fail-login")[0].innerHTML = '<div class="alert alert-danger" role="alert"> email or password incorrect! </div>'
     }
   });
 });
@@ -68,4 +68,8 @@ function clearEvent() {
 function setEbook() {
   clearEvent();
   sessionStorage.setItem("EBOOK_FILTER", "eBook");
+}
+
+function injectAllert() {
+  $("#fail-login")[0].innerHTML = '<div class="alert alert-warning" role="alert"> eMail or password incorrect! </div>'
 }

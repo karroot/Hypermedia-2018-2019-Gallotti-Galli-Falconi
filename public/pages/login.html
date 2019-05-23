@@ -28,12 +28,28 @@
                         <input type="email" name="mail" class="form-control my-3" placeholder="Email address" required />
                         <label for="inputPassword" class="sr-only">Password</label>
                         <input type="password" class="form-control mb-5" placeholder="Password" name="password" required />
+                        <div id="fail-login"></div>
                         <button id="login" class="btn btn-lg btn-primary btn-block my-4">Log in</button>
                       </form>
                 </div>
             </div>  
         </div>
-    </div> 
+    </div>
+    <div id="successModal" class="modal" tabindex="-1" role="dialog">
+      <div class="modal-dialog modal-dialog-centered" role="document">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h5 class="modal-title">Success!</h5>
+          </div>
+          <div class="alert alert-success" role="alert">
+            WELCOME in MDGbooks!
+          </div>
+          <div class="modal-footer">
+            <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+          </div>
+        </div>
+      </div>
+    </div>
     
   <div id="footer"></div>
 
