@@ -123,6 +123,8 @@ html, body {
 }
 .btn-more {
     position: relative;
+    margin-right: 3.5%;
+    margin-top: 1.5%;
 }
 /*  Footer
  */
@@ -243,7 +245,7 @@ html, body {
 }
 /*  Description for mobile
  */
- @media only screen and (max-width: 767px) {
+ @media only screen and (max-width: 768px) {
     .author-life-container {
         display:  none;
     }
@@ -251,10 +253,13 @@ html, body {
         margin-left: 1rem;
         margin-right: 1rem;
     }
+    .event-img-desktop {
+        display: none;
+    }
 }
 /* Description for TabletAndUp
  */
-@media only screen and (min-width: 768px) {
+@media only screen and (min-width: 769px) {
     .author-life-container-mobile {
         display: none;
     }
@@ -263,9 +268,11 @@ html, body {
         margin-left: 2rem;
         margin-right: 2rem;
     }
-}
-/*  Events shade info
- */
-.event-title {
-    background-image: linear-gradient( to left, rgba(0, 0, 0, 0), rgba(0, 0, 0, 0), rgba(0, 0, 0, 0.692));
+    .event-img-mobile {
+        display: none;
+    }
+    .event-card {
+        max-width: 894px;
+    }
+
 }

@@ -15,8 +15,14 @@ function parseData(event) {
 
 function templateFormatter() {
        $.addTemplateFormatter({
-              picFormatter: function(value, template) {
-                     return `/assets/img/events/${value}.png`;
+              picDesktopFormatter: function(value, template) {
+                     return `/assets/img/events/desktop/${value}.png`;
+              },
+              picMobileFormatter: function(value, template) {
+                     return `/assets/img/events/mobile/${value}.png`;
+              },
+              dateFormatter: function(value, template) {
+                     return value.split("T")[0];
               }
        });
 }
