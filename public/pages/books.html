@@ -30,15 +30,15 @@
             <div class="row">
             <div class="col-md-3">
           <label class="label-filter">Genre</label>
-          <select id="book-genre" class="btn btn-filter btn-primary" onchange="handleChange()"></select>
+          <select id="book-genre" class="btn btn-filter" onchange="handleChange()"></select>
             </div>
           <div class="col-md-3">
               <label class="label-filter">Theme</label>
-          <select id="book-theme" class="btn btn-filter btn-primary" onchange="handleChange()"></select>
+          <select id="book-theme" class="btn btn-filter" onchange="handleChange()"></select>
         </div>
           <div class="col-md-3">
               <label class="label-filter">Format</label>
-          <select id="book-format" class="btn btn-filter btn-primary" onchange="handleChange()">
+          <select id="book-format" class="btn btn-filter" onchange="handleChange()">
           </select> 
       </div>
         </div>
@@ -88,8 +88,8 @@
   <script src="/assets/js/book.js"></script>
 
   <script type="text/javascript">
-    $(document).ready(getOption());
-    getBooks();
+    getOption();
+    $(document).ready(getBooks());
    </script>
 
 

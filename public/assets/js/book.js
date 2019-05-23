@@ -107,13 +107,13 @@ function parseBookData(book) {
 }
 
 function getOption() {
+       populateFormatOptions();
        fetch('/v2/theme').then(function(response) {
               return response.json();
       }).then(populateThemeOptions)
       fetch('/v2/genre').then(function(response) {
               return response.json();
-       }).then(populateGenreOptions)
-       populateFormatOptions();
+       }).then(populateGenreOptions);
 }
 
 
@@ -136,9 +136,10 @@ function populateThemeOptions(theme) {
 }
 
 function populateFormatOptions() {
-       let html =  "<option id=''>All formats</option>";
-      if(EBOOK_FILTER == "") html += `<option id='eBook' selected>Only eBooks</option>`;
-      else html += `<option id='eBook'>Only eBooks</option>`;
+      EBOOK_FILTER = sessionStorage.getItem("EBOOK_FILTER");
+      let html = "<option id=''>All formats</option>";
+      if(EBOOK_FILTER != "") html += `<option id='eBook' selected>eBook</option>`;
+      else html += "<option id='eBook'>eBook</option>";
        $("#book-format")[0].innerHTML = html;
 }
 
