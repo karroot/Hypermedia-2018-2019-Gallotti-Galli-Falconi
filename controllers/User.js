@@ -9,11 +9,11 @@ module.exports.getCartByUser = function getCartByUser (req, res, next) {
   
   var id = req.swagger.params['id'].value;
   if (req.session.logged_id != id ) {
-    response.writeHead(302, {
-      Location: '../pages/login.html'
+    res.writeHead(301,
+      { Location: "../pages/login.html"  }
+     );
     
-    });
-    response.end();
+     res.end();
 } else 
 { User.getCartByUser(id)
     .then(function (response) {
@@ -27,11 +27,11 @@ module.exports.getCartByUser = function getCartByUser (req, res, next) {
 module.exports.getCartDetailByUser = function getCartDetailByUser (req, res, next) {
   var id = req.swagger.params['id'].value;
   if (req.session.logged_id != id ) {
-    response.writeHead(302, {
-      Location: '../pages/login.html'
+    res.writeHead(301,
+      { Location: "../pages/login.html"  }
+     );
     
-    });
-    response.end();
+     res.end();
     
 } else 
 {
@@ -70,11 +70,12 @@ module.exports.getUserById = function getUserById (req, res, next) {
 }  
 else 
 {
-response.writeHead(302, {
-  Location: '../pages/login.html'
-
-});
-response.end();
+  
+  res.writeHead(301,
+   { Location: "../pages/login.html"  }
+  );
+ 
+  res.end();
 }
 };
 
