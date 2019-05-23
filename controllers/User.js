@@ -64,9 +64,9 @@ else
 {
   
   res.writeHead(301,
-    { Location: "./"  }
+    { Location: "https://mdgbookstore.herokuapp.com/pages/login.html"  }
  );
-  utils.writeJson(res, { error: "sorry, you must be authorized" }, 404);
+ 
  res.end();
 }
 };
