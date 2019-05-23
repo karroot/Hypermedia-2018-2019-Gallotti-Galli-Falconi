@@ -81,33 +81,3 @@ exports.getReviewById = function(id) {
 }
 
 
-
-
-/**
- * Add a new review to the store
- *
- * body Review Review object that needs to be added to the database
- * returns Review
- **/
-exports.postReview = function(body) {
-
-  return sqlDb("Reviews").where({"bookId":body.bookId,"userId":body.userId ,"stars":body.stars,"title":body.title,"text":body.text})
-  .join('users', {'reviews.userId': 'users.id'})
-  .join('cartdetail',{'reviews.userId': 'cartdetail.userId'})
-  .join('cartdetail',{'reviews.bookId': 'cartdetail.bookId'});
-}
-
-
-/**
- * Update an existing review
- *
- * body Review Review object that needs to be modified
- * returns Review
- **/
-exports.putReview = function(body) {
-  return sqlDb("Reviews").where({"bookId":body.bookId,"userId":body.userId ,"stars":body.stars,"title":body.title,"text":body.text})
-  .join('users', {'reviews.userId': 'users.id'})
-  .join('cartdetail',{'reviews.userId': 'cartdetail.userId'})
-  .join('cartdetail',{'reviews.bookId': 'cartdetail.bookId'});
-}
-
