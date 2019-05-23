@@ -735,7 +735,38 @@ paths:
             $ref: "#/definitions/Cart"
         405:
           description: "Invalid input"
-      x-swagger-router-controller: "User"
+      x-swagger-router-controller: "Cart"
+      
+    delete:
+      tags:
+      - "cart"
+      summary: "Update the cart of a given user"
+      operationId: "deleteCartDetailByUserId"
+      consumes:
+      - "application/json"
+      produces:
+      - "application/json"
+      parameters:
+      - name: "userId"
+        in: "path"
+        description: "ID of the user whose cart needs to be modified"
+        required: true
+        type: "integer"
+        format: "int64"
+      - in: "body"
+        name: "body"
+        description: "Id of book and the quantity that needs to be delete from cart"
+        required: true
+        schema:
+          $ref: "#/definitions/CartItem"
+      responses:
+        200:
+          description: "successful operation"
+          schema:
+            $ref: "#/definitions/Cart"
+        405:
+          description: "Invalid input"
+      x-swagger-router-controller: "Cart"  
   /author:
     get:
       tags:
@@ -926,6 +957,44 @@ paths:
           description: "Invalid ID supplied"
         404:
           description: "Event not found"
+      x-swagger-router-controller: "Events"
+  /events/{id}/author:
+    get:
+      tags:
+      - "events"
+      summary: "Retrieve the authors of an event"
+      operationId: "getAuthorsByEventId"
+      produces:
+      - "application/json"
+      parameters:
+      - name: "id"
+        in: "path"
+        description: "ID of event of which to retrieve the authors"
+        required: true
+        type: "integer"
+        format: "int64"
+      - name: "offset"
+        in: "query"
+        description: "Pagination offset. Default is 0."
+        required: false
+        type: "integer"
+      - name: "limit"
+        in: "query"
+        description: "Maximum number of items per page. Default is 20 and cannot exceed\
+          \ 500."
+        required: false
+        type: "integer"
+      responses:
+        200:
+          description: "successful operation"
+          schema:
+            type: "array"
+            items:
+              $ref: "#/definitions/Author"
+        400:
+          description: "Invalid ID supplied"
+        404:
+          description: "event not found"
       x-swagger-router-controller: "Events"
   /review:
     get:

@@ -92,10 +92,8 @@ exports.getBookByAuthor = function(id) {
  * returns List
  **/
 exports.getEventsByAuthor = function(id) {
-  return sqlDb("events")
-  .where(function() {
-  this.where({authorid1: id}).orWhere({authorid2: id}).orWhere({authorid3: id}).orWhere({authorid4: id})
-})
+  return sqlDb("eventsAndAuthor")
+  .where({authorId: id})
   .then(data => {
     return data
   });

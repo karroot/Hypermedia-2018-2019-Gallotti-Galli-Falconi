@@ -9,6 +9,7 @@ let { usersDbSetup } = require("./UserService");
 let { cartsdetailDbSetup} = require("./CartService");
 let { ebooksDbSetup } = require("./EbookService");
 let {authorsAndBookDbSetup} = require("./AuthorService")
+let{eventsAndAuthorDbSetup} = require("./EventsService");
 
 let{themeDbSetup}= require("./ThemeService");
 let{genreDbSetup}= require("./GenreService");
@@ -22,7 +23,7 @@ let sqlDb = sqlDbFactory({
 function setupDataLayer() {
   console.log("Setting up data layer");
   return booksDbSetup(sqlDb),authorsDbSetup(sqlDb),authorsAndBookDbSetup(sqlDb),eventsDbSetup(sqlDb),reviewsDbSetup(sqlDb),usersDbSetup(sqlDb),ebooksDbSetup(sqlDb)
-  ,similarbooksDbSetup(sqlDb),cartsdetailDbSetup(sqlDb),themeDbSetup(sqlDb),genreDbSetup(sqlDb);
+  ,similarbooksDbSetup(sqlDb),cartsdetailDbSetup(sqlDb),themeDbSetup(sqlDb),genreDbSetup(sqlDb),eventsAndAuthorDbSetup(sqlDb);
   
 }
 

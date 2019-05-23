@@ -39,7 +39,32 @@ exports.cartsdetailDbSetup = function(database) {
 };
 
 
+/**
+ * Update the cart of a given user
+ *
+ * userId Long ID of the user whose cart needs to be modified
+ * body CartItem Id of book and the quantity that needs to be delete from cart
+ * returns Cart
+ **/
+exports.deleteCartDetailByUserId = function(userId,body) {
+  
+  // body.quantity) sempre quantità corrente
 
+    console.log("quantity : "+body.quantity);
+    var quan=body.quantity -1;
+    
+    if (body.quantity==1){
+     return sqlDb("cartsdetail")
+     .where({"userId":userId ,"bookId":body.bookId,"quantity":body.quantity}).del();
+    }
+    else{
+     return sqlDb("cartsdetail")
+     .where({"userId":userId ,"bookId":body.bookId,"quantity":body.quantity}).update({ quantity: quan });
+    }
+
+  
+ 
+}
 
 
 /**
@@ -51,7 +76,7 @@ exports.cartsdetailDbSetup = function(database) {
  **/
 exports.putCartDetailByUserId = function(userId,body) {
   return sqlDb("cartsdetail")
-  .insert({"userId":userId ,"bookId":body.bookId,"total":body.total,"quantity":body.quantity});
+  .insert({"userId":userId ,"bookId":body.bookId,"quantity":body.quantity});
 }
 
 
