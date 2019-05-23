@@ -106,26 +106,40 @@ function parseBookData(book) {
        
 }
 
-function getTheme() {
+function getOption() {
        fetch('/v2/theme').then(function(response) {
               return response.json();
       }).then(populateThemeOptions)
       fetch('/v2/genre').then(function(response) {
               return response.json();
        }).then(populateGenreOptions)
+       populateFormatOptions();
 }
 
 
 function populateGenreOptions(genre) {
        let html = "<option id=''>All genres</option>";
-       genre.forEach(g => (html += `<option id='${g.genre}'>${g.genre}</option>`));
+       genre.forEach(g => {
+              if(GENRE_FILTER == g.genre) html += `<option id='${g.genre}' selected>${g.genre}</option>`;
+              else html += `<option id='${g.genre}'>${g.genre}</option>`
+       });
        $("#book-genre")[0].innerHTML = html;
 }
 
 function populateThemeOptions(theme) {
        let html =  "<option id=''>All themes</option>";;
-       theme.forEach(t => (html += `<option id='${t.theme}'>${t.theme}</option>`));
+       theme.forEach(t => {
+              if(THEME_FILTER == t.theme) html += `<option id='${t.theme}' selected>${t.theme}</option>`;
+              else html += `<option id='${t.theme}'>${t.theme}</option>`;
+       });
        $("#book-theme")[0].innerHTML = html;
+}
+
+function populateFormatOptions() {
+       let html =  "<option id=''>All formats</option>";
+      if(EBOOK_FILTER != "") html += `<option id='eBook' selected>Only eBooks</option>`;
+      else html += `<option id='eBook'>Only eBooks</option>`;
+       $("#book-format")[0].innerHTML = html;
 }
 
 function handleChange(e) {

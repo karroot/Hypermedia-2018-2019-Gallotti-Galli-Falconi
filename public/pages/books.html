@@ -19,13 +19,12 @@
     <div id="header"></div>
     <div class="content space-header">
 
-      <nav aria-label="breadcrumb">
+     <!--  <nav aria-label="breadcrumb">
         <ol class="breadcrumb">
           <li class="breadcrumb-item active" aria-current="page">All Books</li>
         </ol>
-      </nav>
-
-      <div class="container clearfix"> 
+      </nav> -->
+      <div class="container my-4 clearfix"> 
         <h1> Books</h1>
         <div class="float-right">
             <div class="row">
@@ -40,8 +39,6 @@
           <div class="col-md-3">
               <label class="label-filter">Format</label>
           <select id="book-format" class="btn btn-filter btn-primary" onchange="handleChange()">
-            <option id="">All formats</option>
-            <option id="eBook">Only eBook</option>
           </select> 
       </div>
         </div>
@@ -91,8 +88,8 @@
   <script src="/assets/js/book.js"></script>
 
   <script type="text/javascript">
-    $(document).ready(getBooks());
-    getTheme();
+    $(document).ready(getOption());
+    getBooks();
    </script>
 
 
