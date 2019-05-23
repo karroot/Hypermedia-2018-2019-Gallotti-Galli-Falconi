@@ -89,10 +89,11 @@ module.exports.logoutUser = function logoutUser (req, res, next) {
 };
 
 module.exports.postuserLogin = function postuserLogin (req, res, next) {
-  var username = req.swagger.params["username"].value;
-  var password = req.swagger.params["password"].value;
 
-  User.postuserLogin(username, password)
+  var password = req.swagger.params["password"].value;
+  var mail = req.swagger.params['mail'].value;
+
+  User.postuserLogin(mail, password)
   .then(function(response){ 
 
      bcrypt.compare(password, response[0].password, function (err, result) {
@@ -120,13 +121,16 @@ module.exports.postuserLogin = function postuserLogin (req, res, next) {
 };
 
 module.exports.postuserRegister = function postuserRegister (req, res, next) {
-  var body = req.swagger.params['body'].value;
-  User.postuserRegister(body)
+  var password = req.swagger.params['password'].value;
+  var username = req.swagger.params['username'].value;
+  var mail = req.swagger.params['mail'].value;
+
+
+  User.postuserRegister(mail,password,username)
     .then(function(response) {
       if(response.length == 1) {
         utils.writeJson(res,response,200);}
       else{
-        
         utils.writeJson(res,response,403);}
       }
     )

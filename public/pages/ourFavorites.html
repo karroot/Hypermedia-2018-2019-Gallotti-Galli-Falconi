@@ -7,7 +7,7 @@
     <script defer src="https://use.fontawesome.com/releases/v5.8.2/js/all.js" integrity="sha384-DJ25uNYET2XCl5ZF++U8eNxPWqcKohUUBUpKGlNLMchM7q4Wjg2CUpjHLaL8yYPH" crossorigin="anonymous"></script>
     <!-- Bootstrap CSS -->
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
-    <title>Books</title>
+    <title>Our Favorites</title>
     <!-- Fonts -->
     <link href="https://fonts.googleapis.com/css?family=Oswald:400" rel="stylesheet"> 
     <link rel="shortcut icon" type="image/ico" href="../assets/img/favicon.ico"/>
@@ -19,45 +19,28 @@
     <div id="header"></div>
     <div class="content space-header">
 
-     <!--  <nav aria-label="breadcrumb">
-        <ol class="breadcrumb">
-          <li class="breadcrumb-item active" aria-current="page">All Books</li>
-        </ol>
-      </nav> -->
       <div class="container my-4 clearfix"> 
-        <h1> Books</h1>
-        <div class="float-right">
-            <div class="row">
-            <div class="col-md-3">
-          <label class="label-filter">Genre</label>
-          <select id="book-genre" class="btn btn-filter" onchange="handleChange()"></select>
-            </div>
-          <div class="col-md-3">
-              <label class="label-filter">Theme</label>
-          <select id="book-theme" class="btn btn-filter" onchange="handleChange()"></select>
-        </div>
-          <div class="col-md-3">
-              <label class="label-filter">Format</label>
-          <select id="book-format" class="btn btn-filter" onchange="handleChange()">
-          </select> 
-      </div>
-        </div>
-        </div>
-      </div>
-
-      <div class="container my-5">
-        <div class="d-flex justify-content-around flex-direction: row">      
-          <div id="book1" class="bookCard1-template-container book"></div>
-          <div id="book2" class="bookCard2-template-container book"></div>
-        </div>
-      </div>
+        <h1>Our favorites reading</h1>
+        <p class="mb-4">Curious to know what our team reads? Let's find out!</p>
+        <h3 class="separator mt-5">
+            <img src="/assets/img/team/DavideGalli.png" class="rounded-circle mr-3" style="width: 3rem" alt="Davide Galli"> Davide likes:
+        </h3>
+        <div id="bookD" class="bookCard-template-container book"></div>
+    
+        <h3 class="separator mt-5">
+            <img src="/assets/img/team/GabrieleGallotti.png" class="rounded-circle mr-3" style="width: 3rem" alt="Davide Galli"> Gabriele likes:
+        </h3>
+        <div id="bookG" class="bookCard-template-container book"></div>
+        <h3 class="separator mt-5">
+            <img src="/assets/img/team/MatteoFalconi.png" class="rounded-circle mr-3" style="width: 3rem" alt="Davide Galli"> Matteo likes:
+        </h3>
+        <div id="bookM" class="bookCard-template-container book"></div>
     </div>
-
   <div id="footer"></div>
 
   <!-- Template -->
   <script type="text/html" id="template">
-    <div class="card mb-3 shadow-sm" style="max-width: 540px;">
+    <div class="card mt-3 mx-auto shadow-sm" style="max-width: 540px;">
       <div class="row no-gutters">
         <div class="col-4">
           <img data-src="id" data-format="picFormatter" data-format-target="src" class="card-img img-card" data-alt="title">
@@ -66,7 +49,6 @@
           <div class="card-body">
             <h4 class="card-title" data-content="title"></h4>
             <p class="card-text my-3"  data-format="factFormatter" data-content="factSheet"></p>
-            <br>
             <p class="card-text font-weight-bold price-card" data-content="price" data-format="priceFormatter"></p>
           </div>
           <a class="btn btn-primary btn-info-desktop" data-href="id" data-format="bookHrefFormatter" data-format-target="href">INFO</a>
@@ -88,8 +70,7 @@
   <script src="/assets/js/book.js"></script>
 
   <script type="text/javascript">
-    getOption();
-    $(document).ready(getBooks());
+    $(document).ready(getFavorites());
    </script>
 
 

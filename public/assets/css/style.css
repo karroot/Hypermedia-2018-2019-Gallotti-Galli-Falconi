@@ -306,3 +306,7 @@ html, body {
     }
 
 }
+
+.separator {
+    background-color: #e9ecef;
+}

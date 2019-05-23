@@ -238,7 +238,6 @@ paths:
         404:
           description: "Book not found"
       x-swagger-router-controller: "Book"
-  
   /book/{bookId}/events:
     get:
       tags:
@@ -575,7 +574,7 @@ paths:
       produces:
       - "application/json"
       parameters:
-      - name: "username"
+      - name: "mail"
         in: "formData"
         required: true
         type: "string"
@@ -586,29 +585,6 @@ paths:
       responses:
         200:
           description: "succesfull login"
-        404:
-          description: "unauthorized"
-      x-swagger-router-controller: "User"
-  /user/register:
-    post:
-      tags:
-      - "user"
-      summary: "Register"
-      description: "Register into the store"
-      operationId: "postuserRegister"
-      consumes:
-      - "application/x-www-form-urlencoded"
-      produces:
-      - "application/json"
-      parameters:
-      - in: "body"
-        name: "body"
-        required: true
-        schema:
-          $ref: "#/definitions/User"
-      responses:
-        200:
-          description: "succesfull registration"
         404:
           description: "unauthorized"
       x-swagger-router-controller: "User"
@@ -728,38 +704,7 @@ paths:
         default:
           description: "successful operation"
       x-swagger-router-controller: "User"
- 
-  /cart/{userId}:
-    put:
-      tags:
-      - "cart"
-      summary: "Update the cart of a given user"
-      operationId: "putCartByUserId"
-      consumes:
-      - "application/json"
-      produces:
-      - "application/json"
-      parameters:
-      - name: "userId"
-        in: "path"
-        description: "ID of the user whose cart needs to be modified"
-        required: true
-        type: "integer"
-        format: "int64"
-      - in: "body"
-        name: "body"
-        description: "Id of book and the quantity that needs to be added to the cart"
-        required: true
-        schema:
-          $ref: "#/definitions/Cart"
-      responses:
-        200:
-          description: "successful operation"
-          schema:
-            $ref: "#/definitions/Cart"
-        405:
-          description: "Invalid input"
-      x-swagger-router-controller: "User"
+
   /cart/detail/{userId}:
     put:
       tags:
@@ -790,7 +735,38 @@ paths:
             $ref: "#/definitions/Cart"
         405:
           description: "Invalid input"
-      x-swagger-router-controller: "User"
+      x-swagger-router-controller: "Cart"
+      
+    delete:
+      tags:
+      - "cart"
+      summary: "Update the cart of a given user"
+      operationId: "deleteCartDetailByUserId"
+      consumes:
+      - "application/json"
+      produces:
+      - "application/json"
+      parameters:
+      - name: "userId"
+        in: "path"
+        description: "ID of the user whose cart needs to be modified"
+        required: true
+        type: "integer"
+        format: "int64"
+      - in: "body"
+        name: "body"
+        description: "Id of book and the quantity that needs to be delete from cart"
+        required: true
+        schema:
+          $ref: "#/definitions/CartItem"
+      responses:
+        200:
+          description: "successful operation"
+          schema:
+            $ref: "#/definitions/Cart"
+        405:
+          description: "Invalid input"
+      x-swagger-router-controller: "Cart"  
   /author:
     get:
       tags:
@@ -957,7 +933,6 @@ paths:
             items:
               $ref: "#/definitions/Event"
       x-swagger-router-controller: "Events"
-   
   /events/{id}:
     get:
       tags:
@@ -983,26 +958,21 @@ paths:
         404:
           description: "Event not found"
       x-swagger-router-controller: "Events"
-  /review:
+  /events/{id}/author:
     get:
       tags:
-      - "review"
-      summary: "Finds reviews"
-      description: "Retrieves reviews from the system"
-      operationId: "getAllReviews"
+      - "events"
+      summary: "Retrieve the authors of an event"
+      operationId: "getAuthorsByEventId"
       produces:
       - "application/json"
       parameters:
-      - name: "userId"
-        in: "query"
-        description: "The id of the user to retrieve the reviews by"
-        required: false
-        type: "string"
-      - name: "bookId"
-        in: "query"
-        description: "The id of the book to retrieve the reviews of"
-        required: false
-        type: "string"
+      - name: "id"
+        in: "path"
+        description: "ID of event of which to retrieve the authors"
+        required: true
+        type: "integer"
+        format: "int64"
       - name: "offset"
         in: "query"
         description: "Pagination offset. Default is 0."
@@ -1020,11 +990,32 @@ paths:
           schema:
             type: "array"
             items:
+              $ref: "#/definitions/Author"
+        400:
+          description: "Invalid ID supplied"
+        404:
+          description: "event not found"
+      x-swagger-router-controller: "Events"
+  /review:
+    get:
+      tags:
+      - "review"
+      summary: "Finds reviews"
+      description: "Retrieves reviews from the system"
+      operationId: "getAllReviews"
+      produces:
+      - "application/json"
+     
+      responses:
+        200:
+          description: "successful operation"
+          schema:
+            type: "array"
+            items:
               $ref: "#/definitions/Review"
         400:
           description: "Invalid bookId or userId value"
       x-swagger-router-controller: "Review"
-   
   /review/{id}:
     get:
       tags:
@@ -1104,25 +1095,21 @@ definitions:
   User:
     type: "object"
     required:
-    - "id"
-    - "name"
+    - "mail"
+    - "password"
     properties:
       id:
         type: "integer"
         format: "int64"
       name:
         type: "string"
-      address:
+      mail:
         type: "string"
-      creditcard:
+      password:
         type: "string"
     title: "User"
     description: "A user"
-    example:
-      id: 1
-      name: "Davide"
-      address: "Via Roma, Roma"
-      creditcard: "xdfehc"
+
   Cart:
     type: "object"
     properties:
@@ -1134,13 +1121,12 @@ definitions:
           $ref: "#/definitions/Book"
     title: "Cart"
     description: "Order for books"
-    
+   
   Book:
     type: "object"
     required:
     - "author"
     - "id"
-    - "price"
     - "title"
     properties:
       id:
@@ -1156,8 +1142,7 @@ definitions:
         type: "array"
         items:
           $ref: "#/definitions/Author"
-      price:
-        $ref: "#/definitions/Amount"
+     
       ebook:
         type: "boolean"
         description: "True if ebook is available"
@@ -1169,12 +1154,11 @@ definitions:
         type: "string"
       abstract:
         type: "string"
-      firstTheme:
+      Theme:
         type: "string"
-      secondTheme:
+      Genre:
         type: "string"
-      thirdTheme:
-        type: "string"
+
       events:
         type: "array"
         items:
@@ -1187,14 +1171,7 @@ definitions:
         - "out of stock"
     title: "Book"
     description: "A book for sale in the store"
-    example:
-      id: 0
-      title: "Brave new world"
-      author: "Aldous Huxley"
-      price:
-        value: 10
-        currency: "eur"
-      status: "available"
+   
   Review:
     type: "object"
     required:
@@ -1215,17 +1192,7 @@ definitions:
       review:
         type: "string"
         description: "text of the review"
-    example:
-      user:
-        name: "Davide"
-      book:
-        id: 0
-        title: "1984"
-        author: "Orwell George"
-        price:
-          value: 12
-          currency: "eur"
-      stars: 2
+  
   Event:
     type: "object"
     required:
@@ -1276,7 +1243,7 @@ definitions:
         format: "string"
       award:
         format: "string"
-    
+   
   CartItem:
     type: "object"
     required:
@@ -1305,10 +1272,7 @@ definitions:
         maximum: 10000
       currency:
         $ref: "#/definitions/Currency"
-    description: "Price\n"
-    example:
-      currency: "eur"
-      value: 11
+
   Currency:
     type: "string"
     pattern: "^[A-Z]{3,3}$"

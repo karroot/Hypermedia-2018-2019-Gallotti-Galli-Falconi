@@ -21,17 +21,35 @@ exports.eventsDbSetup = function(database) {
         .references('id')
         .inTable('books')
         .onDelete('CASCADE');
+      });
+    }
+  });
+};
+
+exports.eventsAndAuthorDbSetup = function(database) {
+  sqlDb = database;
+  console.log("Checking if events table exists");
+  return database.schema.hasTable("eventsAndAuthor").then(exists => {
+    if (!exists) {
+      console.log("It doesn't so we create it");
+      return database.schema.createTable("eventsAndAuthor", table => {
+        table.integer("authorId")
+        .notNullable()
+        .references('authorid')
+        .inTable('authors')
+        .onDelete('CASCADE');
+        table.integer("eventId")
+        .notNullable()
+        .references('id')
+        .inTable('events')
+        .onDelete('CASCADE');
 
 
-       
-
+        table.unique(['authorId', 'eventId']);
+        table.primary(['authorId','eventId']);
 
       });
-
-
-
-    }
-    
+    }    
   });
 };
 
@@ -51,6 +69,19 @@ exports.getEventById = function(id) {
   });
 }
 
+/**
+ * Find events by author ID
+ *
+ * id Long ID of event that needs to be fetched
+ * returns Event
+ **/
+exports.getAuthorsByEventId = function(id,offset,limit) {
+  return sqlDb("eventsAndAuthor")
+  .where({eventId: id})
+  .then(data => {
+    return data
+  });
+}
 
 /**
  * Find events by ID
@@ -65,109 +96,6 @@ exports.getEvents = function() {
   });
 }
 
-/**
- * Add a new event to the store
- *
- * body Event Event object that needs to be added to the database
- * no response value expected for this operation
- **/
-exports.postEvent = function(body) {
-
-}
 
 
-/**
- * Update an existing event
- *
- * body Event Event object that needs to be added to the database
- * returns Event
- **/
-exports.putEvent = function(body) {
-  return new Promise(function(resolve, reject) {
-    var examples = {};
-    examples['application/json'] = {
-  "date" : "",
-  "overview" : "",
-  "books" : [ {
-    "id" : 0,
-    "title" : "Brave new world",
-    "author" : "Aldous Huxley",
-    "price" : {
-      "value" : 10,
-      "currency" : "eur"
-    },
-    "status" : "available"
-  }, {
-    "id" : 0,
-    "title" : "Brave new world",
-    "author" : "Aldous Huxley",
-    "price" : {
-      "value" : 10,
-      "currency" : "eur"
-    },
-    "status" : "available"
-  } ],
-  "award" : "",
-  "advertisingPoster" : "",
-  "id" : 0,
-  "place" : "",
-  "authors" : [ {
-    "books" : [ {
-      "id" : 0,
-      "title" : "Brave new world",
-      "author" : "Aldous Huxley",
-      "price" : {
-        "value" : 10,
-        "currency" : "eur"
-      },
-      "status" : "available"
-    }, {
-      "id" : 0,
-      "title" : "Brave new world",
-      "author" : "Aldous Huxley",
-      "price" : {
-        "value" : 10,
-        "currency" : "eur"
-      },
-      "status" : "available"
-    } ],
-    "award" : "",
-    "name" : "",
-    "photo" : "",
-    "id" : 0,
-    "life" : ""
-  }, {
-    "books" : [ {
-      "id" : 0,
-      "title" : "Brave new world",
-      "author" : "Aldous Huxley",
-      "price" : {
-        "value" : 10,
-        "currency" : "eur"
-      },
-      "status" : "available"
-    }, {
-      "id" : 0,
-      "title" : "Brave new world",
-      "author" : "Aldous Huxley",
-      "price" : {
-        "value" : 10,
-        "currency" : "eur"
-      },
-      "status" : "available"
-    } ],
-    "award" : "",
-    "name" : "",
-    "photo" : "",
-    "id" : 0,
-    "life" : ""
-  } ]
-};
-    if (Object.keys(examples).length > 0) {
-      resolve(examples[Object.keys(examples)[0]]);
-    } else {
-      resolve();
-    }
-  });
-}
 

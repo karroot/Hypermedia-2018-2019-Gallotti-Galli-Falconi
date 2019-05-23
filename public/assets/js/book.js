@@ -107,13 +107,13 @@ function parseBookData(book) {
 }
 
 function getOption() {
+       populateFormatOptions();
        fetch('/v2/theme').then(function(response) {
               return response.json();
       }).then(populateThemeOptions)
       fetch('/v2/genre').then(function(response) {
               return response.json();
-       }).then(populateGenreOptions)
-       populateFormatOptions();
+       }).then(populateGenreOptions);
 }
 
 
@@ -136,9 +136,10 @@ function populateThemeOptions(theme) {
 }
 
 function populateFormatOptions() {
-       let html =  "<option id=''>All formats</option>";
-      if(EBOOK_FILTER == "") html += `<option id='eBook' selected>Only eBooks</option>`;
-      else html += `<option id='eBook'>Only eBooks</option>`;
+      EBOOK_FILTER = sessionStorage.getItem("EBOOK_FILTER");
+      let html = "<option id=''>All formats</option>";
+      if(EBOOK_FILTER != "") html += `<option id='eBook' selected>eBook</option>`;
+      else html += "<option id='eBook'>eBook</option>";
        $("#book-format")[0].innerHTML = html;
 }
 
@@ -176,4 +177,23 @@ function templateFormatter() {
                      return value.value+value.currency;
               }
        });
+}
+
+function getFavorites() {
+       fetch(`/v2/book/3`).then(function(response) {
+              return response.json();
+      }).then(parseFavorites).then(
+      fetch(`/v2/book/4`).then(function(response) {
+       return response.json();
+       }).then(parseFavorites)).then(
+       fetch(`/v2/book/7`).then(function(response) {
+       return response.json();
+       }).then(parseFavorites))
+}
+
+function parseFavorites(book) {
+       templateFormatter();
+       if(book[0].id == 3) $("#bookD").loadTemplate("#template", book);
+       if(book[0].id == 4) $("#bookG").loadTemplate("#template", book);
+       if(book[0].id == 7) $("#bookM").loadTemplate("#template", book);
 }
