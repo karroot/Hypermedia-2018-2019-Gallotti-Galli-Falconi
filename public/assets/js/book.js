@@ -178,3 +178,22 @@ function templateFormatter() {
               }
        });
 }
+
+function getFavorites() {
+       fetch(`/v2/book/3`).then(function(response) {
+              return response.json();
+      }).then(parseFavorites).then(
+      fetch(`/v2/book/4`).then(function(response) {
+       return response.json();
+       }).then(parseFavorites)).then(
+       fetch(`/v2/book/7`).then(function(response) {
+       return response.json();
+       }).then(parseFavorites))
+}
+
+function parseFavorites(book) {
+       templateFormatter();
+       if(book[0].id == 3) $("#bookD").loadTemplate("#template", book);
+       if(book[0].id == 4) $("#bookG").loadTemplate("#template", book);
+       if(book[0].id == 7) $("#bookM").loadTemplate("#template", book);
+}
