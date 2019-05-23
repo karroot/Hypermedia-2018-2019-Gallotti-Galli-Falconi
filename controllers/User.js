@@ -71,7 +71,11 @@ module.exports.getUserById = function getUserById (req, res, next) {
 else 
 {
   
-  utils.writeJson(res, { error: "sorry, you must be authorized" }, 404);
+  res.writeHead(301,
+    { Location: "/pages/login.html"  }
+ );
+ 
+ res.end();
 }
 };
 
