@@ -40,25 +40,38 @@
         </div> -->
       </div>
 
-      <div class="container my-5">
-        <div class="d-flex justify-content-around flex-direction: row">
-          <div id="event" class="eventCard1-template-container event"></div>
+      <div class="container my-5"> 
+        <div class="flex ">
+        <div class="eventCard1-template-container"></div>
+     
         </div>
       </div>
-    </div>
 
   <div id="footer"></div>
 
+   
   <!-- Template -->
   <script type="text/html" id="template">
-      <div class="row no-gutters">
+     <div class="card mb-3 event-card mx-auto">
+          <img class="card-img-top event-img-desktop"  data-format="picDesktopFormatter" data-format-target="src" data-src="id" alt="Event image">
+          
+          <img class="card-img-top event-img-mobile"  data-format="picMobileFormatter" data-format-target="src" data-src="id" alt="Event image">
+
+    
+        <div class="card-body">
+          <a class="btn btn-more btn-primary rounded-circle shadow-sm float-right" ><i class="fas fa-plus"></i></a>
+          <h5 class="card-title event-title centred" data-content="title"></h5>
+          <p class="card-text text-muted" data-format="dateFormatter" data-content="date"></p>
+        </div>
+      </div>
+      <!-- <div class="row no-gutters">
         <div class="card bg-dark text-white">
           <img class="event-img"  data-format="picFormatter" data-format-target="src" data-src="id" alt="Event image">
           <div class="card-img-overlay">
               <h2 class="card-title event-title centred" data-content="title"></h2>
           </div>
         </div>
-    </div>
+    </div> -->
     <br>
   </script>
 
