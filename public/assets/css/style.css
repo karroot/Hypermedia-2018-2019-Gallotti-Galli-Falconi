@@ -128,6 +128,14 @@ html, body {
 }
 #arrow {
     margin-right: 1rem;
+    background-color: none;
+    border: none;
+}
+#arrow:hover{
+    border: none;
+    color: black;
+    background-color: none;
+    cursor: pointer;
 }
 /*  Footer
  */
