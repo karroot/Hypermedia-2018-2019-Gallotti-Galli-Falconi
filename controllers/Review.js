@@ -4,11 +4,8 @@ var utils = require('../utils/writer.js');
 var Review = require('../service/ReviewService');
 
 module.exports.getAllReviews = function getAllReviews (req, res, next) {
-  var userId = req.swagger.params['userId'].value;
-  var bookId = req.swagger.params['bookId'].value;
-  var offset = req.swagger.params['offset'].value;
-  var limit = req.swagger.params['limit'].value;
-  Review.getAllReviews(userId,bookId,offset,limit)
+
+  Review.getAllReviews()
     .then(function (response) {
       utils.writeJson(res, response);
     })

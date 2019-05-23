@@ -41,10 +41,8 @@ exports.reviewsDbSetup = function(database) {
  * limit Integer Maximum number of items per page. Default is 20 and cannot exceed 500. (optional)
  * returns List
  **/
-exports.getAllReviews = function(userId,bookId,offset,limit) {
+exports.getAllReviews = function() {
  return sqlDb("reviews")
-  .limit(limit)
-  .offset(offset)
   .then(data => {
     return data
   });

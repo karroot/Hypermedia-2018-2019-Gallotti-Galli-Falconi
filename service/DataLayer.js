@@ -6,7 +6,6 @@ let { authorsDbSetup } = require("./AuthorService");
 let { eventsDbSetup } = require("./EventsService");
 let { reviewsDbSetup } = require("./ReviewService");
 let { usersDbSetup } = require("./UserService");
-let { cartsDbSetup } = require("./CartService");
 let { cartsdetailDbSetup} = require("./CartService");
 let { ebooksDbSetup } = require("./EbookService");
 let {authorsAndBookDbSetup} = require("./AuthorService")
@@ -22,7 +21,7 @@ let sqlDb = sqlDbFactory({
 
 function setupDataLayer() {
   console.log("Setting up data layer");
-  return booksDbSetup(sqlDb),authorsDbSetup(sqlDb),authorsAndBookDbSetup(sqlDb),eventsDbSetup(sqlDb),reviewsDbSetup(sqlDb),usersDbSetup(sqlDb),cartsDbSetup(sqlDb),ebooksDbSetup(sqlDb)
+  return booksDbSetup(sqlDb),authorsDbSetup(sqlDb),authorsAndBookDbSetup(sqlDb),eventsDbSetup(sqlDb),reviewsDbSetup(sqlDb),usersDbSetup(sqlDb),ebooksDbSetup(sqlDb)
   ,similarbooksDbSetup(sqlDb),cartsdetailDbSetup(sqlDb),themeDbSetup(sqlDb),genreDbSetup(sqlDb);
   
 }

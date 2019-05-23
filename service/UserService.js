@@ -4,6 +4,7 @@ var bcrypt = require('bcrypt');
 let saltRounds = 10;
 let sqlDb;
 
+
 exports.usersDbSetup = function(database) {
   sqlDb = database;
   console.log("Checking if users table exists");
@@ -20,7 +21,7 @@ exports.usersDbSetup = function(database) {
         table.text("address");
         table.text("password")
         .notNullable();
-        table.text("creditCard");
+
       });
 
     }
@@ -72,48 +73,19 @@ exports.logoutUser = function() {
  * Login
  * Login with a form
  *
- * username String 
+ * mail String 
  * password String 
  * no response value expected for this operation
  **/
-exports.postuserLogin = function(username,password) {
-  //per ora facciamo così per sapere le password da salvare , poi lo faremo direttamente nel register
+exports.postuserLogin = function(mail,password) {
+  //facciamo così per sapere le password da salvare
   let hash = bcrypt.hashSync(password,10);
 console.log("pass :");
 console.log(hash);
-  return sqlDb("users").where({"address":username});
+  return sqlDb("users").where({"address":mail});
 }
 
 exports.getUserById = function(id) {
   
   return sqlDb("users").where({"id":id});
 }
-/**
- * Register
- * Register into the store
- *
- * body User 
- * no response value expected for this operation
- **/
-exports.postuserRegister = function(body) {
-  return sqlDb("users").select("address")
-  .where("address", body.email)
-  .then(userNametList => {
-      if (userNameList.length === 0) {
-          return knex('users')
-            .returning('id')
-            .insert([{
-              username: req.body.username,
-              address: req.body.email,
-              creditCard: req.body.creditCard,
-              password: bcrypt.hashSync(req.body.password, 10)
-            }])
-            .then((newUserId) => {
-                console.log('inserted user', newUserId);
-            });
-      }
-      console.log('not inserting user');
-      return;
-  });
-}
-
