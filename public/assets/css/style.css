@@ -124,6 +124,9 @@ html, body {
 .btn-more {
     position: relative;
 }
+#arrow {
+    margin-right: 1rem;
+}
 /*  Footer
  */
 #footer {

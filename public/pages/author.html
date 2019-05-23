@@ -17,7 +17,11 @@
   <body>
     <div id="header"></div>
     <div class="content space-header">
-        <div class="breadcrumb-template-container"></div>
+      <nav aria-label="breadcrumb">
+        <ol class="breadcrumb">
+          <li class="breadcrumb-item active" aria-current="page"><a onclick="history.go(-1)" id="arrow" class="fas fa-arrow-left fa-lg"></a> Author</li>
+        </ol>
+      </nav>
         
         <div class="container my-4"> 
             <div class="author-template-container"></div>
@@ -54,17 +58,6 @@
               <p class="card-text font-weight-bold" data-content="title"></p>
             </div>
     </a>
-  </script>
-
-    
-  <script type="text/html" id="breadcrumbTemplate">
-    <nav aria-label="breadcrumb">
-        <ol class="breadcrumb">
-          <li class="breadcrumb-item"><a href="/">Home</a></li>
-          <li class="breadcrumb-item"><a href="./authors.html">All Authors</a></li>
-          <li class="breadcrumb-item active" aria-current="page" data-content="name"></li>
-        </ol>
-    </nav>
   </script>
 
   <!-- jQuery first, then Popper.js, then Bootstrap JS -->    
