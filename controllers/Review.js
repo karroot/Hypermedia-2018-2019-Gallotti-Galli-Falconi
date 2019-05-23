@@ -39,35 +39,3 @@ module.exports.getReviewById = function getReviewById (req, res, next) {
     });
 };
 
-module.exports.getUserByReview = function getUserByReview (req, res, next) {
-  var id = req.swagger.params['id'].value;
-  Review.getUserByReview(id)
-    .then(function (response) {
-      utils.writeJson(res, response);
-    })
-    .catch(function (response) {
-      utils.writeJson(res, response);
-    });
-};
-
-module.exports.postReview = function postReview (req, res, next) {
-  var body = req.swagger.params['body'].value;
-  Review.postReview(body)
-    .then(function (response) {
-      utils.writeJson(res, response);
-    })
-    .catch(function (response) {
-      utils.writeJson(res, response);
-    });
-};
-
-module.exports.putReview = function putReview (req, res, next) {
-  var body = req.swagger.params['body'].value;
-  Review.putReview(body)
-    .then(function (response) {
-      utils.writeJson(res, response);
-    })
-    .catch(function (response) {
-      utils.writeJson(res, response);
-    });
-};

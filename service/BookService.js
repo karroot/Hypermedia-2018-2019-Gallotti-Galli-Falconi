@@ -10,6 +10,7 @@ exports.booksDbSetup = function(database) {
       console.log("It doesn't so we create it");
       return database.schema.createTable("books", table => {
         table.integer("id")
+        .increments()
         .primary();
         table.float("value");
         table.text("intro");

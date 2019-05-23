@@ -9,7 +9,11 @@ module.exports.getCartByUser = function getCartByUser (req, res, next) {
   
   var id = req.swagger.params['id'].value;
   if (req.session.logged_id != id ) {
-    utils.writeJson(res, { error: "sorry, you must be authorized" }, 404);
+    response.writeHead(302, {
+      Location: '../pages/login.html'
+    
+    });
+    response.end();
 } else 
 { User.getCartByUser(id)
     .then(function (response) {
@@ -23,7 +27,11 @@ module.exports.getCartByUser = function getCartByUser (req, res, next) {
 module.exports.getCartDetailByUser = function getCartDetailByUser (req, res, next) {
   var id = req.swagger.params['id'].value;
   if (req.session.logged_id != id ) {
-    utils.writeJson(res, { error: "sorry, you must be authorized" }, 404);
+    response.writeHead(302, {
+      Location: '../pages/login.html'
+    
+    });
+    response.end();
     
 } else 
 {
@@ -62,12 +70,11 @@ module.exports.getUserById = function getUserById (req, res, next) {
 }  
 else 
 {
-  
-  //res.writeHead(301,
-  //  { Location: "../"  }
-//  );
-  utils.writeJson(res, { error: "sorry, you must be authorized" }, 404);
- // res.end();
+response.writeHead(302, {
+  Location: '../pages/login.html'
+
+});
+response.end();
 }
 };
 
@@ -75,7 +82,7 @@ module.exports.logoutUser = function logoutUser (req, res, next) {
 
   User.logoutUser()
     .then(function (response) {
-      req.session.loggedin = false;
+      req.session.logged_id = false;
       utils.writeJson(res, response);
     })
 

@@ -10,6 +10,7 @@ exports.themeDbSetup = function(database) {
       console.log("It doesn't so we create it");
       return database.schema.createTable("books", table => {
         table.integer("id")
+        .increments()
         .primary();
         table.float("value");
         table.text("intro");
@@ -19,11 +20,8 @@ exports.themeDbSetup = function(database) {
         table.text("theme");
         table.enum("status", ["available", "out of stock"]);
         table.text("ebook");
-        table.integer("authorid1");
-        table.integer("authorid2");
-        table.integer("authorid3");
-        table.integer("authorid4");
         table.text("currency");
+        table.text("BestSeller");
 
       });
     }
