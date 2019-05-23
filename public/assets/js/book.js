@@ -3,9 +3,16 @@ var THEME_FILTER = "";
 var EBOOK_FILTER = "";
 
 function getBooks() {
-       if(EBOOK_FILTER=="") getAll();
-       else geteBook();
+       getParam();
+       if(EBOOK_FILTER != "") geteBook();
+       else getAll();
 };
+
+function getParam() {
+       GENRE_FILTER = sessionStorage.getItem("GENRE_FILTER");
+       THEME_FILTER = sessionStorage.getItem("THEME_FILTER");
+       EBOOK_FILTER = sessionStorage.getItem("EBOOK_FILTER");
+}
 
 function getAll() {
        if(GENRE_FILTER == "" && THEME_FILTER == "") {
@@ -48,7 +55,7 @@ function getAll() {
 } */
 
 function filterBook(book) {
-       book = book.filter(b => b.genre==GENRE_FILTER);
+      book = book.filter(b => b.genre==GENRE_FILTER);
        parseData(book);
 }
 
@@ -65,8 +72,8 @@ function geteBook() {
 }
 
 function filtereBook(eBook) {
-       if(GENRE_FILTER!="") eBook = eBook.filter(b => b.genre==GENRE_FILTER);
-       if(THEME_FILTER!="") eBook = eBook.filter(b => b.theme==THEME_FILTER);
+       if(GENRE_FILTER != "") eBook = eBook.filter(b => b.genre==GENRE_FILTER);
+       if(THEME_FILTER != "") eBook = eBook.filter(b => b.theme==THEME_FILTER);
        parseData(eBook);
 }
 
@@ -110,24 +117,27 @@ function getTheme() {
 
 
 function populateGenreOptions(genre) {
-       let html = "<option id=''>All genre</option>";
+       let html = "<option id=''>All genres</option>";
        genre.forEach(g => (html += `<option id='${g.genre}'>${g.genre}</option>`));
        $("#book-genre")[0].innerHTML = html;
 }
 
 function populateThemeOptions(theme) {
-       let html =  "<option id=''>All theme</option>";;
+       let html =  "<option id=''>All themes</option>";;
        theme.forEach(t => (html += `<option id='${t.theme}'>${t.theme}</option>`));
        $("#book-theme")[0].innerHTML = html;
 }
 
 function handleChange(e) {
        let selectorGenre = $("#book-genre")[0];
-       GENRE_FILTER = selectorGenre.options[selectorGenre.selectedIndex].id;
+       let GENRE_FILTER = selectorGenre.options[selectorGenre.selectedIndex].id;
+       sessionStorage.setItem("GENRE_FILTER", GENRE_FILTER); 
        let selectorTheme = $("#book-theme")[0];
-       THEME_FILTER = selectorTheme.options[selectorTheme.selectedIndex].id;
+       let THEME_FILTER = selectorTheme.options[selectorTheme.selectedIndex].id;
+       sessionStorage.setItem("THEME_FILTER", THEME_FILTER); 
        let selectorFormat = $("#book-format")[0];
-       EBOOK_FILTER = selectorFormat.options[selectorFormat.selectedIndex].id;
+       let EBOOK_FILTER = selectorFormat.options[selectorFormat.selectedIndex].id;
+       sessionStorage.setItem("EBOOK_FILTER", EBOOK_FILTER); 
        getBooks();
 }
 

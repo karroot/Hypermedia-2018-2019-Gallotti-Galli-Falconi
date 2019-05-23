@@ -28,12 +28,23 @@
       <div class="container clearfix"> 
         <h1> Books</h1>
         <div class="float-right">
+            <div class="row">
+            <div class="col-md-3">
+          <label class="label-filter">Genre</label>
           <select id="book-genre" class="btn btn-filter btn-primary" onchange="handleChange()"></select>
+            </div>
+          <div class="col-md-3">
+              <label class="label-filter">Theme</label>
           <select id="book-theme" class="btn btn-filter btn-primary" onchange="handleChange()"></select>
+        </div>
+          <div class="col-md-3">
+              <label class="label-filter">Format</label>
           <select id="book-format" class="btn btn-filter btn-primary" onchange="handleChange()">
-            <option id="">All format</option>
+            <option id="">All formats</option>
             <option id="eBook">Only eBook</option>
           </select> 
+      </div>
+        </div>
         </div>
       </div>
 

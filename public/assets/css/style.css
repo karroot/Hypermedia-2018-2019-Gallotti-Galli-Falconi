@@ -184,7 +184,11 @@ html, body {
     color: #a55800;
 }
 
-
+/*  Books
+ */
+.label-filter {
+    margin-left: 6%;
+}
 /*  Book's card for Mobile
  */
 @media only screen and (max-width: 1199px) {

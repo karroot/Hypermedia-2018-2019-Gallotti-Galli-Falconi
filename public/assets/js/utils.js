@@ -58,3 +58,10 @@ function logout() {
   sessionStorage.clear();
   history.go(0); //refresh page
 }
+
+function clearEvent() {
+  console.log("fanculo");
+  sessionStorage.setItem("EBOOK_FILTER", "");
+  sessionStorage.setItem("GENRE_FILTER", "");
+  sessionStorage.setItem("THEME_FILTER", "");
+}
