@@ -137,7 +137,7 @@ function populateThemeOptions(theme) {
 
 function populateFormatOptions() {
        let html =  "<option id=''>All formats</option>";
-      if(EBOOK_FILTER != "") html += `<option id='eBook' selected>Only eBooks</option>`;
+      if(EBOOK_FILTER == "") html += `<option id='eBook' selected>Only eBooks</option>`;
       else html += `<option id='eBook'>Only eBooks</option>`;
        $("#book-format")[0].innerHTML = html;
 }

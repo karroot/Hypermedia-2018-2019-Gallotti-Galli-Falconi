@@ -64,3 +64,8 @@ function clearEvent() {
   sessionStorage.setItem("GENRE_FILTER", "");
   sessionStorage.setItem("THEME_FILTER", "");
 }
+
+function setEbook() {
+  clearEvent();
+  sessionStorage.setItem("EBOOK_FILTER", "eBook");
+}
