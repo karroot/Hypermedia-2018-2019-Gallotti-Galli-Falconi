@@ -15,7 +15,13 @@ html, body {
 .space-header {
     margin-top: 63px;
 }
-
+.btn-link {
+    color: #c66a00;
+}
+.btn-link:hover {
+    color: #c66a00;
+    text-decoration: underline;
+}
 /*  Navbar
  */
  .navbar-expand-lg {
@@ -227,6 +233,15 @@ html, body {
         position: absolute;
         top: 65%;
     }
+}
+/*  Author
+ */
+.card-link{
+    color: #333333;
+}
+.card-link:hover{
+    color: black;
+    text-decoration: underline;
 }
 /*  Author's info text
     Gradient effect
