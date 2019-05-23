@@ -9,7 +9,11 @@ module.exports.getCartByUser = function getCartByUser (req, res, next) {
   
   var id = req.swagger.params['id'].value;
   if (req.session.logged_id != id ) {
-    utils.writeJson(res, { error: "sorry, you must be authorized" }, 404);
+    res.writeHead(301,
+      { Location: "/pages/login.html"  }
+   );
+   
+   res.end();
 } else 
 { User.getCartByUser(id)
     .then(function (response) {
@@ -23,7 +27,11 @@ module.exports.getCartByUser = function getCartByUser (req, res, next) {
 module.exports.getCartDetailByUser = function getCartDetailByUser (req, res, next) {
   var id = req.swagger.params['id'].value;
   if (req.session.logged_id != id ) {
-    utils.writeJson(res, { error: "sorry, you must be authorized" }, 404);
+    res.writeHead(301,
+      { Location: "/pages/login.html"  }
+   );
+   
+   res.end();
     
 } else 
 {
@@ -64,7 +72,7 @@ else
 {
   
   res.writeHead(301,
-    { Location: "https://mdgbookstore.herokuapp.com/pages/login.html"  }
+    { Location: "/pages/login.html"  }
  );
  
  res.end();
