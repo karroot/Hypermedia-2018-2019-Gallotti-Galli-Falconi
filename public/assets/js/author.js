@@ -30,6 +30,33 @@ function getBookByAuthor() {
            return response.json();
    }).then(parseBookData)
 }
+function getEventByAuthor() {
+    let author_id = parseQueryString(location.search).id;
+    if (!author_id) location.replace("/pages/authors.html");
+    fetch(`/v2/author/${author_id}/event`).then(function(response) {
+           return response.json();
+   }).then(parseEventData)
+}
+function parseEventData(event) {
+    templateFormatter();
+
+    if(event==undefined) {
+        $(".eventCard1-template-container")[0].innerHTML = "<p>This author doesn't have any event yet</p>"
+        console.log("ciao");
+    }
+    else {
+        
+        $(".eventCard1-template-container").loadTemplate("#eventTemplate", event.slice(0, event.length/3), {
+            append: true
+        });
+        $(".eventCard2-template-container").loadTemplate("#eventTemplate", event.slice(event.length/3, 2*(event.length/3)), {
+            append: true
+        });
+        $(".eventCard3-template-container").loadTemplate("#eventTemplate", event.slice(2*(event.length/3), event.length), {
+            append: true
+        });
+    }
+}
 
 function parseAuthorData(author) {
     templateFormatter();
@@ -69,7 +96,7 @@ function parseBookData(book) {
         append: true
     });
 
- 
+    getEventByAuthor();
 }
 
 function templateFormatter() {
@@ -96,6 +123,18 @@ function templateFormatter() {
         },
         bookHrefFormatter: function(value, template) {
             return `/pages/book.html?id=${value}`;
-     }
+        },
+        eventHrefFormatter: function(value, template) {
+            return `/pages/event.html?id=${value}`;
+        },
+        picMobileFormatter: function(value, template) {
+            return `/assets/img/events/mobile/${value}.png`;
+        },
+        dateFormatter: function(value, template) { 
+                let temp = new Date(value.replace(' ', 'T'));
+                var month_names =["Jan","Feb","Mar","Apr","May","Jun","Jul","Aug","Sep","Oct","Nov","Dec"];
+                let myDate = temp.getDate() + "-" + (month_names[temp.getMonth()]) + "-" + (temp.getFullYear());
+                return myDate;     
+        }
     });
 }
