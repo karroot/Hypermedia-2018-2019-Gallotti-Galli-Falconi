@@ -26,8 +26,8 @@ $('#singIn').submit(function(e) {
     success: function(data, status){
           try{
             sessionStorage.setItem("authenticate", "true"); 
-           $('#successModal').modal('show');
-           window.setTimeout( function() {history.back()}, 1300 );
+            $("#fail-login")[0].innerHTML = `<div class="alert alert-success" role="alert"> WELCOME IN MDGBOOKS, ${data[0].username}! </div>`
+           window.setTimeout( function() {history.back()}, 1500 );
           } catch(e)  {
             //window.location.href = "/pages/error.html";
           }
