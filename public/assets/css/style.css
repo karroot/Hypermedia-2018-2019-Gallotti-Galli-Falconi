@@ -203,9 +203,9 @@ html, body {
 /*  Books
  */
 .label-filter {
-    margin-left: 6%;
+    margin-left: 4%;
 }
-/*  Book's card for Mobile
+/*  Book's card for Mobile and Tablet
  */
 @media only screen and (max-width: 1199px) {
     .img-card{
@@ -232,6 +232,13 @@ html, body {
     .price-card {
         position: absolute;
         top: 65%;
+    }
+}
+/*  Left-align filters in only-mobile ratio
+ */
+@media only screen and (max-width:767px) { 
+    #row-filter {
+        margin-left: 1%;
     }
 }
 /*  Author

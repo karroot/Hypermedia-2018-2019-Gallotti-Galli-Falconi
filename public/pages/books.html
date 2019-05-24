@@ -26,22 +26,21 @@
       </nav> -->
       <div class="container my-4 clearfix"> 
         <h1> Books</h1>
-        <div class="float-right">
-            <div class="row">
-            <div class="col-md-3">
-          <label class="label-filter">Genre</label>
-          <select id="book-genre" class="btn btn-filter" onchange="handleChange()"></select>
+        <div class="float-right" >
+          <div class="row" id="row-filter">
+            <div class="field">
+              <label for="Genre" class="label-filter">Genre</label><br>
+              <select id="book-genre" class="btn btn-filter" name="Genre" onchange="handleChange()"></select>
             </div>
-          <div class="col-md-3">
-              <label class="label-filter">Theme</label>
-          <select id="book-theme" class="btn btn-filter" onchange="handleChange()"></select>
-        </div>
-          <div class="col-md-3">
-              <label class="label-filter">Format</label>
-          <select id="book-format" class="btn btn-filter" onchange="handleChange()">
-          </select> 
-      </div>
-        </div>
+            <div class="field">
+              <label for="Theme" class="label-filter">Theme</label><br>
+              <select id="book-theme" class="btn btn-filter" name= "Theme" onchange="handleChange()"></select>
+            </div>
+            <div class="field">
+              <label for="Format"  class="label-filter">Format</label><br>
+              <select id="book-format" class="btn btn-filter" name="Format" onchange="handleChange()"></select>
+            </div>
+          </div>
         </div>
       </div>
 
