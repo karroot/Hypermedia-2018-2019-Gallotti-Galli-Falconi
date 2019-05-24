@@ -20,32 +20,24 @@
 
     <div class="content space-header">
 
-      <nav aria-label="breadcrumb">
-        <ol class="breadcrumb">
-          <li class="breadcrumb-item active" aria-current="page">All Events</li>
-        </ol>
-      </nav>
-
-      <div class="container clearfix"> 
+      <div class="container my-4 clearfix"> 
         <h1> Events</h1>
         <p class="my-1">Here you can find all our next events.</p>
         <p>Do you want to partecipate? It's free! See you there!</p>
-        <!-- <div class="float-right">
-          <select id="book-genre" class="btn btn-filter btn-primary" onchange="handleChange()"></select>
-          <select id="book-theme" class="btn btn-filter btn-primary" onchange="handleChange()"></select>
-          <select id="book-format" class="btn btn-filter btn-primary" onchange="handleChange()">
-            <option id="">All format</option>
-            <option id="eBook">Only eBook</option>
-          </select> 
-        </div> -->
-      </div>
-
-      <div class="container my-5"> 
-        <div class="flex ">
-        <div class="eventCard1-template-container"></div>
-     
+        <div class="float-right" >
+            <div class="field">
+              <label for="Date" class="label-filter"><b>Dates</b></label><br>
+              <select id="date" class="btn btn-filter" name="Date" onchange="handleChange()"></select>
+            </div>
         </div>
       </div>
+      <div class="container my-5"> 
+        <div class="flex ">
+        <div class="eventCard1-template-container event"></div>
+        </div>
+      </div>
+      
+  </div>
 
   <div id="footer"></div>
 
@@ -84,6 +76,7 @@
   <script src="/assets/js/event.js"></script>
 
   <script type="text/javascript">
+   populateOptions();
     $(document).ready(getEvents());
    </script>
 

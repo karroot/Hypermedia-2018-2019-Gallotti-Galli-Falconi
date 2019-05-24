@@ -59,10 +59,12 @@ function logout() {
   history.go(0); //refresh page
 }
 
-function clearEvent() {
+function clearFilter() {
   sessionStorage.setItem("EBOOK_FILTER", "");
   sessionStorage.setItem("GENRE_FILTER", "");
   sessionStorage.setItem("THEME_FILTER", "");
+  sessionStorage.setItem("MONTH_FILTER", "");
+
 }
 
 function setEbook() {
