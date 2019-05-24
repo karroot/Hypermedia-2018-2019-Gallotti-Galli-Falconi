@@ -40,9 +40,8 @@ function getEventByAuthor() {
 function parseEventData(event) {
     templateFormatter();
 
-    if(event==undefined) {
-        $(".eventCard1-template-container")[0].innerHTML = "<p>This author doesn't have any event yet</p>"
-        console.log("ciao");
+    if(event[0] == undefined) {
+        $(".eventCard1-template-container")[0].innerHTML = "<p class='mx-3'>This author doesn't have any event yet</p>"
     }
     else {
         
