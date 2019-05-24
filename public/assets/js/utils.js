@@ -68,7 +68,7 @@ function clearFilter() {
 }
 
 function setEbook() {
-  clearEvent();
+  clearFilter();
   sessionStorage.setItem("EBOOK_FILTER", "eBook");
 }
 
