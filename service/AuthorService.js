@@ -93,6 +93,7 @@ exports.getBookByAuthor = function(id) {
  **/
 exports.getEventsByAuthor = function(id) {
   return sqlDb("eventsAndAuthor")
+  .innerJoin('events', 'eventsAndAuthor.eventId', 'events.id')
   .where({authorId: id})
   .then(data => {
     return data
