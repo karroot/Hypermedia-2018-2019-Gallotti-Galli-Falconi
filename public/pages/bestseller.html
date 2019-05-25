@@ -7,7 +7,7 @@
     <script defer src="https://use.fontawesome.com/releases/v5.8.2/js/all.js" integrity="sha384-DJ25uNYET2XCl5ZF++U8eNxPWqcKohUUBUpKGlNLMchM7q4Wjg2CUpjHLaL8yYPH" crossorigin="anonymous"></script>
     <!-- Bootstrap CSS -->
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
-    <title>Books</title>
+    <title>Best Sellers</title>
     <!-- Fonts -->
     <link href="https://fonts.googleapis.com/css?family=Oswald:400" rel="stylesheet"> 
     <link rel="shortcut icon" type="image/ico" href="../assets/img/favicon.ico"/>
@@ -18,6 +18,11 @@
   <body>
     <div id="header"></div>
     <div class="content space-header">
+        <nav aria-label="breadcrumb">
+            <ol class="breadcrumb">
+              <li class="breadcrumb-item active" aria-current="page"><a onclick="history.go(-1)" id="arrow"><i class="fas fa-arrow-left fa-lg"></i></a> Book</li>
+            </ol>
+          </nav>
 
      <!--  <nav aria-label="breadcrumb">
         <ol class="breadcrumb">
@@ -25,24 +30,11 @@
         </ol>
       </nav> -->
       <div class="container my-4 clearfix"> 
-        <h1> Books</h1>
-        <p>Here you can find all our books and eBooks, filtered by genre, theme and format. <br>Curious to know which are our best seller? Visit our <a href="bestseller.html" class="btn-link">dedicated page</a>!</p>
-        <div class="float-right" >
-          <div class="row" id="row-filter">
-            <div class="field">
-              <label for="Genre" class="label-filter"><b>Genre</b></label><br>
-              <select id="book-genre" class="btn btn-filter" name="Genre" onchange="handleChange()"></select>
-            </div>
-            <div class="field">
-              <label for="Theme" class="label-filter"><b>Theme</b></label><br>
-              <select id="book-theme" class="btn btn-filter" name= "Theme" onchange="handleChange()"></select>
-            </div>
-            <div class="field">
-              <label for="Format"  class="label-filter"><b>Format</b></label><br>
-              <select id="book-format" class="btn btn-filter" name="Format" onchange="handleChange()"></select>
-            </div>
-          </div>
-        </div>
+        <h1>
+            <img id="bestSeller" src='/assets/img/bestSeller.png'  class="img-fluid mx-4" alt="bestSeller icon">
+            Best Sellers
+        </h1>
+        <p>Let's find out what our costumers love to read!</p>
       </div>
 
       <div class="container my-5">
@@ -68,13 +60,13 @@
             <p class="card-text my-3"  data-format="factFormatter" data-content="factSheet"></p>
             <br>
             <p class="card-text font-weight-bold price-card" data-content="price" data-format="priceFormatter"></p>
-            <img src='/assets/img/ebook.png' data-format="iconFormatter" data-format-target="class"  class="book-icon-desktop" data-class="ebook" alt="eBook icon">
+            <img src='/assets/img/bestSeller.png' data-format="iconFormatter" data-format-target="class" class="book-icon-desktop" data-class="BestSeller" alt="bestSeller icon">
           </div>
           <a class="btn btn-primary btn-info-desktop" data-href="id" data-format="bookHrefFormatter" data-format-target="href">INFO</a>
         </div>
       </div>
       <div class="card-footer wrapper" media= "screen and (max-width: 576px)">
-        <img src='/assets/img/ebook.png' data-format="iconFormatter" data-format-target="class" class="book-icon-mobile" data-class="ebook" alt="eBook icon">
+        <img src='/assets/img/bestSeller.png' data-format="iconFormatter" data-format-target="class" class="book-icon-mobile" data-class="BestSeller" alt="bestSeller icon">
         <a class="btn btn-primary btn-info-mobile"  data-href="id" data-format="bookHrefFormatter" data-format-target="href">INFO</a>
       </div> 
     </div>
@@ -90,8 +82,7 @@
   <script src="/assets/js/book.js"></script>
 
   <script type="text/javascript">
-    getOption();
-    $(document).ready(getBooks());
+    $(document).ready(getBestSeller());
    </script>
 
 

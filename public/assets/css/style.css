@@ -205,21 +205,25 @@ html, body {
 .label-filter {
     margin-left: 4%;
 }
-.ebook-icon {
+.book-icon {
     max-width: 36px;
     position: absolute;
     left: 1.2rem;
     bottom: 1.2rem;
 }
-.ebook-icon-none {
+.book-icon-none {
     max-width: 36px;
     display: none;
 }
-.ebook-icon-mobile {
+.book-icon-mobile {
     max-width: 36px;
     position: absolute;
     left: 82%;
     bottom: 3%;
+}
+
+#bestSeller {
+    max-width: 14%;
 }
 /*  Book's card for Mobile and Tablet
  */
@@ -232,7 +236,7 @@ html, body {
     .btn-info-desktop {
         display: none;
     }
-    .ebook-icon-desktop {
+    .book-icon-desktop {
         display: none;
     }
 }

@@ -77,6 +77,17 @@ function filtereBook(eBook) {
        parseData(eBook);
 }
 
+function getBestSeller() {
+       fetch('/v2/book').then(function(response) {
+              return response.json();
+       }).then(filterBest)
+}
+
+function filterBest(book) {
+       book = book.filter(b => b.BestSeller=='true');
+       parseData(book);
+}
+
 function parseData(book) {
        $("#book1").html("");
        $("#book2").html("");
@@ -176,9 +187,9 @@ function templateFormatter() {
               priceFormatter : function(value, template) {
                      return value.value+value.currency;
               },
-              ebookIconFormatter: function(value, template) {
-                     if(value=='true') return 'ebook-icon'
-                     else return 'ebook-icon-none';
+              iconFormatter: function(value, template) {
+                     if(value=='true') return 'book-icon'
+                     else return 'book-icon-none';
               }
        });
 }
