@@ -175,6 +175,10 @@ function templateFormatter() {
               },
               priceFormatter : function(value, template) {
                      return value.value+value.currency;
+              },
+              ebookIconFormatter: function(value, template) {
+                     if(value=='true') return 'ebook-icon'
+                     else return 'ebook-icon-none';
               }
        });
 }

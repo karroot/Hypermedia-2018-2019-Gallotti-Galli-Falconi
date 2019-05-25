@@ -205,6 +205,22 @@ html, body {
 .label-filter {
     margin-left: 4%;
 }
+.ebook-icon {
+    max-width: 36px;
+    position: absolute;
+    left: 1.2rem;
+    bottom: 1.2rem;
+}
+.ebook-icon-none {
+    max-width: 36px;
+    display: none;
+}
+.ebook-icon-mobile {
+    max-width: 36px;
+    position: absolute;
+    left: 82%;
+    bottom: 3%;
+}
 /*  Book's card for Mobile and Tablet
  */
 @media only screen and (max-width: 1199px) {
@@ -214,6 +230,9 @@ html, body {
         transform: translate(0%, -50%);
     }
     .btn-info-desktop {
+        display: none;
+    }
+    .ebook-icon-desktop {
         display: none;
     }
 }
