@@ -55,7 +55,7 @@ function isAuthenticated() {
 }
 
 function logout() {
-  sessionStorage.clear();
+  sessionStorage.setItem("authenticate", "");;
   history.go(0); //refresh page
 }
 
@@ -70,8 +70,4 @@ function clearFilter() {
 function setEbook() {
   clearFilter();
   sessionStorage.setItem("EBOOK_FILTER", "eBook");
-}
-
-function injectAllert() {
-  $("#fail-login")[0].innerHTML = '<div class="alert alert-warning" role="alert"> eMail or password incorrect! </div>'
 }
