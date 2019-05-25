@@ -588,6 +588,36 @@ paths:
         404:
           description: "unauthorized"
       x-swagger-router-controller: "User"
+  /user/register:
+    post:
+      tags:
+      - "user"
+      summary: "Register"
+      description: "Register into the store"
+      operationId: "postuserRegister"
+      consumes:
+      - "application/x-www-form-urlencoded"
+      produces:
+      - "application/json"
+      parameters:
+      - name: "mail"
+        in: "formData"
+        required: true
+        type: "string"
+      - name: "password"
+        in: "formData"
+        required: true
+        type: "string"
+      - name: "username"
+        in: "formData"
+        required: true
+        type: "string"
+      responses:
+        200:
+          description: "succesfull registration"
+        404:
+          description: "unauthorized"
+      x-swagger-router-controller: "User"
   /user/{id}:
     get:
       tags:

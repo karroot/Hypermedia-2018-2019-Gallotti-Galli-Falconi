@@ -120,27 +120,16 @@ module.exports.postuserLogin = function postuserLogin (req, res, next) {
 });
 };
 
-module.exports.postuserRegister = function postuserRegister (req, res, next) {
-  var password = req.swagger.params['password'].value;
-  var username = req.swagger.params['username'].value;
-  var mail = req.swagger.params['mail'].value;
+    module.exports.postuserRegister = function postuserRegister (req, res, next) {
+      var mail = req.swagger.params['mail'].value;
+      var password = req.swagger.params['password'].value;
+      var username = req.swagger.params['username'].value;
+      User.postuserRegister(mail,password,username)
+        .then(function (response) {
+          utils.writeJson(res, response);
+        })
+        .catch(function (response) {
+          utils.writeJson(res, response);
+        });
+    };
 
-
-  User.postuserRegister(mail,password,username)
-    .then(function(response) {
-      if(response.length == 1) {
-        utils.writeJson(res,response,200);}
-      else{
-        utils.writeJson(res,response,403);}
-      }
-    )
-    .catch(function(response) {
-      if(response.length ==1) {
-        utils.writeJson(res,response,200);
-       }
-      else{
-        utils.writeJson(res,response,403);
-   
-      }
-    });
-}

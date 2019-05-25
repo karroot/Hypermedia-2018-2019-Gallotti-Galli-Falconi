@@ -89,3 +89,45 @@ exports.getUserById = function(id) {
   
   return sqlDb("users").where({"id":id});
 }
+
+
+exports.postuserRegister = function(mail,password,username) {
+  
+function isInDb (sqlDb,mail){
+return sqlDb("users").count("* as count").where({address:mail}).then(data =>{
+  
+  console.log("STAMPO DATA[0] COUNT " + data[0].count);
+
+  return (data[0].count > 0) ? true : false;
+});
+};
+
+function getId (sqlDb,mail,password,username){
+  return sqlDb("users").count("* as count").then(data =>{
+    var idm = parseInt(data[0].count) +1;
+    return sqlDb("users").insert([{
+      id: idm,
+      username: username,
+      address: mail,
+      password: bcrypt.hashSync(password, 10)
+    }]).then(data =>{
+      return true;
+    });
+  });  
+  };
+
+  return isInDb(sqlDb,mail).then( inDb =>{
+    if(inDb){
+      return {error: "mail usata"}
+    }
+    else{
+      return getId(sqlDb,mail,password,username).then(added =>{
+        if(added)
+          return { ok: "utente registrato"};
+        return {error: "utente non registrato"}
+
+      });
+    }
+  });
+   
+}
