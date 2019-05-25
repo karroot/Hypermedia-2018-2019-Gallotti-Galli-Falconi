@@ -15,6 +15,7 @@ function getParam() {
 }
 
 function getAll() {
+       $("#book-title")[0].innerHTML = "<h1>Books</h1>";
        if(GENRE_FILTER == "" && THEME_FILTER == "") {
               fetch('/v2/book').then(function(response) {
                      return response.json();
@@ -66,6 +67,7 @@ function filterBook(book) {
 } */
 
 function geteBook() {
+       $("#book-title")[0].innerHTML = "<h1>eBooks</h1>";
        fetch('/v2/ebook').then(function(response) {
               return response.json();
        }).then(filtereBook);
