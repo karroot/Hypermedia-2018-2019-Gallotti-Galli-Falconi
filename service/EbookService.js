@@ -19,7 +19,7 @@ exports.ebooksDbSetup = function(database) {
         table.text("theme");
         table.enum("status", ["available", "out of stock"]);
         table.text("currency");
-
+        table.integer("sold");
       });
     }
   });

@@ -102,7 +102,7 @@ return sqlDb("users").count("* as count").where({address:mail}).then(data =>{
 });
 };
 
-function getId (sqlDb,mail,password,username){
+function insertUser (sqlDb,mail,password,username){
   return sqlDb("users").count("* as count").then(data =>{
     var idm = parseInt(data[0].count) +1;
     return sqlDb("users").insert([{
@@ -121,7 +121,7 @@ function getId (sqlDb,mail,password,username){
       return {error: "mail usata"}
     }
     else{
-      return getId(sqlDb,mail,password,username).then(added =>{
+      return insertUser(sqlDb,mail,password,username).then(added =>{
         if(added)
           return { ok: "utente registrato"};
         return {error: "utente non registrato"}

@@ -80,5 +80,40 @@ exports.putCartDetailByUserId = function(userId,body) {
 }
 
 
+exports.putCartDetailByUserId = function(userId,body) {
+  
+  function isInDb (sqlDb,book){
+  return sqlDb("cartsdetail").count("* as count").where({bookId:book}).then(data =>{
+    
 
+  
+    return (data[0].count > 0) ? true : false;
+  });
+  };
+  
+  function updateBook (sqlDb,userId,body){
+    return sqlDb("cartsdetail").where({"userId":userId, "bookId": body.bookId}).then(data =>{
+      var idm = parseInt(data[0].quantity+body.quantity);
+      return sqlDb("cartsdetail").update({"userId":userId ,"bookId":body.bookId,"quantity":idm}).then(data =>{
+        return true;
+      });
+    });  
+    };
+  
+    return isInDb(sqlDb,body.bookId).then( inDb =>{
+      if(!inDb){
+        return sqlDb("cartsdetail")
+        .insert({"userId":userId ,"bookId":body.bookId,"quantity":body.quantity});
+      }
+      else{
+        return updateBook(sqlDb,userId,body).then(added =>{
+          if(added)
+            return { ok: "libro aggiunto"};
+          return {error: "libro non aggiunto"}
+  
+        });
+      }
+    });
+     
+  }
 
