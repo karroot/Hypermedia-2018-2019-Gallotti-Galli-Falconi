@@ -277,6 +277,9 @@ html, body {
     color: black;
     text-decoration: underline;
 }
+.no-underline:hover {
+    text-decoration: none;
+}
 /*  Author's info text
     Gradient effect
  */
