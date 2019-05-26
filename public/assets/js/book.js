@@ -121,6 +121,7 @@ function parseData(book) {
 function parseBookData(book) {
        templateFormatter();
 
+       document.title = book[0].title;
        book[0].intro = book[0].intro.split('\n').join('<br>');
 
        $(".book-template-container").loadTemplate("#template", book);
