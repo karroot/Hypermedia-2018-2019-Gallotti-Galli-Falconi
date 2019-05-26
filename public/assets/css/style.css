@@ -132,6 +132,10 @@ html, body {
     margin-right: 3.5%;
     margin-top: 1.5%;
 }
+.disabled {
+    background-color: #c66a00 !important;
+    border: #c66a00;
+}
 #arrow {
     margin-right: 1rem;
     background-color: none;
