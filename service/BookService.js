@@ -108,8 +108,10 @@ exports.getSimilarBook = function(bookId,offset,limit) {
   .offset(offset)
   .where({bookid1: bookId})
   .then(data => {
-    return data
-  });
+    return data.map(e => {
+      e.price = { value: e.value, currency: e.currency };
+      return e;
+    })});
 }
 
 
@@ -145,7 +147,9 @@ exports.getBookById = function(bookId) {
   return sqlDb("books")
   .where({id: bookId})
   .then(data => {
-    return data
-  });
+    return data.map(e => {
+      e.price = { value: e.value, currency: e.currency };
+      return e;
+    })});
 }
 //get  theme by book e get genere by book

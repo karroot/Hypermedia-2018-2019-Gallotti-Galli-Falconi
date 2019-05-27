@@ -39,8 +39,10 @@ exports.getBookByGenre = function(genreid,offset,limit) {
   .where({genre: genreid})
 
   .then(data => {
-    return data
-  });
+    return data.map(e => {
+      e.price = { value: e.value, currency: e.currency };
+      return e;
+    })});
 }
 
 
@@ -58,7 +60,9 @@ exports.getgenre = function(offset,limit) {
   .offset(offset)
   .distinct('genre')
   .then(data => {
-    return data
-  });
+    return data.map(e => {
+      e.price = { value: e.value, currency: e.currency };
+      return e;
+    })});
 }
 

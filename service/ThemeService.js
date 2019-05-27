@@ -41,8 +41,10 @@ exports.getBookByTheme = function(themeid,offset,limit) {
   .where({theme: themeid})
 
   .then(data => {
-    return data
-  });
+    return data.map(e => {
+      e.price = { value: e.value, currency: e.currency };
+      return e;
+    })});
 }
 
 
@@ -60,7 +62,9 @@ exports.gettheme = function(offset,limit) {
   .offset(offset)
   .distinct('theme')
   .then(data => {
-    return data
-  });
+    return data.map(e => {
+      e.price = { value: e.value, currency: e.currency };
+      return e;
+    })});
 }
 
