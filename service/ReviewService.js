@@ -59,8 +59,10 @@ exports.getBookByReview = function(id) {
   return sqlDb("books")
   .where({bookId: id})
   .then(data => {
-    return data
-  });
+    return data.map(e => {
+      e.price = { value: e.value, currency: e.currency };
+      return e;
+    })});
 }
 
 

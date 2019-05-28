@@ -71,8 +71,10 @@ exports.getebookById = function(ebookId) {
   return sqlDb("books")
   .where({id: ebookId})
   .then(data => {
-    return data
-  });
+    return data.map(e => {
+      e.price = { value: e.value, currency: e.currency };
+      return e;
+    })});
 }
 exports.getAuthorByebook = function(id,offset,limit) {
   return sqlDb("authorsAndBooks")
@@ -99,7 +101,9 @@ exports.getebooks = function(offset,limit) {
   .offset(offset)
   .where({ebook: 'true'})
   .then(data => {
-    return data
-  });
+    return data.map(e => {
+      e.price = { value: e.value, currency: e.currency };
+      return e;
+    })});
 }
 
