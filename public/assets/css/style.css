@@ -94,11 +94,11 @@ html, body {
 #btn-login {
     color: #201f1fe8;
     background-color: #f1f1f1;
-    border: 1px solid #ffca47;
+    border: none;
 }
 #btn-login:hover {
     background-color: #ffeeee; 
-    border: 1px solid #ffeeee;
+    border: none;
     color: #201f1fe8;
 }
 #btn-email {

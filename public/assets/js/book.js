@@ -130,9 +130,9 @@ function parseBookData(book) {
 
 function parseAuthorData(data) {
        let html = '<p class="font-weight-bold mx-4"> Written by ';
-       html += `<a href="/pages/author.html?id=${data[0].authorid}">${data[0].name}`
+       html += `<a class="btn-link font-weight-bold" href="/pages/author.html?id=${data[0].authorid}">${data[0].name}`
        if(data.length>1){
-              data.slice(1, data.length).forEach( a =>  html += `<a href="/pages/author.html?id=${a.authorid}">, ${a.name}`)
+              data.slice(1, data.length).forEach( a =>  html += `<a class="btn-link font-weight-bold" href="/pages/author.html?id=${a.authorid}">, ${a.name}`)
        }
        $('#author-template-container')[0].innerHTML = html;
 }
