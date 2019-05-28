@@ -279,8 +279,14 @@ function templateFormatter() {
               starsFormatter: function(value, template) {
                      return `/assets/img/books/${value}s.png`
               },
-              ebookButtonFormatter :function(value, template) {
+              ebookButtonFormatter : function(value, template) {
                      if(value != 'true') return `disabled`
+              },
+              bookPriceFormatter : function(value, template) {
+                     return  `<b>Paper ${value.value}${value.currency}`
+              },
+              eBookPriceFormatter : function(value, template) {
+                     return  `<b>eBook ${(value.value*0.42).toFixed(2)}${value.currency}`
               }
        });
 }

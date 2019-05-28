@@ -352,3 +352,9 @@ html, body {
 .separator {
     background-color: #e9ecef;
 }
+.bs-icon-mobile {
+    max-width: 36px;
+    position: absolute;
+    left: 82%;
+    bottom: 5%;
+}
