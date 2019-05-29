@@ -103,3 +103,35 @@ function showMoreMobile() {
     moreTextMobile.style.display = "inline";
   }
 }
+
+$('#password, #confirm_password').on('keyup', function () {
+  if ($('#password').val() == $('#confirm_password').val()) {
+    $('#message').html('Matching').css('color', 'green');
+  } else 
+    $('#message').html('Not Matching').css('color', 'red');
+}); 
+
+//Register
+$('#singUp').submit(function(e) {
+  e.preventDefault();
+
+  $("#fail-singup")[0].innerHTML = ''
+  $.ajax({
+    type: $('#singUp').attr('method'),
+    url: $('#singUp').attr('action'),
+    data: $('#singUp').serialize().replace("%40", "@"),
+    success: function(data, status){
+        if(data.error == 'mail usata') $("#fail-singup")[0].innerHTML = `<div class="alert alert-danger" role="alert"> This email has been already used! </div>`
+        if(data.ok=='utente registrato' ) {
+          $("#fail-singup")[0].innerHTML = `<div class="alert alert-success" role="alert"> WELCOME! </div>`
+          sessionStorage.setItem("authenticate", "true");
+          window.setTimeout( function() {window.location.href = "/"}, 1500 );
+
+        }
+        if(data.error == 'utente non registrato') history.go(0);
+    },
+    error: function(XMLHttpRequest, textStatus, errorThrown) {
+     
+    }
+  });
+});
