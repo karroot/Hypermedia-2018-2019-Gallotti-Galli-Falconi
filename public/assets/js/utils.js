@@ -83,21 +83,23 @@ $('#password, #confirm_password').on('keyup', function () {
 $('#singUp').submit(function(e) {
   e.preventDefault();
 
-  //$("#fail-login")[0].innerHTML = ''
+  $("#fail-singup")[0].innerHTML = ''
   $.ajax({
     type: $('#singUp').attr('method'),
     url: $('#singUp').attr('action'),
     data: $('#singUp').serialize().replace("%40", "@"),
     success: function(data, status){
-          try{ 
-            $("#fail-login")[0].innerHTML = `<div class="alert alert-success" role="alert"> WELCOME IN MDGBOOKS, ${data[0].username}! </div>`
-           
-          } catch(e)  {
-            //window.location.href = "/pages/error.html";
-          }
+        if(data.error == 'mail usata') $("#fail-singup")[0].innerHTML = `<div class="alert alert-danger" role="alert"> This email has been already used! </div>`
+        if(data.ok=='utente registrato' ) {
+          $("#fail-singup")[0].innerHTML = `<div class="alert alert-success" role="alert"> WELCOME! </div>`
+          sessionStorage.setItem("authenticate", "true");
+          window.setTimeout( function() {window.location.href = "/"}, 1500 );
+
+        }
+        if(data.error == 'utente non registrato') history.go(0);
     },
     error: function(XMLHttpRequest, textStatus, errorThrown) {
-      $("#fail-login")[0].innerHTML = '<div class="alert alert-danger" role="alert"> email or password incorrect! </div>'
+     
     }
   });
 });
