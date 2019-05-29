@@ -31,8 +31,16 @@
                 <a class="nav-link" href="/pages/authors.html">Authors</a>
               </li>
             </ul>
-            <a href="/pages/login.html" class="btn btn-outline-secondary btn-sm" id="btn-login">Log In</a>
-          <a href="/pages/register.html" class="btn btn-primary btn-sm " id="btn-signup">Sign Up</a>
+            <div id="beforeLogIn">
+              <a href="/pages/login.html" class="btn btn-outline-secondary btn-sm" id="btn-login">Log In</a>
+              <a href="/pages/register.html" class="btn btn-primary btn-sm " id="btn-signup">Sign Up</a>
+            </div>
+            <div id="afterLogIn">
+              <button class="btn btn-default" id="btn-cart" type="button">
+                <i class="fas fa-shopping-cart fa-lg" aria-hidden="true"></i>
+              </button>
+              <button class="btn btn-outline-secondary btn-sm" id="btn-logout" type="submit" onclick="logout()">Log Out</button>
+            </div>
     </div>
   </nav>
 </header>

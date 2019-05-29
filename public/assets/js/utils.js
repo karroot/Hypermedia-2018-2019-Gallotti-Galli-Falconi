@@ -1,11 +1,15 @@
 $(document).ready( () => {
   try{
     if(isAuthenticated()) {
-      $("#header")
-        .load('/assets/loggedHeader.html');
+    $("#header")
+    .load('/assets/header.html', function() {
+      $('#beforeLogIn').css('display', 'none');
+    });
     } else {
       $("#header")
-        .load('/assets/header.html');
+      .load('/assets/header.html', function() {
+        $('#afterLogIn').css('display', 'none');
+      });
     }
   $("#footer")
   .load('/assets/footer.html');
@@ -14,6 +18,8 @@ $(document).ready( () => {
   }
 });
 
+//    d(o.o)b
+//      p.q
 //Login
 $('#singIn').submit(function(e) {
   e.preventDefault();
@@ -72,6 +78,7 @@ function setEbook() {
   sessionStorage.setItem("EBOOK_FILTER", "eBook");
 }
 
+<<<<<<< HEAD
 function showMore() {
   var dots = document.getElementById("dots");
   var moreText = document.getElementById("more");
@@ -111,6 +118,8 @@ $('#password, #confirm_password').on('keyup', function () {
     $('#message').html('Not Matching').css('color', 'red');
 }); 
 
+=======
+>>>>>>> e3d7e38fdd2f87971869ae7cd652a1f12de095bc
 //Register
 $('#singUp').submit(function(e) {
   e.preventDefault();
@@ -123,10 +132,8 @@ $('#singUp').submit(function(e) {
     success: function(data, status){
         if(data.error == 'mail usata') $("#fail-singup")[0].innerHTML = `<div class="alert alert-danger" role="alert"> This email has been already used! </div>`
         if(data.ok=='utente registrato' ) {
-          $("#fail-singup")[0].innerHTML = `<div class="alert alert-success" role="alert"> WELCOME! </div>`
-          sessionStorage.setItem("authenticate", "true");
+           $("#fail-singup")[0].innerHTML = `<div class="alert alert-success" role="alert"> WELCOME! </div>`
           window.setTimeout( function() {window.location.href = "/"}, 1500 );
-
         }
         if(data.error == 'utente non registrato') history.go(0);
     },
