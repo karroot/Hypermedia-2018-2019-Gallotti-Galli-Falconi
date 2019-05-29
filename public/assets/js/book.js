@@ -130,9 +130,9 @@ function parseBookData(book) {
 
 function parseAuthorData(data) {
        let html = '<p class="font-weight-bold mx-4"> Written by ';
-       html += `<a href="/pages/author.html?id=${data[0].authorid}">${data[0].name}`
+       html += `<a class="btn-link font-weight-bold" href="/pages/author.html?id=${data[0].authorid}">${data[0].name}`
        if(data.length>1){
-              data.slice(1, data.length).forEach( a =>  html += `<a href="/pages/author.html?id=${a.authorid}">, ${a.name}`)
+              data.slice(1, data.length).forEach( a =>  html += `<a class="btn-link font-weight-bold" href="/pages/author.html?id=${a.authorid}">, ${a.name}`)
        }
        $('#author-template-container')[0].innerHTML = html;
 }
@@ -279,8 +279,14 @@ function templateFormatter() {
               starsFormatter: function(value, template) {
                      return `/assets/img/books/${value}s.png`
               },
-              ebookButtonFormatter :function(value, template) {
+              ebookButtonFormatter : function(value, template) {
                      if(value != 'true') return `disabled`
+              },
+              bookPriceFormatter : function(value, template) {
+                     return  `<b>Paper ${value.value}${value.currency}`
+              },
+              eBookPriceFormatter : function(value, template) {
+                     return  `<b>eBook ${(value.value*0.42).toFixed(2)}${value.currency}`
               }
        });
 }

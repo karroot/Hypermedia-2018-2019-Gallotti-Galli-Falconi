@@ -94,11 +94,11 @@ html, body {
 #btn-login {
     color: #201f1fe8;
     background-color: #f1f1f1;
-    border: 1px solid #ffca47;
+    border: none;
 }
 #btn-login:hover {
     background-color: #ffeeee; 
-    border: 1px solid #ffeeee;
+    border: none;
     color: #201f1fe8;
 }
 #btn-email {
@@ -351,4 +351,10 @@ html, body {
 
 .separator {
     background-color: #e9ecef;
+}
+.bs-icon-mobile {
+    max-width: 36px;
+    position: absolute;
+    left: 82%;
+    bottom: 5%;
 }
