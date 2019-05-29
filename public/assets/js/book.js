@@ -291,12 +291,26 @@ function templateFormatter() {
               introLongFormatter : function(value, template) {
                      let intro1 = value.substr(0,350);
                      let intro2 = value.substr(350, value.length);
-                     return intro1 + '<span id="dots">...</span>' + '<span id="more">' + intro2 + '</span>';
+                     intro1 += intro2.split('.')[0] + '.';
+                     if(intro2.split('.')[1].startsWith('<br>')) {
+                            intro2 = intro2.replace(intro2.split('.')[0] + '.<br>', ""); //No double <br>
+                     }
+                     else {
+                            intro2 = intro2.replace(intro2.split('.')[0] + '.', "");
+                     }
+                     return intro1 + '<span id="dots"> ...</span>' + '<span id="more">' + intro2 + '</span>';
               },
               introMoileLongFormatter : function(value, template) {
-                     let intro1 = value.substr(0,250);
-                     let intro2 = value.substr(250, value.length);
-                     return intro1 + '<span id="dotsMobile">...</span>' + '<span id="moreMobile">' + intro2 + '</span>';
+                     let intro1 = value.substr(0,220);
+                     let intro2 = value.substr(220, value.length);
+                     intro1 += intro2.split('.')[0] + '.';
+                     if(intro2.split('.')[1].startsWith('<br>')) {
+                            intro2 = intro2.replace(intro2.split('.')[0] + '.<br>', "");
+                     }
+                     else {
+                            intro2 = intro2.replace(intro2.split('.')[0] + '.', "");
+                     }
+                     return intro1 + '<span id="dotsMobile"> ...</span>' + '<span id="moreMobile">' + intro2 + '</span>';
               }
        });
 }
