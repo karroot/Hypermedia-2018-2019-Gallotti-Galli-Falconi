@@ -36,18 +36,36 @@
         </div>
     </div>
       
-
+      
 
   <div id="footer"></div>
 
   <!-- Template -->
   <script type="text/html" id="template">
-    <div class="clearfix">
-        <h1 class="py-3 my-4" data-content="title"></h1>
+   <div class="clearfix">
+      <h1 class="py-3 my-4" data-content="title"></h1>
+      <div class="no-mobile">
         <img data-src="id" data-format="picFormatter" data-format-target="src" class="mr-5 float-left" data-alt="title" style="width: 15rem;">
-        <p data-content="intro" class="text-justify float-centre"></p>
-        <div id="author-template-container"></div>
+        <div class="desktop-book-intro">
+          <p data-content="intro" class="text-justify float-centre"></p>
+        </div>
+        <div class="tablet-book-intro">
+          <p data-content="intro" data-format="introLongFormatter"></p>
+          <a onclick="showMore()" id="myBtn">Read more</a>
+        </div>
+      </div>
+      <div class=" container yes-mobile">
+        <img class="center" data-src="id" data-format="picFormatter" data-format-target="src" class="mr-5 float-left" data-alt="title" style="width: 15rem;">
+        <div>
+            <br>
+          <p data-content="intro" data-format="introMoileLongFormatter"></p>
+          <a onclick="showMoreMobile()" id="myBtnMobile">Read more</a>
+        </div>
+      </div>
+      <br> 
+      <div id="author-template-container"></div>
     </div>
+        
     <p class="font-weight-bold"> Buy:
         <button class="btn btn-primary my-5 mx-3" data-content="price" data-format="bookPriceFormatter"></button>
         <button class="btn btn-primary my-5" data-content="price" data-format="eBookPriceFormatter"><a data-class="ebook" data-format="ebookButtonFormatter" data-format-target="class"></a></button> 

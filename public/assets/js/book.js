@@ -287,6 +287,16 @@ function templateFormatter() {
               },
               eBookPriceFormatter : function(value, template) {
                      return  `<b>eBook ${(value.value*0.42).toFixed(2)}${value.currency}`
+              },
+              introLongFormatter : function(value, template) {
+                     let intro1 = value.substr(0,350);
+                     let intro2 = value.substr(350, value.length);
+                     return intro1 + '<span id="dots">...</span>' + '<span id="more">' + intro2 + '</span>';
+              },
+              introMoileLongFormatter : function(value, template) {
+                     let intro1 = value.substr(0,250);
+                     let intro2 = value.substr(250, value.length);
+                     return intro1 + '<span id="dotsMobile">...</span>' + '<span id="moreMobile">' + intro2 + '</span>';
               }
        });
 }

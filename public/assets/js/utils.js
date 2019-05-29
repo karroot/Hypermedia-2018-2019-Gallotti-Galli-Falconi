@@ -71,3 +71,35 @@ function setEbook() {
   clearFilter();
   sessionStorage.setItem("EBOOK_FILTER", "eBook");
 }
+
+function showMore() {
+  var dots = document.getElementById("dots");
+  var moreText = document.getElementById("more");
+  var btnText = document.getElementById("myBtn");
+
+  if (dots.style.display === "none") {
+    dots.style.display = "inline";
+    btnText.innerHTML = "Read more";
+    moreText.style.display = "none";
+  } else {
+    dots.style.display = "none";
+    btnText.innerHTML = "Read less";
+    moreText.style.display = "inline";
+  }
+}
+
+function showMoreMobile() {
+  var dotsMobile = document.getElementById("dotsMobile");
+  var moreTextMobile = document.getElementById("moreMobile");
+  var btnTextMobile = document.getElementById("myBtnMobile");
+
+  if (dotsMobile.style.display === "none") {
+    dotsMobile.style.display = "inline";
+    btnTextMobile.innerHTML = "Read more";
+    moreTextMobile.style.display = "none";
+  } else {
+    dotsMobile.style.display = "none";
+    btnTextMobile.innerHTML = "Read less";
+    moreTextMobile.style.display = "inline";
+  }
+}
