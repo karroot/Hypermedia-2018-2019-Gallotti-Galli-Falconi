@@ -78,7 +78,6 @@ function setEbook() {
   sessionStorage.setItem("EBOOK_FILTER", "eBook");
 }
 
-<<<<<<< HEAD
 function showMore() {
   var dots = document.getElementById("dots");
   var moreText = document.getElementById("more");
@@ -111,15 +110,6 @@ function showMoreMobile() {
   }
 }
 
-$('#password, #confirm_password').on('keyup', function () {
-  if ($('#password').val() == $('#confirm_password').val()) {
-    $('#message').html('Matching').css('color', 'green');
-  } else 
-    $('#message').html('Not Matching').css('color', 'red');
-}); 
-
-=======
->>>>>>> e3d7e38fdd2f87971869ae7cd652a1f12de095bc
 //Register
 $('#singUp').submit(function(e) {
   e.preventDefault();
