@@ -71,3 +71,33 @@ function setEbook() {
   clearFilter();
   sessionStorage.setItem("EBOOK_FILTER", "eBook");
 }
+
+$('#password, #confirm_password').on('keyup', function () {
+  if ($('#password').val() == $('#confirm_password').val()) {
+    $('#message').html('Matching').css('color', 'green');
+  } else 
+    $('#message').html('Not Matching').css('color', 'red');
+}); 
+
+//Register
+$('#singUp').submit(function(e) {
+  e.preventDefault();
+
+  //$("#fail-login")[0].innerHTML = ''
+  $.ajax({
+    type: $('#singUp').attr('method'),
+    url: $('#singUp').attr('action'),
+    data: $('#singUp').serialize().replace("%40", "@"),
+    success: function(data, status){
+          try{ 
+            $("#fail-login")[0].innerHTML = `<div class="alert alert-success" role="alert"> WELCOME IN MDGBOOKS, ${data[0].username}! </div>`
+           
+          } catch(e)  {
+            //window.location.href = "/pages/error.html";
+          }
+    },
+    error: function(XMLHttpRequest, textStatus, errorThrown) {
+      $("#fail-login")[0].innerHTML = '<div class="alert alert-danger" role="alert"> email or password incorrect! </div>'
+    }
+  });
+});

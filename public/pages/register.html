@@ -23,31 +23,32 @@
             <div class="card d-flex rounded-lg py-4" style="width: 25rem;">
             <img class="my-4 mx-auto" src="/assets/img/logo.png" alt="logo" width="133" height="76">
             <div class="card-body">
-                <form class="form-signup" id="singUp" method="POST" action="/v2/user/login/">
+                <form class="form-signup" id="singUp" method="POST" action="/v2/user/register/"
+                oninput='pass2.setCustomValidity(pass2.value != password.value ? "Passwords do not match." : "")'>
                     <h1 class="mb-4 font-weight-normal d-flex justify-content-center">Registration</h1>
                     <div class="form-group">
                         <label for="username" class="col-6 control-label">Username*</label>
                         <div class="col-12">
-                            <input type="text" id="username" placeholder="Username" class="form-control" autofocus required>
+                            <input type="text" id="username" placeholder="Username" class="form-control" name="username" autofocus required>
                         </div>
                     </div>
                     <div class="form-group">
                         <label for="address" class="col-6 control-label">Email* </label>
                         <div class="col-12">
-                            <input type="email" id="address" placeholder="Email" class="form-control" name= "email" required>
+                            <input type="email" id="address" placeholder="Email" class="form-control" name="mail" required>
                                 <small id="emailHelp" class="form-text text-muted">We'll never share your email with anyone else.</small>
                         </div>
                     </div>
                     <div class="form-group">
                         <label for="password" class="col-6 control-label">Password*</label>
                         <div class="col-12">
-                            <input type="password" id="password" placeholder="Password" class="form-control" required>
+                            <input type="password" id="password" placeholder="Password" class="form-control" required name="password">
                         </div>
                     </div>
                     <div class="form-group">
                         <label for="password" class="col-9 control-label">Confirm Password*</label>
                         <div class="col-12">
-                            <input type="password" id="password" placeholder="Password" class="form-control" required>
+                            <input type="password" id="password" placeholder="Password" class="form-control" required name="pass2">
                         </div>
                     </div> 
                     <div class="form-group">
@@ -55,6 +56,7 @@
                             <small class="help-block">*Required fields</small>
                         </div>
                     </div>
+                    <div id="fail-login"></div>
                     <button type="submit" class="btn btn-lg btn-primary btn-block my-4 font-weight-bold">Sign up</button>
                     <div class="form-group">
                         <p class="text-center line-top">Do you have already an account? <a href="/pages/login.html" id="signup">Log in here</a></p>
