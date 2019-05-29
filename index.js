@@ -4,7 +4,7 @@ var fs = require("fs"),
   path = require("path"),
   http = require("http");
 
-  var sslRedirect = require('heroku-ssl-redirect');
+
 var app = require("connect")();
 var swaggerTools = require("swagger-tools");
 var jsyaml = require("js-yaml");
@@ -48,7 +48,7 @@ swaggerTools.initializeMiddleware(swaggerDoc, function(middleware) {
 
   app.use(serveStatic(__dirname + "/public"));
 
-  app.use(sslRedirect);
+
 
   setupDataLayer().then(() => {
     // Start the server
