@@ -1,3 +1,4 @@
+clearBook();
 
 var MONTH_FILTER = "";
 

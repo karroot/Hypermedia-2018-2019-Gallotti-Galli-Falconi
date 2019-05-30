@@ -1,3 +1,5 @@
+clearEvent();
+
 var GENRE_FILTER = "";
 var THEME_FILTER = "";
 var EBOOK_FILTER = "";

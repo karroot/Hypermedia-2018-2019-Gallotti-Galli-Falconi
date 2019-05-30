@@ -70,7 +70,16 @@ function clearFilter() {
   sessionStorage.setItem("GENRE_FILTER", "");
   sessionStorage.setItem("THEME_FILTER", "");
   sessionStorage.setItem("MONTH_FILTER", "");
+}
 
+function clearEvent() {
+  sessionStorage.setItem("MONTH_FILTER", "");
+}
+
+function clearBook() {
+  sessionStorage.setItem("EBOOK_FILTER", "");
+  sessionStorage.setItem("GENRE_FILTER", "");
+  sessionStorage.setItem("THEME_FILTER", "");
 }
 
 function setEbook() {

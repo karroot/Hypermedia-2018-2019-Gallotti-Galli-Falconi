@@ -1,3 +1,5 @@
+clearFilter();
+
 function getAuthors() {
     fetch('/v2/author').then(function(response) {
            return response.json();
