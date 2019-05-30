@@ -178,7 +178,7 @@ function parseSimilarData(book) {
        templateFormatter();
 
        if(book[0] == undefined) {
-              $(".bookCard-template-container")[0].innerHTML = "<p class='mx-3'>This book doesn't have any similar book :'(</p>"
+              $(".bookCard1-template-container")[0].innerHTML = "<p class='mx-3'>This book doesn't have any similar book :'(</p>"
           }
           else {
               $(".bookCard1-template-container").loadTemplate("#book-template", book.slice(0, book.length/2), {
@@ -190,7 +190,6 @@ function parseSimilarData(book) {
                  });
        }
 }
-
 
 function parseFavorites(book) {
        templateFormatter();
@@ -228,8 +227,6 @@ function getFavorites() {
        return response.json();
        }).then(parseFavorites))
 }
-
-
 
 function populateGenreOptions(genre) {
        let html = "<option id=''>All genres</option>";
