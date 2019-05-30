@@ -39,6 +39,7 @@ tags:
   description: "Contact us"
 schemes:
 - "https"
+- "http"
 paths:
   /FAQ:
     get:
@@ -733,13 +734,13 @@ paths:
         default:
           description: "successful operation"
       x-swagger-router-controller: "User"
-
+  
   /cart/detail/{userId}:
     put:
       tags:
       - "cart"
       summary: "Update the cart of a given user"
-      operationId: "putCartDetailByUserId"
+      operationId: "putCartDetailebokByUserId"
       consumes:
       - "application/json"
       produces:
@@ -749,7 +750,7 @@ paths:
         in: "path"
         description: "ID of the user whose cart needs to be modified"
         required: true
-        type: "integer"
+        type: "integer" 
         format: "int64"
       - in: "body"
         name: "body"
@@ -1286,9 +1287,12 @@ definitions:
       quantity:
         type: "integer"
         minimum: 1
+      ebook:
+        type: "string"
     example:
       quantity: 1
       bookId: 0
+      ebook : "true"
   Amount:
     type: "object"
     required:

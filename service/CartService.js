@@ -22,12 +22,13 @@ exports.cartsdetailDbSetup = function(database) {
         table.float("value")
         .notNullable();
         table.integer("quantity");
+        
         table.integer("bookId")
         .notNullable()
         .references('id')
         .inTable('books')
         .onDelete('CASCADE');
-
+        table.text("ebook").notNullable();
         table.unique(['userId', 'bookId']);
         table.primary(['userId','bookId']);
 
@@ -67,6 +68,8 @@ exports.deleteCartDetailByUserId = function(userId,body) {
 }
 
 
+
+
 /**
  * Add a new cart item to the cart
  *
@@ -74,46 +77,41 @@ exports.deleteCartDetailByUserId = function(userId,body) {
  * body CartItem Id of book and the quantity that needs to be added to the cart
  * returns Cart
  **/
-exports.putCartDetailByUserId = function(userId,body) {
-  return sqlDb("cartsdetail")
-  .insert({"userId":userId ,"bookId":body.bookId,"quantity":body.quantity});
-}
-
 
 exports.putCartDetailByUserId = function(userId,body) {
   
   function isInDb (sqlDb,book){
-  return sqlDb("cartsdetail").count("* as count").where({bookId:book}).then(data =>{
+    return sqlDb("cartsdetail").count("* as count").where({bookId:book}).then(data =>{
+      
+  
     
-
-  
-    return (data[0].count > 0) ? true : false;
-  });
-  };
-  
-  function updateBook (sqlDb,userId,body){
-    return sqlDb("cartsdetail").where({"userId":userId, "bookId": body.bookId}).then(data =>{
-      var idm = parseInt(data[0].quantity+body.quantity);
-      return sqlDb("cartsdetail").update({"userId":userId ,"bookId":body.bookId,"quantity":idm}).then(data =>{
-        return true;
-      });
-    });  
-    };
-  
-    return isInDb(sqlDb,body.bookId).then( inDb =>{
-      if(!inDb){
-        return sqlDb("cartsdetail")
-        .insert({"userId":userId ,"bookId":body.bookId,"quantity":body.quantity});
-      }
-      else{
-        return updateBook(sqlDb,userId,body).then(added =>{
-          if(added)
-            return { ok: "libro aggiunto"};
-          return {error: "libro non aggiunto"}
-  
-        });
-      }
+      return (data[0].count > 0) ? true : false;
     });
+    };
+    
+    function updateBook (sqlDb,userId,body){
+      return sqlDb("cartsdetail").where({"userId":userId, "bookId": body.bookId}).then(data =>{
+        var idm = parseInt(data[0].quantity+body.quantity);
+        return sqlDb("cartsdetail").update({"userId":userId ,"bookId":body.bookId,"quantity":idm,"ebook":body.ebook}).then(data =>{
+          return true;
+        });
+      });  
+      };
+    
+      return isInDb(sqlDb,body.bookId).then( inDb =>{
+        if(!inDb){
+          return sqlDb("cartsdetail")
+          .insert({"userId":userId ,"bookId":body.bookId,"quantity":body.quantity,"ebook":body.ebook});
+        }
+        else{
+          return updateBook(sqlDb,userId,body).then(added =>{
+            if(added)
+              return { ok: "libro aggiunto"};
+            return {error: "libro non aggiunto"}
+    
+          });
+        }
+      });
      
   }
 
