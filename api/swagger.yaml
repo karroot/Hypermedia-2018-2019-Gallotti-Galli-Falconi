@@ -10,7 +10,7 @@ info:
   license:
     name: "Apache-2.0"
     url: "http://www.apache.org/licenses/LICENSE-2.0.html"
-host: "mdgbookstore.herokuapp.com"
+host: "localhost:5000"
 basePath: "/v2"
 tags:
 - name: "book"
@@ -740,7 +740,7 @@ paths:
       tags:
       - "cart"
       summary: "Update the cart of a given user"
-      operationId: "putCartDetailebokByUserId"
+      operationId: "putCartDetailByUserId"
       consumes:
       - "application/json"
       produces:

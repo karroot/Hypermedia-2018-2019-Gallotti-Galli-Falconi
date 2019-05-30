@@ -92,7 +92,7 @@ exports.putCartDetailByUserId = function(userId,body) {
     function updateBook (sqlDb,userId,body){
       return sqlDb("cartsdetail").where({"userId":userId, "bookId": body.bookId}).then(data =>{
         var idm = parseInt(data[0].quantity+body.quantity);
-        return sqlDb("cartsdetail").update({"userId":userId ,"bookId":body.bookId,"quantity":idm,"ebook":body.ebook}).then(data =>{
+        return sqlDb("cartsdetail").update({"userId":userId ,"bookId":body.bookId,"quantity":idm,"ebook":body.ebook}).where({"userId":userId, "bookId": body.bookId}).then(data =>{
           return true;
         });
       });  
