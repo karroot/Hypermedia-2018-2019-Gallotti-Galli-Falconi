@@ -23,11 +23,11 @@
                       </div>
                     </li>
               </li>
-              <li class="nav-item"></li>   
+              <li class="nav-item">
                 <a class="nav-link text-text" href="/pages/events.html" onclick="clearFilter()">Events</a>
               </li>
               </li>
-              <li class="nav-item"></li>   
+              <li class="nav-item"> 
                 <a class="nav-link text-text" href="/pages/authors.html">Authors</a>
               </li>
             </ul>
@@ -37,7 +37,8 @@
             </div>
             <div id="afterLogIn">
               <button class="btn btn-default" id="btn-cart" type="button">
-                <i class="fas fa-shopping-cart fa-lg" aria-hidden="true"></i>
+                <label for="cart" class="sr-only">Cart</label>
+                <i id="cart" class="fas fa-shopping-cart fa-lg" aria-hidden="true"></i>
               </button>
               <button class="btn btn-outline-secondary btn-sm" id="btn-logout" type="submit" onclick="logout()">Log Out</button>
             </div>
