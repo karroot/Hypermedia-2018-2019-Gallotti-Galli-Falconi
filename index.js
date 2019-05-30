@@ -63,9 +63,7 @@ swaggerTools.initializeMiddleware(swaggerDoc, function(middleware) {
         serverPort
       );
     });
-    // Require https
 
-  header("Location: https://mdgbookstore.herokuapp.com/");
 
   });
 });
