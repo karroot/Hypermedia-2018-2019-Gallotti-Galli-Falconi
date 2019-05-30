@@ -28,6 +28,40 @@ html, body {
     font-size: 85%;
 }
 
+/*  Mobile Font
+ */
+@media (max-width: 767px) {
+    .text-text{
+        font-size: 21px;
+    }
+    .btn {
+        font-size: 19px;
+    }
+    a, li, p {
+        font-size: 18px;
+    }
+    #btn-email {
+        font-size: 16px !important;
+    }
+}
+ /* Tablet Font
+  */
+  @media (min-width: 768px) and (max-width: 1027px) {
+    p, a, li{
+        font-size: 18px;
+    }
+    .text-text{
+        font-size: 17px;
+        margin-right: 10%;
+    }
+    .btn {
+        font-size: 17px;
+    }
+    #btn-email {
+        font-size: 16px !important;
+    }
+}
+
 /*  Navbar
  */
  .navbar-expand-lg {
