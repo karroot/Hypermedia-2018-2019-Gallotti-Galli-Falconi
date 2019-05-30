@@ -102,16 +102,14 @@ exports.getReviewsByBook = function(bookId) {
  * returns List
  **/
 exports.getSimilarBook = function(bookId,offset,limit) {
-    
   return sqlDb1("similarbooks")
+  .innerJoin('books', 'similarbooks.bookid2', 'books.id')
   .limit(limit)
   .offset(offset)
   .where({bookid1: bookId})
   .then(data => {
-    return data.map(e => {
-      e.price = { value: e.value, currency: e.currency };
-      return e;
-    })});
+    return data
+    });
 }
 
 

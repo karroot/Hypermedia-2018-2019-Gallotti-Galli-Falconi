@@ -19,22 +19,33 @@
     <div class="content space-header">
       <nav aria-label="breadcrumb">
         <ol class="breadcrumb">
-          <li class="breadcrumb-item active" aria-current="page"><a onclick="history.go(-1)" id="arrow"><i class="fas fa-arrow-left fa-lg"></i></a>Book</li>
+          <li class="breadcrumb-item active" aria-current="page"><a href="/pages/books.html" id="arrow"><i class="fas fa-arrow-up fa-lg"></i></a>Book</li>
         </ol>
       </nav>
         
-        <div class="container my-4"> 
-            <div class="book-template-container"></div>
-            <h2 class="my-3 pt-4">Events:</h2>
-            <div class="d-flex flex-direction: row">
-              <div class="eventCard1-template-container"></div>
-              <div class="eventCard2-template-container"></div>
-              <div class="eventCard3-template-container"></div>
+        <div class="container my-4">           
+                <div class="book-template-container"></div> 
+                <div class="row">
+                  <div class="col-12 col-lg-8">  
+                     <div class="facSheet-template-container"></div>
+                      <h2 class="my-3 pt-4">Review:</h2>
+                      <div class="review-template-container"></div>
+                  </div>
+                  <div class="col-12 col-lg-4">
+                        <h4 class="my-3 pt-4">Similar book:</h4>
+                        <p>Do you love this book? We think you'd like also those ones!</p>
+                      <div class="d-flex flex-direction: row">
+                        <div class="bookCard1-template-container"></div>
+                        <div class="bookCard2-template-container"></div>
+                      </div>
+                      <h4 class="my-3 pt-4">Correlated events:</h4>
+                      <div class="d-flex flex-direction: row">
+                        <div class="eventCard-template-container"></div>
+                      </div>
+                  </div>
+                </div>
+              </div>
             </div>
-            <h2 class="my-3 pt-4">Review:</h2>
-            <div class="review-template-container"></div>
-        </div>
-    </div>
       
       
 
@@ -43,46 +54,45 @@
   <!-- Template -->
   <script type="text/html" id="template">
    <div class="clearfix">
-      <h1 class="py-3 my-4" data-content="title"></h1>
+      <h1 class="py-3 my-4" data-content="title"></h1>  
       <div class="no-mobile">
         <img data-src="id" data-format="picFormatter" data-format-target="src" class="mr-5 float-left" data-alt="title" style="width: 15rem;">
         <div class="desktop-book-intro">
-          <p data-content="intro" class="text-justify float-centre"></p>
-        </div>
-        <div class="tablet-book-intro">
-          <p data-content="intro" data-format="introLongFormatter"></p>
-          <a onclick="showMore()" id="myBtn">Read more</a>
-        </div>
+        <p data-content="intro" class="text-justify float-centre"></p>
       </div>
-      <div class=" container yes-mobile">
+      <div class="tablet-book-intro">
+        <p data-content="intro" data-format="introLongFormatter"></p>
+        <a onclick="showMore()" id="myBtn">Read more</a>
+      </div>
+      </div>
+      <div class="container yes-mobile">
         <img class="center" data-src="id" data-format="picFormatter" data-format-target="src" class="mr-5 float-left" data-alt="title" style="width: 15rem;">
-        <div>
-            <br>
+        <div class="my-4">
           <p data-content="intro" data-format="introMoileLongFormatter"></p>
           <a onclick="showMoreMobile()" id="myBtnMobile">Read more</a>
         </div>
       </div>
-      <br> 
-      <div id="author-template-container"></div>
+      <div class="author-template-container"></div>
     </div>
-        
+  </script>
+
+  <script type="text/html" id="template2">
     <p class="font-weight-bold"> Buy:
-        <button class="btn btn-primary my-5 mx-3" data-content="price" data-format="bookPriceFormatter"></button>
-        <button class="btn btn-primary my-5" data-content="price" data-format="eBookPriceFormatter"><a data-class="ebook" data-format="ebookButtonFormatter" data-format-target="class"></a></button> 
+      <button class="btn btn-primary my-5 mx-3" data-content="price" data-format="bookPriceFormatter"></button>
+      <button class="btn btn-primary my-5" data-content="price" data-format="eBookPriceFormatter"><a data-class="ebook" data-format="ebookButtonFormatter" data-format-target="class"></a></button> 
     </p>
     <p class="mt-3">Fact Sheet:</p>
     <ul>
-    <li data-content="factSheet" data-format="factSingleFormatter"></li>
+      <li data-content="factSheet" data-format="factSingleFormatter"></li>
     </ul>
   </script>
 
   <script type="text/html" id="author-template">
-        <a data-href="authorid" data-content="name" data-format="authorOneFormatter"></a>
-      </p>
+    <a data-href="authorid" data-content="name" data-format="authorOneFormatter"></a>
   </script>
 
-  <script type="text/html" id="eventTemplate">
-    <div class="card mb-3 mx-responsive shadow-sm event-card" style="width: 20rem;">
+  <script type="text/html" id="event-template">
+    <div class="card mb-3 mx-responsive shadow-sm event-card" style="width: 18rem;">
       <a  data-href="id" data-format="eventHrefFormatter" data-format-target="href" class="card-link">
        <img class="card-img-top"  data-format="picMobileFormatter" data-format-target="src" data-src="id" alt="Event image">
        <div class="card-body">
@@ -93,17 +103,27 @@
      </div>
     </script>
 
-    <script type="text/html" id="reviewTemplate">
-        <div class="card shadow-sm my-2">
-            <div class="card-header">
-                <h5 class="float-left" data-content="title"></h5>
-                <img data-src="stars" data-format="starsFormatter" data-format-target="src" alt="vote" class="float-right"style="width:100px;">
-            </div>
-                <div class="card-body">
-                  <p class="card-text" data-content="text"></p>
-                </div>
-              </div>
-        </script>
+    <script type="text/html" id="review-template">
+      <div class="card shadow-sm my-2">
+        <div class="card-header">
+          <h5 class="float-left" data-content="title"></h5>
+          <img data-src="stars" data-format="starsFormatter" data-format-target="src" alt="vote" class="float-right"style="width:100px;">
+        </div>
+        <div class="card-body">
+          <p class="card-text" data-content="text"></p>
+        </div>
+      </div>
+    </script> 
+
+        
+  <script type="text/html" id="book-template">
+    <a data-href="bookid2" data-format="bookHrefFormatter" data-format-target="href" class="card my-3 mx-2 shadow-sm card-link" style="width: 10rem;">
+    <img data-src="bookid2" data-format="picFormatter" data-format-target="src" class="card-img-top" data-alt="title">
+      <div class="card-body">
+        <p class="card-text font-weight-bold"  data-content="title"></p>
+      </div>
+    </a>
+  </script>
 
   <!-- jQuery first, then Popper.js, then Bootstrap JS -->    
   <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>

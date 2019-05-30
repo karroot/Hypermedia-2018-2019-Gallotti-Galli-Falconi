@@ -71,6 +71,7 @@ function getBookById() {
        fetch(`/v2/book/${book_id}`).then(function(response) {
               return response.json();
       }).then(parseBookData)
+      getSimilarBook(book_id);
       getEventByBook(book_id);
       getReview(book_id);
 }
@@ -86,10 +87,17 @@ function getEventByBook(id) {
               return response.json();
        }).then(parseEventData)
 }
+
 function getReview(id) {
        fetch(`/v2/book/${id}/reviews`).then(function(response) {
               return response.json();
        }).then(parseReviewData)
+}
+
+function getSimilarBook(id) {
+       fetch(`/v2/book/${id}/similar`).then(function(response) {
+              return response.json();
+       }).then(parseSimilarData)
 }
 
 function getOption() {
@@ -125,6 +133,7 @@ function parseBookData(book) {
        book[0].intro = book[0].intro.split('\n').join('<br>');
 
        $(".book-template-container").loadTemplate("#template", book);
+       $(".facSheet-template-container").loadTemplate("#template2", book);
        getAuthorByBook(book[0].id);
 }
 
@@ -134,27 +143,21 @@ function parseAuthorData(data) {
        if(data.length>1){
               data.slice(1, data.length).forEach( a =>  html += `<a class="btn-link font-weight-bold" href="/pages/author.html?id=${a.authorid}">, ${a.name}`)
        }
-       $('#author-template-container')[0].innerHTML = html;
+       $('.author-template-container')[0].innerHTML = html;
 }
 
 function parseEventData(event) {
        templateFormatter();
    
        if(event[0] == undefined) {
-           $(".eventCard1-template-container")[0].innerHTML = "<p class='mx-3'>This book doesn't have any event yet</p>"
+           $(".eventCard-template-container")[0].innerHTML = "<p class='mx-3'>This book doesn't have any event yet</p>"
        }
        else {
-           $(".eventCard1-template-container").loadTemplate("#eventTemplate", event.slice(0, event.length/3), {
+           $(".eventCard-template-container").loadTemplate("#event-template", event, {
                append: true
            });
-           $(".eventCard2-template-container").loadTemplate("#eventTemplate", event.slice(event.length/3, 2*(event.length/3)), {
-               append: true
-           });
-           $(".eventCard3-template-container").loadTemplate("#eventTemplate", event.slice(2*(event.length/3), event.length), {
-               append: true
-           });
-       }
    }
+}
 
 function parseReviewData(review) {
        templateFormatter();
@@ -163,10 +166,35 @@ function parseReviewData(review) {
               $(".review-template-container")[0].innerHTML = "<p>This book doesn't have any review yet</p>"
           }
           else {
-              $(".review-template-container").loadTemplate("#reviewTemplate", review, {
+              $(".review-template-container").loadTemplate("#review-template", review, {
                   append: true
               });
        }
+}
+
+function parseSimilarData(book) {
+       templateFormatter();
+
+       if(book[0] == undefined) {
+              $(".bookCard-template-container")[0].innerHTML = "<p class='mx-3'>This book doesn't have any similar book :'(</p>"
+          }
+          else {
+              $(".bookCard1-template-container").loadTemplate("#book-template", book.slice(0, book.length/2), {
+                  append: true
+              });
+              
+              $(".bookCard2-template-container").loadTemplate("#book-template", book.slice(book.length/2, book.length), {
+                     append: true
+                 });
+       }
+}
+
+
+function parseFavorites(book) {
+       templateFormatter();
+       if(book[0].id == 3) $("#bookD").loadTemplate("#template", book);
+       if(book[0].id == 4) $("#bookG").loadTemplate("#template", book);
+       if(book[0].id == 7) $("#bookM").loadTemplate("#template", book);
 }
 
 function handleChange(e) {
@@ -199,12 +227,6 @@ function getFavorites() {
        }).then(parseFavorites))
 }
 
-function parseFavorites(book) {
-       templateFormatter();
-       if(book[0].id == 3) $("#bookD").loadTemplate("#template", book);
-       if(book[0].id == 4) $("#bookG").loadTemplate("#template", book);
-       if(book[0].id == 7) $("#bookM").loadTemplate("#template", book);
-}
 
 
 function populateGenreOptions(genre) {
