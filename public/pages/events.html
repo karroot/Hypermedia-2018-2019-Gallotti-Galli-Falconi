@@ -44,26 +44,18 @@
    
   <!-- Template -->
   <script type="text/html" id="template">
-     <div class="card mb-5 event-card mx-auto">
+     <div class="card mb-4 event-card mx-auto shadow-sm">
        <a data-href="id" data-format="eventHrefFormatter" data-format-target="href">
         <img class="card-img-top event-img-desktop"  data-format="picDesktopFormatter" data-format-target="src" data-src="id" alt="Event image">
         <!-- Differnt Pic for mobile to make easier to read all the info -->
         <img class="card-img-top event-img-mobile"  data-format="picMobileFormatter" data-format-target="src" data-src="id" alt="Event image">
+      </a>
         <div class="card-body">
           <a data-href="id" data-format="eventHrefFormatter" data-format-target="href" class="btn btn-more btn-primary rounded-circle shadow-sm float-right"><i class="fas fa-plus"></i></a>
-          <a data-href="id" data-format="eventHrefFormatter" data-format-target="href" class="h5 card-link card-title event-title centred" data-content="title"></a>
+          <a data-href="id" data-format="eventHrefFormatter" data-format-target="href" class="h5 card-link card-title" data-content="title"></a>
           <p class="card-text text-muted" data-format="dateFormatter" data-content="date"></p>
         </div>
-      </a>
       </div>
-      <!-- <div class="row no-gutters">
-        <div class="card bg-dark text-white">
-          <img class="event-img"  data-format="picFormatter" data-format-target="src" data-src="id" alt="Event image">
-          <div class="card-img-overlay">
-              <h2 class="card-title event-title centred" data-content="title"></h2>
-          </div>
-        </div>
-    </div> -->
   </script>
 
   <!-- jQuery first, then Popper.js, then Bootstrap JS -->    

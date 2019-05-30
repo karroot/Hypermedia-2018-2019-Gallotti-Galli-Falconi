@@ -207,7 +207,7 @@ html, body {
 .footer-bs .footer-nav ul.pages li { padding:5px 0px;}
 .footer-bs .footer-nav ul.pages a { color:rgba(255,255,255,1.00); font-weight:bold; text-transform:uppercase; }
 .footer-bs .footer-nav ul.pages a:hover { color:rgba(255,255,255,0.80); text-decoration:none; }
-.footer-bs .footer-nav h4 {
+.footer-bs .footer-nav h2 {
 	font-size: 11px;
 	text-transform: uppercase;
 	letter-spacing: 3px;
@@ -220,7 +220,7 @@ html, body {
 .footer-bs .footer-nav ul.list a:hover { color:rgba(255,255,255,0.60); text-decoration:none; }
 
 .footer-bs .footer-social ul { list-style:none; padding:0px; }
-.footer-bs .footer-social h4 {
+.footer-bs .footer-social h2 {
 	font-size: 11px;
 	text-transform: uppercase;
 	letter-spacing: 3px;
@@ -229,7 +229,7 @@ html, body {
 .footer-bs .footer-social a { color:rgba(255,255,255,0.80);}
 .footer-bs .footer-social a:hover { color:rgba(255,255,255,0.60); text-decoration:none; }
 
-.footer-bs .footer-ns h4 {
+.footer-bs .footer-ns h2 {
 	font-size: 11px;
 	text-transform: uppercase;
 	letter-spacing: 3px;
