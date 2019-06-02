@@ -49,11 +49,14 @@ exports.getCartByUser = function(id) {
  **/
 exports.getCartDetailByUser = function(id) {
   return sqlDb("cartsdetail")
+  .select('cartsdetail.quantity', 'cartsdetail.ebook', 'cartsdetail.bookId', 'books.title', 'books.status', 'books.value', 'books.currency')
+  .innerJoin('books', 'cartsdetail.bookId', 'books.id')
   .where({userId: id})
   .then(data => {
     return data
   });
 }
+
 
 
 

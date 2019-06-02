@@ -40,6 +40,7 @@ function getAll() {
 function geteBook() {
        $("#book-title")[0].innerHTML = "<h1>eBooks</h1>";
        fetch('/v2/ebook').then(function(response) {
+              console.log(response)
               return response.json();
        }).then(filtereBook);
 }

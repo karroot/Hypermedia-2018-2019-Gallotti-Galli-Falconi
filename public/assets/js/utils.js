@@ -31,7 +31,7 @@ $('#singIn').submit(function(e) {
     data: $('#singIn').serialize().replace("%40", "@"),
     success: function(data, status){
           try{
-            sessionStorage.setItem("authenticate", "true"); 
+            sessionStorage.setItem("authenticate", `${data[0].id}`); 
             $("#fail-login")[0].innerHTML = `<div class="alert alert-success" role="alert"> WELCOME IN MDGBOOKS, ${data[0].username}! </div>`
            window.setTimeout( function() {history.back()}, 1500 );
           } catch(e)  {
@@ -56,13 +56,16 @@ function parseQueryString(search_string) {
 
 
 function isAuthenticated() {
-    if(sessionStorage.getItem("authenticate")=="true") return true;
-    else return false; 
+    if(sessionStorage.getItem("authenticate")==""||!sessionStorage.getItem("authenticate")) return false;
+    else return true; 
 }
 
 function logout() {
-  sessionStorage.setItem("authenticate", "");;
-  history.go(0); //refresh page
+  fetch(`/v2/user/logout`).then(function() {
+    sessionStorage.setItem("authenticate", "");;
+    history.go(0); //refresh page
+})
+ 
 }
 
 function clearFilter() {
