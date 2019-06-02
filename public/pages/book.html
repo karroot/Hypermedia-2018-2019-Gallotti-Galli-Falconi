@@ -78,8 +78,11 @@
 
   <script type="text/html" id="template2">
     <p class="font-weight-bold"> Buy:
-      <button class="btn btn-primary my-5 mx-3" data-content="price" data-format="bookPriceFormatter"></button>
-      <button class="btn btn-primary my-5" data-content="price" data-format="eBookPriceFormatter"><a data-class="ebook" data-format="ebookButtonFormatter" data-format-target="class"></a></button> 
+      <label for="paper" data-content="price" data-format="bookPriceFormatter"></label>
+      <button id="paper" class="btn btn-primary my-5 mx-3" onclick='buy("false")'><b>Paper</b></button>
+      <label for="ebook" data-content="price" data-format="eBookPriceFormatter"></label>
+      <a id="ebook" class="btn btn-primary my-5" data-class="ebook" data-format="ebookButtonFormatter" data-format-target="class" onclick='buy("true")'><b>eBook</b></a> 
+      <div id="bought" class="alert alert-info mx--1" role="alert" style="display:none;">We add the book to your cart!</div>
     </p>
     <p class="mt-3">Fact Sheet:</p>
     <ul>

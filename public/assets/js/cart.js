@@ -12,18 +12,26 @@ function parseCart(cart) {
     $('#total')[0].innerHTML =`<p class='h4 py-2 mx-2 border-top' >0€</p>`
   }
   else {
-  templateFormatter();
-  let total=0;
-  for(let i=0; i<cart.length; i++) {
-      total += cart[i].value*cart[i].quantity;
+    templateFormatter();
+
+    cart.map(e => {
+      e.value = (e.ebook=='true') ? (e.value*e.quantity*0.42) : (e.value*e.quantity)
+    })
+
+    let total=0;
+    for(let i=0; i<cart.length; i++) {
+      total += cart[i].value;
+    }
+    
+    cart.map(e => {
+      e.value = e.value.toFixed(2)+'€'
+    })
+
+    $('#total')[0].innerHTML =`<p class='h4 py-2 mx-2 border-top' >${total.toFixed(2)}€</p>`
+      $(".cart-template-container").loadTemplate("#template", cart, {
+          append: true
+    });
   }
-  
-  cart.map(e => e.value = (e.value*e.quantity).toFixed(2) + '€')
-  $('#total')[0].innerHTML =`<p class='h4 py-2 mx-2 border-top' >${total}€</p>`
-    $(".cart-template-container").loadTemplate("#template", cart, {
-         append: true
-  });
-}
 }
 
 function templateFormatter() {

@@ -409,6 +409,10 @@ html, body {
     bottom: 5%;
 }
 
+.mx--1 {
+    margin-top: -7%;
+}
+
 /*  Show more button in book page
  */
 
