@@ -2,14 +2,15 @@ function getCart() {
     let user_id = sessionStorage.getItem("authenticate");
     if (!user_id) location.replace("/");
     fetch(`/v2/user/${user_id}/cartdetail`).then(function(response) {
-           return response.json();
+      if(response.redirected) location.replace("/");
+      else return response.json();
    }).then(parseCart)
 }
 
 function parseCart(cart) {
   if(cart.length==0) {
     $('#cart-elem')[0].innerHTML =`<img src="/assets/img/cart.png" class='img-fluid mx-auto d-block my-5' alt="Empty cart">`
-    $('#total')[0].innerHTML =`<p class='h4 py-2 mx-2 border-top' >0€</p>`
+    $('#total')[0].innerHTML =`<p class='h4 py-2 mx-2 border-top' >-- €</p>`
   }
   else {
     templateFormatter();
