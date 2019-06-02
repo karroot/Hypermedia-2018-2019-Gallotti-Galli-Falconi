@@ -65,7 +65,7 @@ function logout() {
     sessionStorage.setItem("authenticate", "");;
     history.go(0); //refresh page
 })
- 
+
 }
 
 function clearFilter() {

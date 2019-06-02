@@ -759,12 +759,12 @@ paths:
         description: "Id of book and the quantity that needs to be added to the cart"
         required: true
         schema:
-          $ref: "#/definitions/Cart"
+          $ref: "#/definitions/CartItem"
       responses:
         200:
           description: "successful operation"
           schema:
-            $ref: "#/definitions/Cart"
+            $ref: "#/definitions/CartItem"
         405:
           description: "Invalid input"
       x-swagger-router-controller: "Cart"
@@ -790,12 +790,12 @@ paths:
         description: "Id of book and the quantity that needs to be delete from cart"
         required: true
         schema:
-          $ref: "#/definitions/Cart"
+          $ref: "#/definitions/CartItem"
       responses:
         200:
           description: "successful operation"
           schema:
-            $ref: "#/definitions/Cart"
+            $ref: "#/definitions/CartItem"
         405:
           description: "Invalid input"
       x-swagger-router-controller: "Cart"  
@@ -1165,6 +1165,25 @@ definitions:
         - "out of stock"
     title: "Cart"
     description: "Order for books"
+    
+  CartItem:
+    type: "object"
+    required:
+    - "bookId"
+    - "quantity"
+    properties:
+      bookId:
+        type: "integer"
+        format: "int64"
+      quantity:
+        type: "integer"
+        minimum: 1
+      ebook:
+         type: "string"
+    example:
+      quantity: 1
+      bookId: 0
+      ebook : "true"
    
   Book:
     type: "object"

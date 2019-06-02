@@ -255,33 +255,6 @@ function populateFormatOptions() {
        $("#book-format")[0].innerHTML = html;
 }
 
-function buy(ebook) {
-       let book_id = parseInt(parseQueryString(location.search).id, 10);
-       let user_id = sessionStorage.getItem("authenticate");
-       if (!user_id) location.replace("/pages/login.html");
-       else {
-              let obj =  {
-                     "quantity": 1,
-                     "bookId": book_id,
-                     "ebook": ebook
-              }
-              $.ajax({
-                     type:'PUT',
-                     url: `/v2/cart/detail/${user_id}`,
-                     contentType: 'application/json',
-                     data:  JSON.stringify(obj),
-                     success: function(data, status){
-                            $("#bought").fadeToggle(300)
-                            window.setTimeout( function() { $("#bought").fadeToggle(300);}, 4000 );
-                     },
-                     error: function(XMLHttpRequest, textStatus, errorThrown) {
-                            window.alert("FAIL")
-                            
-                     }
-              });
-       }
-}
-
 function templateFormatter() {
        $.addTemplateFormatter({
               bookHrefFormatter: function(value, template) {
