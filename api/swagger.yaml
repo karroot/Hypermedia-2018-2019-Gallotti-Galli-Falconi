@@ -697,7 +697,9 @@ paths:
         200:
           description: "successful operation"
           schema:
-            $ref: "#/definitions/Cart"
+            type: "array"
+            items:
+              $ref: "#/definitions/Cart"
       x-swagger-router-controller: "User"
   /user/{id}/cartdetail:
     get:
@@ -757,7 +759,7 @@ paths:
         description: "Id of book and the quantity that needs to be added to the cart"
         required: true
         schema:
-          $ref: "#/definitions/CartItem"
+          $ref: "#/definitions/Cart"
       responses:
         200:
           description: "successful operation"
@@ -788,7 +790,7 @@ paths:
         description: "Id of book and the quantity that needs to be delete from cart"
         required: true
         schema:
-          $ref: "#/definitions/CartItem"
+          $ref: "#/definitions/Cart"
       responses:
         200:
           description: "successful operation"
@@ -1143,19 +1145,30 @@ definitions:
   Cart:
     type: "object"
     properties:
-      total:
-        $ref: "#/definitions/Amount"
-      books:
-        type: "array"
-        items:
-          $ref: "#/definitions/Book"
+      bookId:
+        type: "integer"
+        format: "int64"
+      userId:
+        type: "integer"
+        format: "int64"
+      title:
+        type: "string"
+      value:
+        type: "integer"
+        format: "int64"
+        description: "price of the book"
+      status:
+        type: "string"
+        description: "book availability in the inventory"
+        enum:
+        - "Available"
+        - "out of stock"
     title: "Cart"
     description: "Order for books"
    
   Book:
     type: "object"
     required:
-    - "author"
     - "id"
     - "title"
     properties:
@@ -1164,14 +1177,6 @@ definitions:
         format: "int64"
       title:
         type: "string"
-      review:
-        type: "array"
-        items:
-          $ref: "#/definitions/Review"
-      author:
-        type: "array"
-        items:
-          $ref: "#/definitions/Author"
       price:
         $ref: "#/definitions/Amount"
       ebook:
@@ -1179,21 +1184,12 @@ definitions:
         description: "True if ebook is available"
       intro:
         type: "string"
-      genre:
-        type: "string"
       factsheet:
         type: "string"
-      abstract:
+      theme:
         type: "string"
-      Theme:
+      genre:
         type: "string"
-      Genre:
-        type: "string"
-
-      events:
-        type: "array"
-        items:
-          $ref: "#/definitions/Event"
       status:
         type: "string"
         description: "book availability in the inventory"
@@ -1206,21 +1202,23 @@ definitions:
   Review:
     type: "object"
     required:
-    - "book"
+    - "bookId"
     - "stars"
-    - "user"
+    - "title"
     properties:
-      user:
-        $ref: "#/definitions/User"
-      book:
-        $ref: "#/definitions/Book"
+      bookId:
+        type: "number"
+        format: "integer"
       stars:
         type: "number"
         format: "integer"
         description: "vote to the book from 1 to 5"
         minimum: 1
         maximum: 5
-      review:
+      title:
+        type: "string"
+        description: "title of the review"
+      text:
         type: "string"
         description: "text of the review"
   
@@ -1229,70 +1227,40 @@ definitions:
     required:
     - "date"
     - "id"
-    - "overview"
+    - "title"
     - "place"
     properties:
-      authors:
-        type: "array"
-        items:
-          $ref: "#/definitions/Author"
-      books:
-        type: "array"
-        items:
-          $ref: "#/definitions/Book"
       id:
         type: "integer"
         format: "int64"
       overview:
-        format: "string"
+        type: "string"
       place:
-        format: "string"
+        type: "string"
       date:
         format: "date"
-      advertisingPoster:
-        format: "jpg"
-      award:
-        format: "string"
+      title:
+        type: "string"
+      bookId:
+        type: "integer"
+        format: "int64"
    
   Author:
     type: "object"
     required:
-    - "books"
-    - "id"
+    - "authorid"
     - "name"
     properties:
-      books:
-        type: "array"
-        items:
-          $ref: "#/definitions/Book"
-      id:
+      authorid:
         type: "integer"
         format: "int64"
       name:
-        format: "string"
-      life:
-        format: "string"
-      award:
-        format: "string"
-   
-  CartItem:
-    type: "object"
-    required:
-    - "bookId"
-    - "quantity"
-    properties:
-      bookId:
-        type: "integer"
-        format: "int64"
-      quantity:
-        type: "integer"
-        minimum: 1
-      ebook:
         type: "string"
-    example:
-      quantity: 1
-      bookId: 0
-      ebook : "true"
+      life:
+        type: "string"
+      award:
+        type: "string"
+        
   Amount:
     type: "object"
     required:
