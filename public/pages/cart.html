@@ -44,30 +44,31 @@
   <!-- Template -->
   <script type="text/html" id="template">
     <div class="row border border-dark rounded">
-        <div class="col-4 col-md-2 col-xl-2 border-bottom">
-            <span class="badge badge-pill my-3" data-class="status" data-format="statusFormatter" data-format-target="class" data-content="status"></span>
-          </div>
+      <div class="col-4 col-md-2 col-xl-2 border-bottom">
+        <span class="badge badge-pill my-3" data-class="status" data-format="statusFormatter" data-format-target="class" data-content="status"></span>
+      </div>
       <div class="col-8 col-md-10 col-xl border-right border-bottom">
-          <button type="button" class="close yes-mobile" aria-label="Close">
-              <span aria-hidden="true">&times;</span>
-            </button>
-        <p class="my-3 font-weight-bold" data-content="title"></p>
+        <button type="button" class="close yes-mobile" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+        <a data-href="bookId" data-format="bookHrefFormatter" data-format-target="href" class="my-3 font-weight-bold card-link" data-content="title"></a>
       </div>
       <div class="col-6 col-md-4 col-xl-2 border-right border-bottom">
-          <p class="my-3" data-content="ebook" data-format="formatFormatter"></p>
+        <p class="my-3" data-content="ebook" data-format="formatFormatter"></p>
       </div>
-      <div class="col-6 col-md-4 col-xl-2 border-right border-bottom d-flex align-items-center ">
-          <button type="button" class="btn btn-primary btn-sm mr-3"><b>-</b></button>
+      <div class="col-6 col-md-4 col-xl-2 border-right border-bottom d-flex align-items-center">
+        <button type="button" class="btn btn-primary btn-sm mr-3"><b> - </b></button>
         <p class="my-3" data-content='quantity' data-format="quantityFormatter"> </p>
-        <button type="button" class="btn btn-primary btn-sm ml-3"><b>+</b></button>
+        <button type="button" class="btn btn-primary btn-sm ml-3"><b> + </b></button>
       </div>
         <div class="col col-md-4 col-xl-2">
-            <button type="button" class="close no-mobile" aria-label="Close">
-                <span aria-hidden="true">&times;</span>
-              </button>
+          <button type="button" class="close no-mobile" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
           <p class="my-3" data-content="value"></p>
-            </div>
-    </script>
+        </div>
+    </div>
+  </script>
 
   <!-- jQuery first, then Popper.js, then Bootstrap JS -->    
   <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>

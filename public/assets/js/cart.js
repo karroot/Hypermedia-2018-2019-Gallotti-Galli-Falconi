@@ -47,6 +47,9 @@ function templateFormatter() {
     },
     quantityFormatter : function(value, template) {
       return `x${value}`;
+    },
+    bookHrefFormatter: function(value, template) {
+      return `/pages/book.html?id=${value}`;
     }
   });
 }
