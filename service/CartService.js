@@ -19,8 +19,6 @@ exports.cartsdetailDbSetup = function(database) {
         .references('id')
         .inTable('users')
         .onDelete('CASCADE');
-        table.float("value")
-        .notNullable();
         table.integer("quantity");
         
         table.integer("bookId")
@@ -80,8 +78,8 @@ exports.deleteCartDetailByUserId = function(userId,body) {
 
 exports.putCartDetailByUserId = function(userId,body) {
   
-  function isInDb (sqlDb,book,ebook){
-    return sqlDb("cartsdetail").count("* as count").where({"bookId":book,"ebook":ebook}).then(data =>{
+  function isInDb (sqlDb,book,ebook,user){
+    return sqlDb("cartsdetail").count("* as count").where({"bookId":book,"ebook":ebook,"userId":user}).then(data =>{
       
   
     
@@ -98,7 +96,7 @@ exports.putCartDetailByUserId = function(userId,body) {
       });  
       };
     
-      return isInDb(sqlDb,body.bookId,body.ebook).then( inDb =>{
+      return isInDb(sqlDb,body.bookId,body.ebook,userId).then( inDb =>{
         if(!inDb){
           return sqlDb("cartsdetail")
           .insert({"userId":userId ,"bookId":body.bookId,"quantity":body.quantity,"ebook":body.ebook});
