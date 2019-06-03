@@ -52,25 +52,26 @@ function buy(ebook) {
 function plusone(event) {
   let x = event.target;
   let book_id = parseClass(x.className).book;
+  let ebook =  parseClass(x.className).ebook;
   let obj =  {
     "quantity": 1,
     "bookId": parseInt(book_id, 10),
-    "ebook": 'false'
+    "ebook": ebook
   }
-  put(obj, getCart())
+  put(obj)
 }
 
 function minusone(event) {
   let x = event.target;
   let book_id = parseInt(parseClass(x.className).book, 10);
   let qnt = parseInt(parseClass(x.className).qnt, 10);
+  let ebook =  parseClass(x.className).ebook;
   let obj =  {
     "quantity": qnt,
     "bookId": book_id,
-    "ebook": 'false'
+    "ebook": ebook
   }
   del(obj);
-  getCart();
 }
 
 function put(obj) {
@@ -87,7 +88,7 @@ function put(obj) {
         getCart();
       },
       error: function(XMLHttpRequest, textStatus, errorThrown) {
-        window.alert("FAIL")
+        window.alert("400 bad request!")
       }
    })
   }
@@ -103,11 +104,10 @@ function del(obj) {
       contentType: 'application/json',
       data:  JSON.stringify(obj),
       success: function(data, status){
-        console.log('SUCCESS')
         getCart();
       },
       error: function(XMLHttpRequest, textStatus, errorThrown) {
-        window.alert("FAIL")
+        window.alert("400 bad request!")
       }
    });
   }
