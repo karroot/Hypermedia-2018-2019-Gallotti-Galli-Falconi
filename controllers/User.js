@@ -5,24 +5,6 @@ var User = require('../service/UserService');
 var bcrypt = require('bcrypt');
 let saltRounds = 10;
 
-module.exports.getCartByUser = function getCartByUser (req, res, next) {
-  
-  var id = req.swagger.params['id'].value;
-  if (req.session.logged_id != id ) {
-    res.writeHead(301,
-      { Location: "/pages/login.html"  }
-   );
-   
-   res.end();
-} else 
-{ User.getCartByUser(id)
-    .then(function (response) {
-      utils.writeJson(res, response);
-    })
-    .catch(function (response) {
-      utils.writeJson(res, response);
-    });
-}};
 
 module.exports.getCartDetailByUser = function getCartDetailByUser (req, res, next) {
   var id = req.swagger.params['id'].value;

@@ -27,19 +27,7 @@ exports.usersDbSetup = function(database) {
     }
   });
 };
-/**
- * retrieves the cart of an user
- *
- * id Long ID of the user to retrieve the cart from
- * returns Cart
- **/
-exports.getCartByUser = function(id) {
-  return sqlDb("carts")
-  .where({userId: id})
-  .then(data => {
-    return data
-  });
-}
+
 
 /**
  * retrieves the cart of an user
