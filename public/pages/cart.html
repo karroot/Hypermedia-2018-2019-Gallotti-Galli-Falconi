@@ -18,7 +18,7 @@
     <div id="header"></div>
     <div class="content space-header">
     <div class="container my-4"> 
-      <h1 class="my-3">HI HEROKU</h1>
+      <h1 class="my-3">Cart</h1>
       <div class="row">
         <div class="col-12 col-lg-9 my-3">
           <div class="rounded-lg border-cart">
@@ -48,9 +48,6 @@
         <span class="badge badge-pill my-3" data-class="status" data-format="statusFormatter" data-format-target="class" data-content="status"></span>
       </div>
       <div class="col-8 col-md-10 col-xl border-right border-bottom">
-        <button type="button" class="close yes-mobile" aria-label="Close">
-          <span aria-hidden="true">&times;</span>
-        </button>
         <a data-href="bookId" data-format="bookHrefFormatter" data-format-target="href" class="my-3 font-weight-bold card-link" data-content="title"></a>
       </div>
       <div class="col-6 col-md-4 col-xl-2 border-right border-bottom">
@@ -62,9 +59,6 @@
         <button type="button" class="btn btn-primary btn-sm ml-3" data-class="bookId" data-format="bookIdFormatter" data-format-target="class" onclick="plusone(event)"> + </button>
       </div>
         <div class="col col-md-4 col-xl-2">
-          <button type="button" class="close no-mobile" aria-label="Close">
-            <span aria-hidden="true">&times;</span>
-          </button>
           <p class="my-3" data-content="value"></p>
         </div>
     </div>
@@ -82,7 +76,6 @@
   <script type="text/javascript">
     $(document).ready(getCart());
    </script>
-
 
   </body>
 </html>

@@ -46,7 +46,7 @@ function buy(ebook) {
       "bookId": book_id,
       "ebook": ebook
     }
-    put(obj, showMessage());
+    put(obj);
 }
 
 function plusone(event) {
@@ -84,7 +84,8 @@ function put(obj) {
       contentType: 'application/json',
       data: JSON.stringify(obj),
       success: function(data, status){
-        showMessage()
+        $("#bought").fadeToggle(300)
+        window.setTimeout( function() { $("#bought").fadeToggle(300);}, 4000 );
         getCart();
       },
       error: function(XMLHttpRequest, textStatus, errorThrown) {
@@ -113,10 +114,6 @@ function del(obj) {
   }
 }
 
-function showMessage() {
-  $("#bought").fadeToggle(300)
-  window.setTimeout( function() { $("#bought").fadeToggle(300);}, 4000 );
-}
 
 function parseClass(clazz) {
   let qs = {};
@@ -142,9 +139,6 @@ function templateFormatter() {
     },
     bookHrefFormatter: function(value, template) {
       return `/pages/book.html?id=${parseClass(value).book}`;
-    },
-    //bookIdFormatter: function(value, template) {
-    //  return `book-${value}`;
-    //},
+    }
   });
 }
