@@ -81,7 +81,7 @@ exports.deleteCartDetailByUserId = function(userId,body) {
 exports.putCartDetailByUserId = function(userId,body) {
   
   function isInDb (sqlDb,book,ebook){
-    return sqlDb("cartsdetail").count("* as count").where({bookId:book,ebook:ebook}).then(data =>{
+    return sqlDb("cartsdetail").count("* as count").where({"bookId":book,"ebook":ebook}).then(data =>{
       
   
     
@@ -90,7 +90,7 @@ exports.putCartDetailByUserId = function(userId,body) {
     };
     
     function updateBook (sqlDb,userId,body){
-      return sqlDb("cartsdetail").where({"userId":userId, "bookId": body.bookId}).then(data =>{
+      return sqlDb("cartsdetail").where({"userId":userId, "bookId": body.bookId,"ebook":ebook}).then(data =>{
         var idm = parseInt(data[0].quantity+body.quantity);
         return sqlDb("cartsdetail").update({"userId":userId ,"bookId":body.bookId,"quantity":idm,"ebook":body.ebook}).where({"userId":userId, "bookId": body.bookId}).then(data =>{
           return true;
