@@ -56,11 +56,11 @@ exports.deleteCartDetailByUserId = function(userId,body) {
     
     if (body.quantity==1){
      return sqlDb("cartsdetail")
-     .where({"userId":userId ,"bookId":body.bookId,"quantity":body.quantity}).del();
+     .where({"userId":userId ,"bookId":body.bookId,"quantity":body.quantity,"ebook":body.ebook}).del();
     }
     else{
      return sqlDb("cartsdetail")
-     .where({"userId":userId ,"bookId":body.bookId,"quantity":body.quantity}).update({ quantity: quan });
+     .where({"userId":userId ,"bookId":body.bookId,"quantity":body.quantity,"ebook":body.ebook}).update({ quantity: quan });
     }
 
   
@@ -90,9 +90,9 @@ exports.putCartDetailByUserId = function(userId,body) {
     };
     
     function updateBook (sqlDb,userId,body){
-      return sqlDb("cartsdetail").where({"userId":userId, "bookId": body.bookId,"ebook":ebook}).then(data =>{
+      return sqlDb("cartsdetail").where({"userId":userId, "bookId": body.bookId,"ebook":body.ebook}).then(data =>{
         var idm = parseInt(data[0].quantity+body.quantity);
-        return sqlDb("cartsdetail").update({"userId":userId ,"bookId":body.bookId,"quantity":idm,"ebook":body.ebook}).where({"userId":userId, "bookId": body.bookId}).then(data =>{
+        return sqlDb("cartsdetail").update({"userId":userId ,"bookId":body.bookId,"quantity":idm,"ebook":body.ebook}).where({"userId":userId, "bookId": body.bookId,"ebook":body.ebook}).then(data =>{
           return true;
         });
       });  
