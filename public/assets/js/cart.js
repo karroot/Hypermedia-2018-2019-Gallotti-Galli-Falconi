@@ -17,6 +17,8 @@ function parseCart(cart) {
   else {
     templateFormatter();
 
+    cart.map(e => e.bookId = `book-${e.bookId}` + ` ebook-${e.ebook}` + ` qnt-${e.quantity}`)
+
     cart.map(e => {
       e.value = (e.ebook=='true') ? (e.value*e.quantity*0.42) : (e.value*e.quantity)
     })
@@ -44,41 +46,31 @@ function buy(ebook) {
       "bookId": book_id,
       "ebook": ebook
     }
-    put(obj);
+    put(obj, showMessage());
 }
 
 function plusone(event) {
   let x = event.target;
   let book_id = parseClass(x.className).book;
-  console.log(book_id);
   let obj =  {
     "quantity": 1,
     "bookId": parseInt(book_id, 10),
     "ebook": 'false'
   }
-  put(obj)
-  //getCart();
+  put(obj, getCart())
 }
 
 function minusone(event) {
   let x = event.target;
-  let book_id = parseClass(x.className).book;
+  let book_id = parseInt(parseClass(x.className).book, 10);
+  let qnt = parseInt(parseClass(x.className).qnt, 10);
   let obj =  {
-    "quantity": 1,
-    "bookId": parseInt(book_id, 10),
+    "quantity": qnt,
+    "bookId": book_id,
     "ebook": 'false'
   }
   del(obj);
   getCart();
-}
-
-function parseClass(clazz) {
-  let qs = {};
-  clazz.split(" ").forEach(i => {
-    let t = i.split("-");
-    qs[t[0]] = t[1];
-  });
-  return qs;
 }
 
 function put(obj) {
@@ -91,8 +83,7 @@ function put(obj) {
       contentType: 'application/json',
       data: JSON.stringify(obj),
       success: function(data, status){
-        $("#bought").fadeToggle(300)
-        window.setTimeout( function() { $("#bought").fadeToggle(300);}, 4000 );
+        showMessage()
         getCart();
       },
       error: function(XMLHttpRequest, textStatus, errorThrown) {
@@ -109,7 +100,7 @@ function del(obj) {
     $.ajax({
       type:'DELETE',
       url: `/v2/cart/detail/${user_id}`,
-      //contentType: 'application/json',
+      contentType: 'application/json',
       data:  JSON.stringify(obj),
       success: function(data, status){
         console.log('SUCCESS')
@@ -122,6 +113,19 @@ function del(obj) {
   }
 }
 
+function showMessage() {
+  $("#bought").fadeToggle(300)
+  window.setTimeout( function() { $("#bought").fadeToggle(300);}, 4000 );
+}
+
+function parseClass(clazz) {
+  let qs = {};
+  clazz.split(" ").forEach(i => {
+    let t = i.split("-");
+    qs[t[0]] = t[1];
+  });
+  return qs;
+}
 
 function templateFormatter() {
   $.addTemplateFormatter({
@@ -137,10 +141,10 @@ function templateFormatter() {
       return `x${value}`;
     },
     bookHrefFormatter: function(value, template) {
-      return `/pages/book.html?id=${value}`;
+      return `/pages/book.html?id=${parseClass(value).book}`;
     },
-    bookIdFormatter: function(value, template) {
-      return `book-${value}`;
-    },
+    //bookIdFormatter: function(value, template) {
+    //  return `book-${value}`;
+    //},
   });
 }
