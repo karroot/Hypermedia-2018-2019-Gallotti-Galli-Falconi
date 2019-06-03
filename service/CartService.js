@@ -29,8 +29,8 @@ exports.cartsdetailDbSetup = function(database) {
         .inTable('books')
         .onDelete('CASCADE');
         table.text("ebook").notNullable();
-        table.unique(['userId', 'bookId']);
-        table.primary(['userId','bookId']);
+        table.unique(['userId', 'bookId','ebook']);
+        table.primary(['userId','bookId','ebook']);
 
       });
 
@@ -80,8 +80,8 @@ exports.deleteCartDetailByUserId = function(userId,body) {
 
 exports.putCartDetailByUserId = function(userId,body) {
   
-  function isInDb (sqlDb,book){
-    return sqlDb("cartsdetail").count("* as count").where({bookId:book}).then(data =>{
+  function isInDb (sqlDb,book,ebook){
+    return sqlDb("cartsdetail").count("* as count").where({bookId:book,ebook:ebook}).then(data =>{
       
   
     
@@ -98,7 +98,7 @@ exports.putCartDetailByUserId = function(userId,body) {
       });  
       };
     
-      return isInDb(sqlDb,body.bookId).then( inDb =>{
+      return isInDb(sqlDb,body.bookId,body.ebook).then( inDb =>{
         if(!inDb){
           return sqlDb("cartsdetail")
           .insert({"userId":userId ,"bookId":body.bookId,"quantity":body.quantity,"ebook":body.ebook});
