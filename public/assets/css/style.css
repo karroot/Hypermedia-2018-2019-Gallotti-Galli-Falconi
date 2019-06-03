@@ -27,6 +27,15 @@ html, body {
     padding-top: 15px; 
     font-size: 85%;
 }
+.breadcrumb-content {
+    color: #505050;
+}
+.breadcrumb-content:hover {
+    color: black;
+}
+.book-event{
+    margin-left: 2.5%
+}
 
 /*  Mobile Font
  */
@@ -462,4 +471,14 @@ html, body {
 }
 #myBtn, #myBtnMobile:hover {
     cursor: pointer;
+}
+.event-author-container {
+    margin-top: 2%;
+}
+#dirMapLink {
+    display: block; 
+    padding-bottom: 5px;
+}
+.map {
+    margin-top: 5%;
 }

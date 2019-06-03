@@ -8,6 +8,53 @@ function getEvents() {
        }).then(parseData)
 }
 
+function getEventById() {
+       let id = parseQueryString(location.search).id;
+       fetch(`/v2/events/${id}`).then(function(response) {
+              return response.json();
+       }).then(parseEventData)
+}
+
+function parseEventData(event) {
+       templateFormatter();
+
+       document.title = event[0].title;
+       event[0].overview = event[0].overview.split('\n').join('<br>');
+
+       $(".eventCard1-template-container").loadTemplate("#template", event);
+       $(".description-template-container").loadTemplate("#template2", event);
+       $(".map-template-container").loadTemplate("#map-template", event);
+       getAuthorByEvent(event[0].bookId);
+       getBookbyEvent(event[0].bookId);
+}
+
+function getAuthorByEvent(id) {
+       fetch(`/v2/book/${id}/author`).then(function(response) {
+              return response.json();
+      }).then(parseAuthorData)
+}
+
+function getBookbyEvent(book_id) {
+       fetch(`/v2/book/${book_id}`).then(function(response) {
+              return response.json();
+       }).then(parseBookData)
+}
+
+function parseAuthorData(data) {
+       let html = '<h4 class="font-weight-bold"> Hosted by ';
+       html += `<a class="btn-link font-weight-bold" href="/pages/author.html?id=${data[0].authorid}">${data[0].name}`
+       if(data.length>1){
+              data.slice(1, data.length).forEach( a =>  html += `<a class="btn-link font-weight-bold" href="/pages/author.html?id=${a.authorid}">, ${a.name}`)
+       }
+       $('.author-template-container')[0].innerHTML = html;
+}
+
+function parseBookData(book) {
+       templateFormatter();
+
+       $(".book-template-container").loadTemplate("#bookTemplate", book);
+}
+
 function parseData(event) {
        $(".event").html("");
 
@@ -63,6 +110,36 @@ function templateFormatter() {
                      var month_names =["Jan","Feb","Mar","Apr","May","Jun","Jul","Aug","Sep","Oct","Nov","Dec"];
                      let myDate = temp.getDate() + "-" + (month_names[temp.getMonth()]) + "-" + (temp.getFullYear());
                      return myDate;     
+              },
+              eventHrefFormatter: function(value, template) {
+                     return `/pages/event.html?id=${value}`;
+              },
+              descriptionFormatter: function(value, template) {
+                     return value.split("\n").join("<br>");
+              },
+              authorOneFormatter : function(value, template) {
+                     return `${value}`;
+              },
+              authorFormatter : function(value, template) {
+                     if(value!=null) {
+                            return `, ${value}`;
+                     }
+              },
+              bookHrefFormatter: function(value, template) {
+                     return `/pages/book.html?id=${value}`;
+              },
+              iconFormatter: function(value, template) {
+                     if(value=='true') return 'book-icon'
+                     else return 'book-icon-none';
+              },
+              factFormatter: function(value, template) {
+                     return value.split("\n").join("<br>");   
+              },
+              priceFormatter : function(value, template) {
+                     return value.value+value.currency;
+              },
+              picFormatter: function(value, template) {
+                     return `/assets/img/books/${value}.png`;
               }
        });
 }
