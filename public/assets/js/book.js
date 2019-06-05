@@ -305,10 +305,10 @@ function templateFormatter() {
                      if(value != 'true') return `disabled`
               },
               bookPriceFormatter : function(value, template) {
-                     return  `<b>${value.value}${value.currency}`
+                     return  `<b>${value.value}${value.currency}</b>`
               },
               eBookPriceFormatter : function(value, template) {
-                     return  `<b>${(value.value*0.42).toFixed(2)}${value.currency}`
+                     return  `<b>${(value.value*0.42).toFixed(2)}${value.currency}</b>`
               },
               introLongFormatter : function(value, template) {
                      let intro1 = value.substr(0,350);
