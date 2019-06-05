@@ -479,6 +479,7 @@ html, body {
     display: block; 
     padding-bottom: 5px;
 }
-.map {
-    margin-top: 5%;
+#map {
+    width: 90%;
+    height: 300px;
 }

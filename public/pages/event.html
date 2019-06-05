@@ -2,8 +2,8 @@
 <html lang="en">
   <head>
     <!-- Required meta tags -->
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta charset="utf-8"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no"/>
     <script defer src="https://use.fontawesome.com/releases/v5.8.2/js/all.js" integrity="sha384-DJ25uNYET2XCl5ZF++U8eNxPWqcKohUUBUpKGlNLMchM7q4Wjg2CUpjHLaL8yYPH" crossorigin="anonymous"></script>
     <!-- Bootstrap CSS -->
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
@@ -30,17 +30,19 @@
                 <div class="row">
                   <div class="col-12 col-lg-8">  
                      <div class="description-template-container"></div>
-                     <h5 class="my-3 pt-4">About the book:</h5>
-                <div class="d-flex flex-direction: row">
-                  <div class="book-template-container"></div>
-                </div>
+                     <h5 class ="mt-3">Where will it be?</h5>
+                      <div id="map" class="mx-auto"></div>
+                      
+                        <div style="white-space: nowrap; text-align: center; padding: 6px 0;">
+                           <a id="dirMapLink" target="_blank" data-href="">Ottieni indicazioni stradali</a>
+                       </div>
                   </div>
                   
                   <div class="col-12 col-lg-4">
-                        <h5>Where will it be?</h5>
-                      <div class="d-flex flex-direction: row">
-                        <div class="map-template-container"></div>
-                      </div>
+                    <h5 class=" pt-4">About the book:</h5>
+                    <div class="d-flex flex-direction: row">
+                      <div class="book-template-container"></div>
+                    </div>                       
                   </div>
                 </div>
               </div>
@@ -75,42 +77,15 @@
         <div data-content="date" data-format="dateFormatter"></div>
         </div>
     </script>
-
-  <script type="text/html" id="map-template">
-    <div class="map shadow-sm">
-      <iframe width="325" height="280" frameborder="0" src="https://www.bing.com/maps/embed?h=280&w=325&cp=45~1.999999999999993&lvl=11&typ=d&sty=r&src=SHELL&FORM=MBEDV8" scrolling="no">
-      </iframe>
-      <div style="white-space: nowrap; text-align: center; width: 325px; padding: 6px 0;">
-         <a id="dirMapLink" class="btn-link" target="_blank" href="https://www.bing.com/maps/directions?cp=45~1.999999999999993&amp;sty=r&amp;lvl=11&amp;rtp=~pos.45_1.999999999999993____&amp;FORM=MBEDLD"><b>Get directions</b></a>
-     </div>
-    </div>
-  </script>
         
-    <script type="text/html" id="bookTemplate">
-      <div class="card mb-3 shadow-sm book-event" style="max-width: 540px;">
-        <div class="row no-gutters">
-          <div class="col-4">
-            <a data-href="id" data-format="bookHrefFormatter" data-format-target="href">
-            <img data-src="id" data-format="picFormatter" data-format-target="src" class="card-img img-card" data-alt="title">
-            </a>
-          </div>
-          <div class="col-8">
+  <script type="text/html" id="bookTemplate">
+    <a data-href="id" data-format="bookHrefFormatter" data-format-target="href" class="card my-3 mx-responsive shadow-sm card-link" style="width: 10rem;">
+            <img data-src="id" data-format="picBookFormatter" data-format-target="src" class="card-img-top" data-alt="title">
             <div class="card-body">
-              <a data-href="id" data-format="bookHrefFormatter" data-format-target="href" class="h4 card-link card-title" data-content="title"></a>
-              <p class="card-text my-3"  data-format="factFormatter" data-content="factSheet"></p>
-              <br>
-              <p class="card-text font-weight-bold price-card" data-content="price" data-format="priceFormatter"></p>
-              <img src='/assets/img/ebook.png' data-format="iconFormatter" data-format-target="class"  class="book-icon-desktop" data-class="ebook" alt="eBook icon">
+              <p class="card-text font-weight-bold"  data-content="title"></p>
             </div>
-            <a class="btn btn-primary btn-info-desktop" data-href="id" data-format="bookHrefFormatter" data-format-target="href">INFO</a>
-          </div>
-        </div>
-        <div class="card-footer wrapper" media= "screen and (max-width: 576px)">
-          <img src='/assets/img/ebook.png' data-format="iconFormatter" data-format-target="class" class="book-icon-mobile" data-class="ebook" alt="eBook icon">
-          <a class="btn btn-primary btn-info-mobile"  data-href="id" data-format="bookHrefFormatter" data-format-target="href">INFO</a>
-        </div> 
-      </div>
-    </script>
+    </a>
+  </script>
     
 
   <!-- jQuery first, then Popper.js, then Bootstrap JS -->    
@@ -121,7 +96,8 @@
   <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.loadtemplate/1.5.10/jquery.loadTemplate.min.js"></script>
   <script src="/assets/js/utils.js"></script>
   <script src="/assets/js/event.js"></script>
-
+  <script type='text/javascript' src='https://www.bing.com/api/maps/mapcontrol?key=AjDLVJNic-hctnziLUl9hwXvH_I6oQJN2iPZACAy9rjm6UhZDoEKMFmpl2XgyqsD&callback=pinLocations' async defer></script>
+  
   <script type="text/javascript">
     $(document).ready(getEventById());
   </script>
