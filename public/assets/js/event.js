@@ -71,6 +71,8 @@ function parseEventData(event) {
 
        document.title = event[0].title;
        event[0].overview = event[0].overview.split('\n').join('<br>');
+
+       $('#direction')[0].innerHTML = `<a id="dirMapLink" class="btn-link"  target="_blank" href="https://bing.com/maps/default.aspx?rtp=~pos.${event[0].lat}_${event[0].lon}">Get direction</a>`
        //event.map (e => e.lat += "~" +e.lon );
 
        $(".eventCard1-template-container").loadTemplate("#template", event);
