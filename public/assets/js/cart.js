@@ -12,7 +12,7 @@ function parseCart(cart) {
 
   if(cart.length==0) {
     $('#cart-elem')[0].innerHTML =`<img src="/assets/img/cart.png" class='img-fluid mx-auto d-block my-5' alt="Empty cart">`
-    $('#total')[0].innerHTML =`<p class='h4 py-2 mx-2 border-top' >-- €</p>`
+    $('#total')[0].innerHTML =`<h3 class='h4 py-2 mx-2 border-top' >-- €</h3>`
   }
   else {
     templateFormatter();
@@ -32,8 +32,14 @@ function parseCart(cart) {
       e.value = e.value.toFixed(2)+'€'
     })
 
-    $('#total')[0].innerHTML =`<p class='h4 py-2 mx-2 border-top' >${total.toFixed(2)}€</p>`
-      $(".cart-template-container").loadTemplate("#template", cart, {
+    $('#total')[0].innerHTML =`<h3 class='h4 py-2 mx-2 border-top' >${total.toFixed(2)}€</h3>`
+      $(".cart-template-container").loadTemplate("#template", cart.sort(function(a, b){ //order alphabetically
+        if(a.title < b.title) { return -1; }
+        if(a.title > b.title) { return 1; }
+        if(a.title==b.title && a.ebook=='false') {return 1}
+        if(a.title==b.title && a.ebook!='false') {return -1}
+        return 0;
+    }), {
           append: true
     });
   }
@@ -89,7 +95,7 @@ function put(obj) {
         getCart();
       },
       error: function(XMLHttpRequest, textStatus, errorThrown) {
-        window.alert("400 bad request!")
+        window.alert("Slow down! We can't support your speed yet")
       }
    })
   }
@@ -108,7 +114,7 @@ function del(obj) {
         getCart();
       },
       error: function(XMLHttpRequest, textStatus, errorThrown) {
-        window.alert("400 bad request!")
+        window.alert("Slow down! We can't support your speed yet")
       }
    });
   }
