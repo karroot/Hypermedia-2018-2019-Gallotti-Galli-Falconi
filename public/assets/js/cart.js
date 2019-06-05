@@ -95,7 +95,7 @@ function put(obj) {
         getCart();
       },
       error: function(XMLHttpRequest, textStatus, errorThrown) {
-        window.alert("400 bad request!")
+        window.alert("Slow down! We can't support your speed yet")
       }
    })
   }
@@ -114,7 +114,7 @@ function del(obj) {
         getCart();
       },
       error: function(XMLHttpRequest, textStatus, errorThrown) {
-        window.alert("400 bad request!")
+        window.alert("Slow down! We can't support your speed yet")
       }
    });
   }
