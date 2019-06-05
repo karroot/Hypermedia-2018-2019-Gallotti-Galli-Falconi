@@ -196,6 +196,15 @@ html, body {
     background-color: none;
     cursor: pointer;
 }
+.btn-cart {
+    color: #333333;
+}
+.btn-cart:hover  {
+    border: none;
+    color: black;
+    background-color: none;
+    cursor: pointer;
+}
 
 /*  Footer
  */
