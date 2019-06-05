@@ -1,6 +1,7 @@
 clearBook();
 
 var MONTH_FILTER = "";
+var EVENT;
 
 function getEvents() {
        fetch('/v2/events').then(function(response) {
@@ -13,19 +14,6 @@ function getEventById() {
        fetch(`/v2/events/${id}`).then(function(response) {
               return response.json();
        }).then(parseEventData)
-}
-
-function parseEventData(event) {
-       templateFormatter();
-
-       document.title = event[0].title;
-       event[0].overview = event[0].overview.split('\n').join('<br>');
-
-       $(".eventCard1-template-container").loadTemplate("#template", event);
-       $(".description-template-container").loadTemplate("#template2", event);
-       $(".map-template-container").loadTemplate("#map-template", event);
-       getAuthorByEvent(event[0].bookId);
-       getBookbyEvent(event[0].bookId);
 }
 
 function getAuthorByEvent(id) {
@@ -75,6 +63,23 @@ function parseData(event) {
        }), {
               append: true
        });
+}
+
+function parseEventData(event) {
+       EVENT = event; 
+       templateFormatter();
+
+       document.title = event[0].title;
+       event[0].overview = event[0].overview.split('\n').join('<br>');
+       //event.map (e => e.lat += "~" +e.lon );
+
+       $(".eventCard1-template-container").loadTemplate("#template", event);
+       $(".description-template-container").loadTemplate("#template2", event);
+       //$(".get-direction-template").loadTemplate("#direction-template", event);
+
+      
+       getAuthorByEvent(event[0].bookId);
+       getBookbyEvent(event[0].bookId);
 }
 
 function populateOptions() {
@@ -128,18 +133,23 @@ function templateFormatter() {
               bookHrefFormatter: function(value, template) {
                      return `/pages/book.html?id=${value}`;
               },
-              iconFormatter: function(value, template) {
-                     if(value=='true') return 'book-icon'
-                     else return 'book-icon-none';
-              },
-              factFormatter: function(value, template) {
-                     return value.split("\n").join("<br>");   
-              },
-              priceFormatter : function(value, template) {
-                     return value.value+value.currency;
-              },
-              picFormatter: function(value, template) {
+              picBookFormatter: function(value, template) {
                      return `/assets/img/books/${value}.png`;
               }
        });
 }
+
+function pinLocations() {
+       let map = new Microsoft.Maps.Map(document.getElementById('map'), {
+         showMapTypeSelector: false,
+         center: new Microsoft.Maps.Location(EVENT[0].lat, EVENT[0].lon),
+         zoom: 15
+       });
+       map.setView({ mapTypeId: Microsoft.Maps.MapTypeId.grayscale });
+       var latLon = new Microsoft.Maps.Location(EVENT[0].lat, EVENT[0].lon);
+       var pushpin = new Microsoft.Maps.Pushpin(latLon, {
+              title: EVENT[0].place,
+              color: "#FF3B30"
+       });
+           map.entities.push(pushpin);
+     }
