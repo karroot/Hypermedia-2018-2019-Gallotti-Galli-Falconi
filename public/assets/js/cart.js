@@ -33,7 +33,13 @@ function parseCart(cart) {
     })
 
     $('#total')[0].innerHTML =`<h3 class='h4 py-2 mx-2 border-top' >${total.toFixed(2)}€</h3>`
-      $(".cart-template-container").loadTemplate("#template", cart, {
+      $(".cart-template-container").loadTemplate("#template", cart.sort(function(a, b){ //order alphabetically
+        if(a.title < b.title) { return -1; }
+        if(a.title > b.title) { return 1; }
+        if(a.title==b.title && a.ebook=='false') {return 1}
+        if(a.title==b.title && a.ebook!='false') {return -1}
+        return 0;
+    }), {
           append: true
     });
   }
