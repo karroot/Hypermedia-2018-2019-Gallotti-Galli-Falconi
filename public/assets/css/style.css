@@ -491,10 +491,10 @@ html, body {
 }
 
 .card-header {
-    background-color: #e9ecefad;
+    background-color: #f1f1f1da;
 }
 
 .card-footer {
-    background-color: #e9ecef88;
+    background-color: #f1f1f188;
     color: var(--footer-text);
 }
