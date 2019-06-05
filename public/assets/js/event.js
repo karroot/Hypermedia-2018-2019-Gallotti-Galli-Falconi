@@ -72,13 +72,9 @@ function parseEventData(event) {
        document.title = event[0].title;
        event[0].overview = event[0].overview.split('\n').join('<br>');
 
-       $('#direction')[0].innerHTML = `<a id="dirMapLink" class="btn-link"  target="_blank" href="https://bing.com/maps/default.aspx?rtp=~pos.${event[0].lat}_${event[0].lon}">Get direction</a>`
-       //event.map (e => e.lat += "~" +e.lon );
-
+       $('#direction')[0].innerHTML = `<a id="dirMapLink" class="btn-link"  target="_blank" href="https://bing.com/maps/default.aspx?rtp=~pos.${event[0].lat}_${event[0].lon}">Get direction for ${event[0].place}</a>`
        $(".eventCard1-template-container").loadTemplate("#template", event);
        $(".description-template-container").loadTemplate("#template2", event);
-       //$(".get-direction-template").loadTemplate("#direction-template", event);
-
       
        getAuthorByEvent(event[0].bookId);
        getBookbyEvent(event[0].bookId);
@@ -142,16 +138,25 @@ function templateFormatter() {
 }
 
 function pinLocations() {
+       if(!EVENT) window.setTimeout(getMap(), 750);
+       else  {
+              getMap();
+       }
+
+}
+
+function getMap() {
        let map = new Microsoft.Maps.Map(document.getElementById('map'), {
-         showMapTypeSelector: false,
-         center: new Microsoft.Maps.Location(EVENT[0].lat, EVENT[0].lon),
-         zoom: 15
-       });
-       map.setView({ mapTypeId: Microsoft.Maps.MapTypeId.grayscale });
-       var latLon = new Microsoft.Maps.Location(EVENT[0].lat, EVENT[0].lon);
-       var pushpin = new Microsoft.Maps.Pushpin(latLon, {
-              title: EVENT[0].place,
-              color: "#FF3B30"
-       });
-           map.entities.push(pushpin);
-     }
+              showMapTypeSelector: false,
+              center: new Microsoft.Maps.Location(EVENT[0].lat, EVENT[0].lon),
+              zoom: 15
+            });
+            map.setView({ mapTypeId: Microsoft.Maps.MapTypeId.grayscale });
+            var latLon = new Microsoft.Maps.Location(EVENT[0].lat, EVENT[0].lon);
+            var pushpin = new Microsoft.Maps.Pushpin(latLon, {
+                   title: EVENT[0].place,
+                   color: "#FF3B30"
+            });
+                map.entities.push(pushpin);
+}
+     

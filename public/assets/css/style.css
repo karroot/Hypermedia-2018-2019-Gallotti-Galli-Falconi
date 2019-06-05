@@ -482,13 +482,10 @@ html, body {
 .event-author-container {
     margin-top: 2%;
 }
-#dirMapLink {
-    display: block; 
-    padding-bottom: 5px;
-}
 #map {
     width: 90%;
     height: 300px;
+    margin-top: 1rem;
 }
 .card-header {
     background-color: #f1f1f1da;
@@ -497,4 +494,10 @@ html, body {
 .card-footer {
     background-color: #f1f1f188;
     color: var(--footer-text);
+}
+#dir-wrapper {
+    text-align: center; 
+    padding: 6px 0;
+    font-size: 20px;
+    text-decoration: underline;
 }
