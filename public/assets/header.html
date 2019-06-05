@@ -1,5 +1,5 @@
 <header>       
-  <nav class="navbar fixed-top navbar-expand-lg navbar-light" >
+  <nav class="navbar fixed-top navbar-expand-lg navbar-light shadow-sm" >
       <a class="navbar-brand" href="/index.html">
           <img src="/assets/img/logo.png" width="60" height="32" class="d-inline-block align-top" alt="MDGbooks">
           MDGbooks
@@ -33,14 +33,14 @@
             </ul>
             <div id="beforeLogIn">
               <a href="/pages/login.html" class="btn btn-outline-secondary btn-sm" id="btn-login">Log In</a>
-              <a href="/pages/register.html" class="btn btn-primary btn-sm " id="btn-signup">Sign Up</a>
+              <a href="/pages/register.html" class="btn btn-outline-secondary btn-signup btn-sm">Sign Up</a>
             </div>
             <div id="afterLogIn">
               <button class="btn btn-default" id="btn-cart" type="button">
                 <label for="cart" class="sr-only">Cart</label>
                 <a href="/pages/cart.html"><i id="cart" class="fas fa-shopping-cart fa-lg" aria-hidden="true"></i><p class="sr-only">Cart</p></a>
               </button>
-              <button class="btn btn-outline-secondary btn-sm" id="btn-logout" type="submit" onclick="logout()">Log Out</button>
+              <button class="btn btn-outline-secondary btn-sm btn-signup" type="submit" onclick="logout()">Log Out</button>
             </div>
     </div>
   </nav>
