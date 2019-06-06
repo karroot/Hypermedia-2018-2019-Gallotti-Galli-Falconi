@@ -133,7 +133,8 @@ function parseBookData(book) {
        templateFormatter();
 
        document.title = book[0].title;
-       book[0].intro = book[0].intro.split('\n').join('<br>');
+       book[0].intro = book[0].intro.split('\n').join('<br>')
+       book[0].factSheet += `<li>Genre: ${book[0].genre}<li>Main theme:  ${book[0].theme}`;
 
        $(".book-template-container").loadTemplate("#template", book);
        $(".facSheet-template-container").loadTemplate("#template2", book);
@@ -265,11 +266,9 @@ function templateFormatter() {
               },
               factFormatter: function(value, template) {
                      return value.split("\n").join("<br>");
-                     
               },
               factSingleFormatter : function(value, template) {
                      return value.split("\n").join("<li>");
-                     
               },
               priceFormatter : function(value, template) {
                      return value.value+value.currency;
