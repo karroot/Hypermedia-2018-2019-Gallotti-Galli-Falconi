@@ -314,7 +314,7 @@ paths:
       produces:
       - "application/json"
       parameters:
-      - name: "genre"
+      - name: "genreid"
         in: "path"
         description: "name of genre of which to retrieve the books"
         required: true
