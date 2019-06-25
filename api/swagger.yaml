@@ -441,127 +441,7 @@ paths:
         404:
           description: "Unexpected error"
       x-swagger-router-controller: "Ebook"
-  /ebook/{ebookId}:
-    get:
-      tags:
-      - "ebook"
-      summary: "Find ebook by ID"
-      description: "Returns a ebook"
-      operationId: "getebookById"
-      produces:
-      - "application/json"
-      parameters:
-      - name: "ebookId"
-        in: "path"
-        description: "ID of ebook to return"
-        required: true
-        type: "integer"
-        format: "int64"
-      responses:
-        200:
-          description: "successful operation"
-          schema:
-            $ref: "#/definitions/Book"
-        400:
-          description: "Invalid ID supplied"
-        404:
-          description: "Book not found"
-      x-swagger-router-controller: "ebook"
-  /ebook/{ebookId}/reviews:
-    get:
-      tags:
-      - "ebook"
-      summary: "retrieves the reviews of a book"
-      operationId: "getReviewsByebook"
-      produces:
-      - "application/json"
-      parameters:
-      - name: "ebookId"
-        in: "path"
-        description: "ID of the book to retrieve the reviews of"
-        required: true
-        type: "integer"
-        format: "int64"
-      responses:
-        200:
-          description: "successful operation"
-          schema:
-            type: "array"
-            items:
-              $ref: "#/definitions/Review"
-      x-swagger-router-controller: "Ebook"
-  /ebook/{ebookId}/author:
-    get:
-      tags:
-      - "ebook"
-      summary: "Retrieve the authors of a book"
-      operationId: "getAuthorByebook"
-      produces:
-      - "application/json"
-      parameters:
-      - name: "offset"
-        in: "query"
-        description: "Pagination offset. Default is 0."
-        required: false
-        type: "integer"
-      - name: "limit"
-        in: "query"
-        description: "Maximum number of items per page. Default is 20 and cannot exceed\
-          \ 500."
-        required: false
-        type: "integer"
-      - name: "ebookId"
-        in: "path"
-        description: "ID of the book to retrieve the events of"
-        required: true
-        type: "integer"
-        format: "int64"
-      responses:
-        200:
-          description: "successful operation"
-          schema:
-            type: "array"
-            items:
-              $ref: "#/definitions/Author"
-        404:
-          description: "Book not found"
-      x-swagger-router-controller: "Ebook"
-  /ebook/{ebookId}/events:
-    get:
-      tags:
-      - "ebook"
-      summary: "retrieves the events of a book"
-      operationId: "getEventsByebook"
-      produces:
-      - "application/json"
-      parameters:
-      - name: "offset"
-        in: "query"
-        description: "Pagination offset. Default is 0."
-        required: false
-        type: "integer"
-      - name: "limit"
-        in: "query"
-        description: "Maximum number of items per page. Default is 20 and cannot exceed\
-          \ 500."
-        required: false
-        type: "integer"
-      - name: "ebookId"
-        in: "path"
-        description: "ID of the book to retrieve the events of"
-        required: true
-        type: "integer"
-        format: "int64"
-      responses:
-        200:
-          description: "successful operation"
-          schema:
-            type: "array"
-            items:
-              $ref: "#/definitions/Event"
-        404:
-          description: "Book not found"
-      x-swagger-router-controller: "Ebook"
+ 
   /user/login:
     post:
       tags:
@@ -1240,12 +1120,6 @@ definitions:
       bookId:
         type: "integer"
         format: "int64"
-      lat:
-        type: "number"
-        format: "float"
-      long:
-        type: "number"
-        format: "float"
    
   Author:
     type: "object"

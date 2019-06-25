@@ -26,65 +26,6 @@ exports.ebooksDbSetup = function(database) {
 };
 
 
-
-/**
- * retrieves the events of a book
- *
- * ebookId Long ID of the book to retrieve the events of
- * offset Integer Pagination offset. Default is 0. (optional)
- * limit Integer Maximum number of items per page. Default is 20 and cannot exceed 500. (optional)
- * returns List
- **/
-exports.getEventsByebook = function(ebookId,offset,limit) {
-  return sqlDb("events")
-  .where({bookId: ebookId})
-  .then(data => {
-    return data
-  });
-}
-
-
-/**
- * retrieves the reviews of a book
- *
- * ebookId Long ID of the book to retrieve the reviews of
- * returns List
- **/
-exports.getReviewsByebook = function(ebookId) {
-  return sqlDb("reviews")
-  .where({bookId: ebookId})
-  .then(data => {
-    return data
-  });
-}
-
-
-
-/**
- * Find ebook by ID
- * Returns a ebook
- *
- * ebookId Long ID of ebook to return
- * returns Book
- **/
-exports.getebookById = function(ebookId) {
-  return sqlDb("books")
-  .where({id: ebookId})
-  .then(data => {
-    return data.map(e => {
-      e.price = { value: e.value, currency: e.currency };
-      return e;
-    })});
-}
-exports.getAuthorByebook = function(id,offset,limit) {
-  return sqlDb("authorsAndBooks")
-  .where({id: ebookId})
-  .join('authors', {'authorsAndBooks.authorid': 'authors.authorid'})
-  .then(data => {
-    return data
-  });
-}
-
 /**
  * Books available in the inventory
  * List of ebooks available in the inventory
