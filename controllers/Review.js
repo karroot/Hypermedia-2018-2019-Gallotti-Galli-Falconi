@@ -14,16 +14,6 @@ module.exports.getAllReviews = function getAllReviews (req, res, next) {
     });
 };
 
-module.exports.getBookByReview = function getBookByReview (req, res, next) {
-  var id = req.swagger.params['id'].value;
-  Review.getBookByReview(id)
-    .then(function (response) {
-      utils.writeJson(res, response);
-    })
-    .catch(function (response) {
-      utils.writeJson(res, response);
-    });
-};
 
 module.exports.getReviewById = function getReviewById (req, res, next) {
   var id = req.swagger.params['id'].value;

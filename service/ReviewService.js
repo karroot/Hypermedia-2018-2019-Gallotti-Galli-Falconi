@@ -49,22 +49,6 @@ exports.getAllReviews = function() {
 }
 
 
-/**
- * Retrieve the book a review was written for
- *
- * id Long ID of review of which to retrieve the book
- * returns Book
- **/
-exports.getBookByReview = function(id) {
-  return sqlDb("books")
-  .where({bookId: id})
-  .then(data => {
-    return data.map(e => {
-      e.price = { value: e.value, currency: e.currency };
-      return e;
-    })});
-}
-
 
 /**
  * Find reviews by ID
@@ -74,7 +58,7 @@ exports.getBookByReview = function(id) {
  **/
 exports.getReviewById = function(id) {
   return sqlDb("reviews")
-  .where({id: id})
+  .where({UserId: id})
   .then(data => {
     return data
   });
