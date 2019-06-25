@@ -314,7 +314,7 @@ paths:
       produces:
       - "application/json"
       parameters:
-      - name: "genreid"
+      - name: "genre"
         in: "path"
         description: "name of genre of which to retrieve the books"
         required: true
@@ -798,11 +798,6 @@ paths:
       produces:
       - "application/json"
       parameters:
-      - name: "bookId"
-        in: "query"
-        description: "The id of the book of which you want to retrieve the events"
-        required: false
-        type: "integer"
       - name: "offset"
         in: "query"
         description: "Pagination offset. Default is 0."
