@@ -1240,6 +1240,12 @@ definitions:
       bookId:
         type: "integer"
         format: "int64"
+      lat:
+        type: "number"
+        format: "float"
+      long:
+        type: "number"
+        format: "float"
    
   Author:
     type: "object"
