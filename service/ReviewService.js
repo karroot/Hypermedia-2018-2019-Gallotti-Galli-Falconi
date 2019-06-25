@@ -11,7 +11,7 @@ exports.reviewsDbSetup = function(database) {
       return database.schema.createTable("reviews", table => {
 
 
-        table.integer("UserId")
+        table.integer("userId")
         .primary()
         .notNullable();
 
@@ -58,7 +58,7 @@ exports.getAllReviews = function() {
  **/
 exports.getReviewById = function(id) {
   return sqlDb("reviews")
-  .where({UserId: id})
+  .where({userId: id})
   .then(data => {
     return data
   });
