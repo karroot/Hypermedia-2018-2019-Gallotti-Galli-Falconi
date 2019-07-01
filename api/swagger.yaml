@@ -1058,6 +1058,12 @@ definitions:
         type: "string"
       place:
         type: "string"
+      lat:
+        type: "number"
+        format: "float"
+      lon:
+        type: "number"
+        format: "float"
       date:
         format: "date"
       title:
