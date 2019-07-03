@@ -132,6 +132,7 @@ paths:
         required: true
         type: "integer"
         format: "int64"
+        x-example: "1"
       responses:
         200:
           description: "successful operation"
@@ -157,6 +158,7 @@ paths:
         required: true
         type: "integer"
         format: "int64"
+        x-example: "1"
       responses:
         200:
           description: "successful operation"
@@ -192,6 +194,7 @@ paths:
         required: true
         type: "integer"
         format: "int64"
+        x-example: "1"
       responses:
         200:
           description: "successful operation"
@@ -228,6 +231,7 @@ paths:
         required: true
         type: "integer"
         format: "int64"
+        x-example: "1"
       responses:
         200:
           description: "successful operation"
@@ -264,6 +268,7 @@ paths:
         required: true
         type: "integer"
         format: "int64"
+        x-example: "1"
       responses:
         200:
           description: "successful operation"
@@ -319,6 +324,7 @@ paths:
         description: "name of genre of which to retrieve the books"
         required: true
         type: "string"
+        x-example: "Novel"
       - name: "offset"
         in: "query"
         description: "Pagination offset. Default is 0."
@@ -387,6 +393,8 @@ paths:
         description: "name of theme of which to retrieve the books"
         required: true
         type: "string"
+        x-example: "Mystery"
+        
       - name: "offset"
         in: "query"
         description: "Pagination offset. Default is 0."
@@ -458,10 +466,13 @@ paths:
         in: "formData"
         required: true
         type: "string"
+        x-example: "admin@mdgbook.com"
+        
       - name: "password"
         in: "formData"
         required: true
         type: "string"
+        x-example: "admin"
       responses:
         200:
           description: "succesfull login"
@@ -484,14 +495,17 @@ paths:
         in: "formData"
         required: true
         type: "string"
+        x-example: "userA@gmail.com"
       - name: "password"
         in: "formData"
         required: true
         type: "string"
+        x-example: "Mystery"
       - name: "username"
         in: "formData"
         required: true
         type: "string"
+        x-example: "userA"
       responses:
         200:
           description: "succesfull registration"
@@ -514,6 +528,7 @@ paths:
         required: true
         type: "integer"
         format: "int64"
+        x-example: "1"
       responses:
         200:
           description: "successful operation"
@@ -539,6 +554,7 @@ paths:
         required: true
         type: "integer"
         format: "int64"
+        x-example: "1"
       - name: "offset"
         in: "query"
         description: "Pagination offset. Default is 0."
@@ -573,6 +589,7 @@ paths:
         required: true
         type: "integer"
         format: "int64"
+        x-example: "1"
       responses:
         200:
           description: "successful operation"
@@ -611,6 +628,7 @@ paths:
         required: true
         type: "integer" 
         format: "int64"
+        x-example: "1"
       - in: "body"
         name: "body"
         description: "Id of book and the quantity that needs to be added to the cart"
@@ -642,6 +660,7 @@ paths:
         required: true
         type: "integer"
         format: "int64"
+        x-example: "1"
       - in: "body"
         name: "body"
         description: "Id of book and the quantity that needs to be delete from cart"
@@ -702,6 +721,7 @@ paths:
         required: true
         type: "integer"
         format: "int64"
+        x-example: "1"
       responses:
         200:
           description: "successful operation"
@@ -727,6 +747,7 @@ paths:
         required: true
         type: "integer"
         format: "int64"
+        x-example: "1"
       - name: "offset"
         in: "query"
         description: "Pagination offset. Default is 0."
@@ -765,6 +786,7 @@ paths:
         required: true
         type: "integer"
         format: "int64"
+        x-example: "1"
       - name: "offset"
         in: "query"
         description: "Pagination offset. Default is 0."
@@ -832,6 +854,7 @@ paths:
         required: true
         type: "integer"
         format: "int64"
+        x-example: "1"
       responses:
         200:
           description: "successful operation"
@@ -857,6 +880,7 @@ paths:
         required: true
         type: "integer"
         format: "int64"
+        x-example: "1"
       - name: "offset"
         in: "query"
         description: "Pagination offset. Default is 0."
@@ -915,6 +939,7 @@ paths:
         required: true
         type: "integer"
         format: "int64"
+        x-example: "1"
       responses:
         200:
           description: "successful operation"
@@ -984,7 +1009,7 @@ definitions:
          type: "string"
     example:
       quantity: 1
-      bookId: 0
+      bookId: 1
       ebook : "true"
    
   Book:
