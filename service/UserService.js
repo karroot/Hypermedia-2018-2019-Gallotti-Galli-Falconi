@@ -69,10 +69,6 @@ exports.logoutUser = function() {
  * no response value expected for this operation
  **/
 exports.postuserLogin = function(mail,password) {
-  //facciamo così per sapere le password da salvare
-  let hash = bcrypt.hashSync(password,10);
-console.log("pass :");
-console.log(hash);
   return sqlDb("users").where({"address":mail});
 }
 
