@@ -2,7 +2,7 @@
 
 _This web application has been developed as part of "Hypermedia" course at Politecnico di Milano in 2019._
 
-You can find the website online at this [link](https://mdgbookstore.herokuapp.com/index.html "MDGbooks") and the public API at [this one](https://mdgbookstore.herokuapp.com/docs "Swagger API").
+You can find the website online at this [link](https://mdgbookstore.herokuapp.com/index.html "MDGbooks") , the public API at [this one](https://mdgbookstore.herokuapp.com/docs "Swagger API") and the backend documentation at [this one](https://mdgbookstore.herokuapp.com/backend/main.html).
 
 **Collaborators** (in aplhabetical order):
 
