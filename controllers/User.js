@@ -81,6 +81,7 @@ module.exports.postuserLogin = function postuserLogin (req, res, next) {
      bcrypt.compare(password, response[0].password, function (err, result) {
 
     if (result == true) {
+      console.log( response[0].id);
       req.session.logged_id= response[0].id;
       utils.writeJson(res,response,200);
 
