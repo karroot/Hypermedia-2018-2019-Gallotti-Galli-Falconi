@@ -23,6 +23,6 @@
     "knex": "^0.19.5",
     "pg": "7.8.2",
     "swagger-tools": "0.10.4",
-    "validator": "^10.11.0"
+    "validator": "^13.7.0"
   }
 }
